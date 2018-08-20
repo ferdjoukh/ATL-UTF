@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HSM:StateMachine
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:HSM="http://HSM/1.0"
+    xsi:schemaLocation="http://HSM/1.0 HSM.ecore"
+    name="sm1">
+  <transitions
+      source="//@states.0"
+      target="//@states.1"
+      label="tr1"/>
+  <states xsi:type="HSM:CompositeState"
+      name="compo1"/>
+  <states xsi:type="HSM:RegularState"
+      name="state1"/>
+  <states xsi:type="HSM:CompositeState"
+      name="state3"/>
+</HSM:StateMachine>
