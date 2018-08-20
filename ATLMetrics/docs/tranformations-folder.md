@@ -1,10 +1,10 @@
 # Model Transformations folder
 
-This documents explains how the folder that contains the model transformations (MTs) **must** be built.
+This document explains how the folder that contains the model transformations (MTs) **must** be built.
 
 ## Content
 
-In this folder, we found the following data:
+In this folder, we find the following data:
 
 - The ATL model transformations source files (*.atl*, *.asm*, *.emftvm*)
 - All needed meta-models (at least 1 or 2 for each model transformation).
@@ -21,13 +21,13 @@ The following tree structure is mandatory. All the model transformations you bri
 		- trafo1.atl
 		- trafo1.asm
 		- trafo1.emftvm
-		- trafo1.infos
-		- trafo1.rules
+		- *trafo1.infos*
+		- *trafo1.rules*
 		- **meta-models**
 			- **input**
 				- intputMM.ecore
 			- **output**
-				- outputM.ecore
+				- outputMM.ecore
 		- **models**
 			- **input**
 				- **GRIMM**
@@ -44,7 +44,7 @@ The following tree structure is mandatory. All the model transformations you bri
 
 ### MTname.infos
 
-This file may contain a short summary about the model transformation:
+This file contains a short summary about the model transformation:
 
 - Name
 - Module name
@@ -70,10 +70,10 @@ This files contains score evaluation for the rules of a model transformation.
 
 Rules are divided into several categories:
 
-- Empty: without guards
-- Simple: very simple guards
-- Medium: guards are not very complex 
-- Complex: the guards are very complex
+- Empty: without guards (1)
+- Simple: very simple guards (2)
+- Medium: guards are not very complex (3) 
+- Complex: the guards are very complex (4)
 
 
 # Output files
