@@ -12,7 +12,7 @@ In this folder, we find the following data:
 - Some additional text information about the MT: module, name of meta-models, etc.
 - A file containing information about the complexity of rules for the model transformation.
 
-## Tree structure (mandatory)
+## Tree structure
 
 The following tree structure is mandatory. All the model transformations you bring for the tool have to follow it.
 
