@@ -1,6 +1,6 @@
-# Transformations folder
+# Model Transformations folder
 
-This documents explains how the folder that contains the transformations **must** be built.
+This documents explains how the folder that contains the model transformations (MTs) **must** be built.
 
 ## Content
 
