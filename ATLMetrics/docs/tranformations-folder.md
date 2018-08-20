@@ -2,7 +2,7 @@
 
 This documents explains how the folder that contains the transformations **must** be built.
 
-## What is in it ?
+## Content
 
 In this folder, we found the following data:
 
@@ -12,7 +12,7 @@ In this folder, we found the following data:
 - Some additional text information about the MT: module, name of meta-models, etc.
 - A file containing information about the complexity of rules for the model transformation.
 
-## Tree structure
+## Tree structure (mandatory)
 
 The following tree structure is mandatory. All the model transformations you bring for the tool have to follow it.
 
@@ -35,12 +35,14 @@ The following tree structure is mandatory. All the model transformations you bri
 				- **PRAMANA**
 					- input-models-by-pramana.xmi	
 			- **output**
-			- **traces**			
+			- **traces**
+	- **trafo2**
+	- **trafo3**					
 	- executions.csv
 
-## Details about special files
+# Special input files
 
-### trafo.infos
+### MTname.infos
 
 This file may contain a short summary about the model transformation:
 
@@ -62,7 +64,7 @@ outMM=FSM
 outMMRelativePath=FSM.ecore
 ```
 
-### trafo.rules
+### MTname.rules
 
 This files contains score evaluation for the rules of a model transformation.
 
@@ -73,9 +75,12 @@ Rules are divided into several categories:
 - Medium: guards are not very complex 
 - Complex: the guards are very complex
 
-### executions.csv
 
-This *csv* file contains the result of execution for all the transformations and for all the tools.
+# Output files
+
+### execution.csv
+
+This **csv** file contains the result of execution for all the transformations and for all the tools.
 
 We use it to produce then the charts, statistics, etc.
 
@@ -90,3 +95,7 @@ The file has the following shape:
 | PRAMANA  | RML2RDML  | 20      | 800     | 6      | 32%      |
 
 More information can be found in this file: executed rules, executed rules per category (empty, simple, complex), etc. 
+
+### execution.log
+
+It contains all the details about the execution. This files reports all the events that occurred during the execution of the model transformations.
