@@ -40,7 +40,7 @@ The following tree structure is mandatory. All the model transformations you bri
 	- **trafo3**					
 	- executions.csv
 
-# Special input files
+# Additional input files
 
 ### MTname.infos
 
