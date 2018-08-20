@@ -33,9 +33,9 @@ executed rules
 
 **@TODO**: continue to have more accurate metrics (based on MT.rules file)
 
-### Return a detailed log
+### Detailed execution log
 
-**@TODO**
+- **@TODO** MTname-toolName.log files
 
 ## Complexity of MT rules
 
