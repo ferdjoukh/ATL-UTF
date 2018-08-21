@@ -32,6 +32,8 @@ import org.eclipse.m2m.atl.emftvm.util.DefaultModuleResolver;
 import org.eclipse.m2m.atl.emftvm.util.ModuleResolver;
 import org.eclipse.m2m.atl.emftvm.util.TimingData;
 
+import ATLUtils.ExecutionOutput;
+
 public class ATLauncher {
 	
 	// The input and output metamodel nsURIs are resolved using lazy registration of metamodels, see below.
@@ -39,11 +41,28 @@ public class ATLauncher {
 	private String outputMetamodelNsURI;
 		
 	//Main transformation launch method
-	public void launch(String inMetamodelPath, String inMetamodelName, String inModelDir, 
-			String outMetamodelPath, String outMetamodelName, String outModelDir, 
-			String transformationDir, String transformationModule, String tracesDir){
+	public ExecutionOutput launch(
+			String globalDir,
+			String TRname, String TRmodule, String toolName, 
+			String inMetamodelFile, String inMetamodelName,
+			String outMetamodelFile, String outMetamodelName){
+		
+		String log="";
+		String success="";
+		String fail="";
+		String summary="";
+		int nbSuccess=0;
+		
+		String transformationDir=globalDir+"/"+TRname+"/";
+		String inMetamodelPath= transformationDir+"metamodels/input/"+ inMetamodelFile;
+		String outMetamodelPath= transformationDir+"metamodels/output/"+ outMetamodelFile;
+		String inModelDir=transformationDir+"models/input/"+toolName;
+		String outModelDir=transformationDir+"models/output/"+toolName;
+		String tracesDir=transformationDir+"models/traces/"+toolName;
 		
 		registerNamespaces();
+		registerInputMetamodel(inMetamodelPath);
+		registerOutputMetamodel(outMetamodelPath); 
 		
 		File inputMetamodel = new File(inMetamodelPath);
 		File outputMetamodel = new File(outMetamodelPath);
@@ -71,7 +90,6 @@ public class ATLauncher {
 		File inModelFolder = new File(inModelDir);
 		File[] inputModelFiles = inModelFolder.listFiles();
 		
-		
 		int totalRules= 0;
 		final Set<String> totalExecutedRules = new HashSet<>();
 				
@@ -82,10 +100,8 @@ public class ATLauncher {
 			String inModelPath=inputModelFiles[i].getPath();
 			String outModelPath=outModelDir+"out-"+inputModelFiles[i].getName();
 			String traceModel = tracesDir + "trace-"+inputModelFiles[i].getName();
-								
-			System.out.println("\n["+(i+1)+"/"+nbInModels+"] Transforming >> "+ inputModelFiles[i].getName());
 			
-			// Load models
+			//Load IN OUT and TRACE models
 			final Model inModel = EmftvmFactory.eINSTANCE.createModel();
 			final URI uri = URI.createFileURI(inModelPath);
 			inModel.setResource(rs.getResource(uri, true));
@@ -98,26 +114,20 @@ public class ATLauncher {
 			Model inoutModel = EmftvmFactory.eINSTANCE.createModel();
 			inoutModel.setResource(rs.createResource(URI.createFileURI(traceModel)));
 			env.registerInOutModel("trace", inoutModel);
-			
-			//env = setupEnvironment(rs, inputMetamodelUri, outputMetamodelUri);
-			
+						
 			ModuleResolver mr = new DefaultModuleResolver(transformationDir, rs);
 			TimingData td = new TimingData();
-			env.loadModule(mr, transformationModule);
+			env.loadModule(mr, TRmodule);
 			
 			td.finishLoading();
 			
 			try {
 				env.run(td);
 				td.finish();
-				
+				nbSuccess++;
+								
 				totalRules= (int) env.getRules().stream().count();
-				
-				System.out.println("totalRules="+totalRules);
-				
 				float executionTime = td.getFinished() * 0.000001f;
-				
-				System.out.println(executionTime);
 				
 				URI modelURI = URI.createFileURI(inModelPath);
 				TraceLinkSet tls = (TraceLinkSet) inoutModel.getResource().getContents().get(0);
@@ -128,13 +138,15 @@ public class ATLauncher {
 								.map(r -> r.eResource().getURIFragment(r))
 								.collect(Collectors.toList()));
 				
+				String res=  inputModelFiles[i].getName()+";"+toolName+";"+ executionTime+ ";"+ executedRules.size()+";"+ totalRules+";"+ executedRulesNames+"\n";
+				success= success+res;
+				log=log+ "SUCCESS "+res;
 				
-				System.out.println(executedRulesNames);
-				
-				System.out.println("exec rules="+executedRules.size());
 				
 			} catch (Exception e) {
-				//inputModelFile.delete();
+				String res=inputModelFiles[i].getName()+" "+toolName+"\n";
+				fail=fail+res;
+				log=log+ "FAIL "+ res;
 			}
 			
 			
@@ -147,7 +159,12 @@ public class ATLauncher {
 			}
 		}
 		
-		
+		ExecutionOutput execOutput= new ExecutionOutput(nbInModels,nbSuccess);		
+		execOutput.setSuccess(success);
+		execOutput.setFail(fail);
+		execOutput.setSummary(summary);
+		execOutput.setLog(log);
+		return execOutput;
 		
 	}
 	

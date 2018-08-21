@@ -1,2 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<viewpoint:DAnalysis xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xmi:id="_yp6ZkIAvEeiWwMz4b7wYCg" version="13.0.0.201804031646"/>
+<viewpoint:DAnalysis xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xmi:id="_yp6ZkIAvEeiWwMz4b7wYCg" version="13.0.0.201804031646">
+  <semanticResources>trafosTest/HSM2FSM/models/traces/GRIMM/trace-StateMachine2.xmi</semanticResources>
+  <semanticResources>trafosTest/HSM2FSM/models/traces/GRIMM/trace-StateMachine3.xmi</semanticResources>
+  <semanticResources>trafosTest/HSM2FSM/models/traces/GRIMM/trace-StateMachine4.xmi</semanticResources>
+  <semanticResources>trafosTest/HSM2FSM/models/traces/GRIMM/trace-StateMachine5.xmi</semanticResources>
+  <semanticResources>trafosTest/HSM2FSM/models/traces/GRIMMtrace-StateMachine2.xmi</semanticResources>
+  <semanticResources>trafosTest/HSM2FSM/models/traces/GRIMMtrace-StateMachine3.xmi</semanticResources>
+  <semanticResources>trafosTest/HSM2FSM/models/traces/GRIMMtrace-StateMachine4.xmi</semanticResources>
+  <semanticResources>trafosTest/HSM2FSM/models/traces/GRIMMtrace-StateMachine5.xmi</semanticResources>
+</viewpoint:DAnalysis>
