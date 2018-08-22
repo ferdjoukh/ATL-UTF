@@ -124,7 +124,6 @@ public class ATLauncher {
 			try {
 				env.run(td);
 				td.finish();
-				nbSuccess++;
 								
 				totalRules= (int) env.getRules().stream().count();
 				float executionTime = td.getFinished() * 0.000001f;
@@ -142,6 +141,7 @@ public class ATLauncher {
 				success= success+res;
 				log=log+ "SUCCESS "+res;
 				
+				nbSuccess++;
 				
 			} catch (Exception e) {
 				String res=inputModelFiles[i].getName()+" "+toolName+"\n";

@@ -175,7 +175,7 @@ public class TransformationRunner {
 	 * 
 	 * @return true if this.trafoDir exists
 	 */
-	public boolean isTrafoDirExist() {
+	public boolean doesTrafoDirExist() {
 		
 		if(trafoDir.exists()) {
 			return true;
@@ -247,7 +247,7 @@ public class TransformationRunner {
 		result=result+"\tModel finding tools: "+  toolsList.size()+ " "+ toolsList +"\n\n";
 		return result;
 	}
-	
+		
 	public ArrayList<ModelTransformation> getModelTransformations() {
 		return modelTransformations;
 	}

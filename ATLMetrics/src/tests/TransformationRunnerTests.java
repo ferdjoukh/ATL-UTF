@@ -15,14 +15,14 @@ class TransformationRunnerTests {
 	@Test
 	void nonExisitingTrafoDir() {
 		TransformationRunner tool1= new TransformationRunner("izan");
-		boolean exist= tool1.isTrafoDirExist();
+		boolean exist= tool1.doesTrafoDirExist();
 		assertEquals(false, exist, "Trafo folder does not exist");
 	}
 	
 	@Test
 	void exisitingTrafoDir() {
 		TransformationRunner tool1= new TransformationRunner("trafosTest");
-		boolean exist= tool1.isTrafoDirExist();
+		boolean exist= tool1.doesTrafoDirExist();
 		assertEquals(true, exist, "Trafo folder exist");
 	}
 
@@ -48,5 +48,10 @@ class TransformationRunnerTests {
 		System.out.println(trRun.getVerbose());
 		assertEquals(true, run);
 	} 
+	
+	@Test
+	void generateAFileName() {
+		TransformationRunner trRun= new TransformationRunner("trafosTest");
+	}
 }
 
