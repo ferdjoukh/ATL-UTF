@@ -34,6 +34,12 @@ import org.eclipse.m2m.atl.emftvm.util.TimingData;
 
 import ATLUtils.ExecutionOutput;
 
+/**
+ * This class launches an ATL transformation (.atl, .emftvm and .ecore meta-models) using a set of .xmi models
+ * 
+ * @author Adel Ferdjoukh
+ *
+ */
 public class ATLauncher {
 	
 	// The input and output metamodel nsURIs are resolved using lazy registration of metamodels, see below.
@@ -41,6 +47,19 @@ public class ATLauncher {
 	private String outputMetamodelNsURI;
 		
 	//Main transformation launch method
+	/**
+	 * 
+	 * @param globalDir
+	 * @param TRname
+	 * @param TRmodule
+	 * @param toolName
+	 * @param inMetamodelFile
+	 * @param inMetamodelName
+	 * @param outMetamodelFile
+	 * @param outMetamodelName
+	 * @return an Object of type ExecutionOutput that gathers all the information on the execution:
+	 * 			log, failed models, transformed models and covered rules
+	 */
 	public ExecutionOutput launch(
 			String globalDir,
 			String TRname, String TRmodule, String toolName, 
@@ -178,7 +197,6 @@ public class ATLauncher {
 		execOutput.setSummary(summary);
 		execOutput.setLog(log);
 		return execOutput;
-		
 	}
 	
 	/*

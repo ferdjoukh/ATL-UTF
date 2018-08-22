@@ -4,6 +4,14 @@ import java.util.ArrayList;
 
 import org.eclipse.m2m.atl.emftvm.Rule;
 
+/**
+ * This class creates an object of type Model Transformation. 
+ * Its purpose is to gather all the information about on model transformation in one object.
+ * 
+ *   
+ * @author Adel Ferdjoukh
+ *
+ */
 public class ModelTransformation {
 	private String name;
 	private String module;

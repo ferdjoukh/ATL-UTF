@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 
 import ATLUtils.ModelTransformation;
-import running.*;
+import ATLauncher.TransformationRunner;
 
 class TransformationRunnerTests {
 

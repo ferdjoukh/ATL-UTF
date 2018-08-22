@@ -11,7 +11,7 @@ class UtilsTests {
 	void test() {
 		String prefix="log";
 		String filetype="log";
-		String fileName= ATLUtils.generateFileNamePostfix(prefix, filetype);
+		String fileName= Utils.generateFileNamePostfix(prefix, filetype);
 		assertEquals(3+3+2+12, fileName.length());
 	}
 

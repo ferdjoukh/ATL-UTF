@@ -1,4 +1,4 @@
-package running;
+package ATLauncher;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -8,12 +8,21 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Set;
 
-import ATLUtils.ATLUtils;
+import ATLUtils.Utils;
 import ATLUtils.ExecutionOutput;
 import ATLUtils.ModelTransformation;
 import ATLUtils.MyRule;
-import ATLauncher.ATLauncher;
 
+/**
+ * This class reads, collects, runs and gathers results of execution for model transformations.
+ * 
+ * All the model transformations are contained in a given folder (the key field of any TransformationRunner object).
+ * 
+ * Calling the methods if this Object produces many output files: log, csv ...
+ * 
+ * @author Adel Ferdjoukh
+ *
+ */
 public class TransformationRunner {
 
 	private String trafoDirPath;
@@ -204,8 +213,8 @@ public class TransformationRunner {
 		verbose= verbose+ this.printInfo();
 		verbose= verbose+ this.printAllMT();
 		verbose= verbose+ "RUNNING\n\n";
-		String logFile= ATLUtils.generateFileNamePostfix("execution", "log");
-		String resFile= ATLUtils.generateFileNamePostfix("execution-results", "csv");
+		String logFile= Utils.generateFileNamePostfix("execution", "log");
+		String resFile= Utils.generateFileNamePostfix("execution-results", "csv");
 		String globalResults="";
 		String failure;
 		
@@ -215,7 +224,7 @@ public class TransformationRunner {
 			verbose= verbose+ "RUNNING ["+ mt +"] model transformation...\n\n";
 		
 			//Create a failure file for each Model Transformation
-			String failFile= ATLUtils.generateFileNamePostfix("failed-models-"+mt.getName(), "log");
+			String failFile= Utils.generateFileNamePostfix("failed-models-"+mt.getName(), "log");
 			failure="";
 			
 			for(String tool: mt.getTools()) {
@@ -238,23 +247,23 @@ public class TransformationRunner {
 				failure=failure+exec.getFail();
 								
 				//Create the specific result per tool
-				String toolLog=ATLUtils.generateFileNamePostfix(tool+"-"+mt.getName(), "csv");
-				ATLUtils.createOutputFile(trafoDirPath+"/"+toolLog, exec.getSuccess());				
+				String toolLog=Utils.generateFileNamePostfix(tool+"-"+mt.getName(), "csv");
+				Utils.createOutputFile(trafoDirPath+"/"+toolLog, exec.getSuccess());				
 			}
 			
 			verbose= verbose+"\n";
 			
 			//Create the failure
 			if(!failure.equals("")) {
-				ATLUtils.createOutputFile(trafoDirPath+"/"+failFile, failure);
+				Utils.createOutputFile(trafoDirPath+"/"+failFile, failure);
 			}
 		}	
 		
 		//Create the global results file
-		ATLUtils.createOutputFile(trafoDirPath+"/"+resFile, globalResults);
+		Utils.createOutputFile(trafoDirPath+"/"+resFile, globalResults);
 		
 		//Create the global log file
-		ATLUtils.createOutputFile(trafoDirPath+"/"+logFile, verbose);
+		Utils.createOutputFile(trafoDirPath+"/"+logFile, verbose);
 				
 		return true;		
 	}
@@ -270,14 +279,13 @@ public class TransformationRunner {
 		int score=0;
 		
 		for(String execRule: executedRules) {
-			int kind=ATLUtils.isRuleContained(execRule,allRules);
+			int kind=Utils.isRuleContained(execRule,allRules);
 			if(kind==0) {
 				score=score+1;
 			}else {
 				score=score+kind;
 			}
-		}
-		
+		}		
 		return score;
 	}
 	/**
@@ -287,10 +295,10 @@ public class TransformationRunner {
 	 */
 	public String printAllMT() {
 		String res="MODEL TRANSFORMATIONS\n";
+		
 		for(ModelTransformation mt: this.modelTransformations) {
 			res= res+"\t"+mt.prettyPrint();
-		}
-		
+		}		
 		return res;
 	}
 	
@@ -320,7 +328,4 @@ public class TransformationRunner {
 	public String getVerbose() {
 		return verbose;
 	}
-	
-	
-		
 }

@@ -7,7 +7,7 @@ import java.io.PrintWriter;
 
 import org.junit.jupiter.api.Test;
 
-import ATLUtils.ATLUtils;
+import ATLUtils.Utils;
 import ATLUtils.ExecutionOutput;
 import ATLauncher.ATLauncher;
 
@@ -29,8 +29,8 @@ class ATLauncherTests {
 		
 		System.out.println(exec.getLog());
 		
-		String logFile= ATLUtils.generateFileNamePostfix("log", "log");
-		ATLUtils.createOutputFile(globalDir+"/"+logFile, exec.getLog());
+		String logFile= Utils.generateFileNamePostfix("log", "log");
+		Utils.createOutputFile(globalDir+"/"+logFile, exec.getLog());
 		
 		assertEquals(exec.getTransformed(), exec.getModels());
 		assertEquals(4, exec.getTransformed());

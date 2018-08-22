@@ -3,6 +3,12 @@ package ATLUtils;
 import java.util.ArrayList;
 import java.util.Set;
 
+/**
+ * This class is used to return the Output of an execution for ATL model transformations
+ * 
+ * @author Adel Ferdjoukh
+ *
+ */
 public class ExecutionOutput {
 
 	private String log;
