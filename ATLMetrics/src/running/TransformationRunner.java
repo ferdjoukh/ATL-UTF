@@ -205,6 +205,7 @@ public class TransformationRunner {
 		verbose= verbose+ "RUNNING\n\n";
 		String logFile= ATLUtils.generateFileNamePostfix("execution", "log");
 		String resFile= ATLUtils.generateFileNamePostfix("execution-results", "csv");
+		String globalResults="";
 		
 		
 		for(ModelTransformation mt: this.modelTransformations) {
@@ -221,11 +222,7 @@ public class TransformationRunner {
 				verbose= verbose+ exec.getLog();
 				verbose= verbose+"\n";
 				
-				//Create the global log file
-				ATLUtils.createOutputFile(trafoDirPath+"/"+logFile, verbose);
-				
-				//Create the global results file
-				ATLUtils.createOutputFile(trafoDirPath+"/"+resFile, exec.getSummary());
+				globalResults= globalResults+ exec.getSummary();				
 				
 				//Create the specific result per tool
 				String toolLog=ATLUtils.generateFileNamePostfix(tool+"-"+mt.getName(), "csv");
@@ -233,7 +230,15 @@ public class TransformationRunner {
 			}
 			
 			verbose= verbose+"\n";
-		}		
+		}	
+		
+		//Create the global results file
+		ATLUtils.createOutputFile(trafoDirPath+"/"+resFile, globalResults);
+		
+		
+		//Create the global log file
+		ATLUtils.createOutputFile(trafoDirPath+"/"+logFile, verbose);
+		
 		
 		return true;		
 	}

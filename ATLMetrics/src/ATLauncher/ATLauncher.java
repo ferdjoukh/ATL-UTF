@@ -143,6 +143,11 @@ public class ATLauncher {
 				
 				//Ici il manque le calcul des totaux
 				//Exemple: toutes les rules executes >> caclul du coverage
+				for(String rule: executedRulesNames) {
+					if(!totalExecutedRules.contains(rule)) {
+						totalExecutedRules.add(rule);
+					}
+				}
 				
 				nbSuccess++;
 				
@@ -161,6 +166,10 @@ public class ATLauncher {
 				e.printStackTrace();
 			}
 		}
+		
+		//Add totalExecutedRules to summary
+		summary=toolName+";"+TRname+";"+totalExecutedRules.size()+";"+totalRules+";"+totalExecutedRules+"\n";
+		log=log+" SUMMARY "+summary;
 		
 		ExecutionOutput execOutput= new ExecutionOutput(nbInModels,nbSuccess);		
 		execOutput.setSuccess(success);
