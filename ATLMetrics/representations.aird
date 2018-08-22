@@ -12,4 +12,27 @@
   <semanticResources>trafosTest/R2ML2RDM/models/output/PRAMANAout-RuleBase3.xmi</semanticResources>
   <semanticResources>trafosTest/R2ML2RDM/models/traces/PRAMANAtrace-RuleBase2.xmi</semanticResources>
   <semanticResources>trafosTest/R2ML2RDM/models/traces/PRAMANAtrace-RuleBase3.xmi</semanticResources>
+  <semanticResources>trafosTest/HSM2FSM/models/traces/EMFtoCSPtrace-StateMachine31.xmi</semanticResources>
+  <semanticResources>trafosTest/HSM2FSM/models/traces/EMFtoCSPtrace-StateMachine32.xmi</semanticResources>
+  <semanticResources>trafosTest/HSM2FSM/models/traces/EMFtoCSPtrace-StateMachine6.xmi</semanticResources>
+  <semanticResources>trafosTest/HSM2FSM/models/traces/EMFtoCSPtrace-StateMachine7.xmi</semanticResources>
+  <semanticResources>trafosTest/HSM2FSM/models/traces/PRAMANAtrace-StateMachine2.xmi</semanticResources>
+  <semanticResources>trafosTest/HSM2FSM/models/traces/PRAMANAtrace-StateMachine3.xmi</semanticResources>
+  <semanticResources>trafosTest/HSM2FSM/models/traces/PRAMANAtrace-StateMachine31.xmi</semanticResources>
+  <semanticResources>trafosTest/HSM2FSM/models/traces/PRAMANAtrace-StateMachine32.xmi</semanticResources>
+  <semanticResources>trafosTest/HSM2FSM/models/traces/PRAMANAtrace-StateMachine4.xmi</semanticResources>
+  <semanticResources>trafosTest/HSM2FSM/models/traces/PRAMANAtrace-StateMachine42.xmi</semanticResources>
+  <semanticResources>trafosTest/HSM2FSM/models/traces/PRAMANAtrace-StateMachine5.xmi</semanticResources>
+  <semanticResources>trafosTest/HSM2FSM/models/traces/PRAMANAtrace-StateMachine51.xmi</semanticResources>
+  <semanticResources>trafosTest/HSM2FSM/models/traces/PRAMANAtrace-StateMachine53.xmi</semanticResources>
+  <semanticResources>trafosTest/HSM2FSM/models/traces/PRAMANAtrace-StateMachine54.xmi</semanticResources>
+  <semanticResources>trafosTest/HSM2FSM/models/traces/PRAMANAtrace-StateMachine55.xmi</semanticResources>
+  <semanticResources>trafosTest/HSM2FSM/models/traces/PRAMANAtrace-StateMachine6.xmi</semanticResources>
+  <semanticResources>trafosTest/HSM2FSM/models/traces/PRAMANAtrace-StateMachine61.xmi</semanticResources>
+  <semanticResources>trafosTest/HSM2FSM/models/traces/PRAMANAtrace-StateMachine7.xmi</semanticResources>
+  <semanticResources>trafosTest/HSM2FSM/models/traces/PRAMANAtrace-StateMachine72.xmi</semanticResources>
+  <semanticResources>trafosTest/R2ML2RDM/models/output/EMFtoCSPout-RuleBase3.xmi</semanticResources>
+  <semanticResources>trafosTest/R2ML2RDM/models/output/GRIMMout-RuleBase1.xmi</semanticResources>
+  <semanticResources>trafosTest/R2ML2RDM/models/traces/EMFtoCSPtrace-RuleBase3.xmi</semanticResources>
+  <semanticResources>trafosTest/R2ML2RDM/models/traces/GRIMMtrace-RuleBase1.xmi</semanticResources>
 </viewpoint:DAnalysis>

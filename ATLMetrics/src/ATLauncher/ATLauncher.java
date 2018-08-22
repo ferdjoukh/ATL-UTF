@@ -149,7 +149,7 @@ public class ATLauncher {
 			} catch (Exception e) {
 				String res=inputModelFiles[i].getName()+" "+toolName+"\n";
 				fail=fail+res;
-				log=log+ "FAIL "+ res;
+				log=log+ "FAILURE "+ res;
 			}
 			
 			
