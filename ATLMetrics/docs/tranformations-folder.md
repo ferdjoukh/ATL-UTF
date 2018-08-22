@@ -37,8 +37,11 @@ The following tree structure is mandatory. All the model transformations you bri
 			- **output**
 			- **traces**
 	- **trafo2**
-	- **trafo3**					
-	- executions.csv
+	- **trafo3**
+	- execution.log					
+	- execution-resutls.csv
+	- failed-models.log
+	- TOOL-MT.csv
 
 # Additional input files
 
@@ -78,7 +81,7 @@ Rules are divided into several categories:
 
 # Output files
 
-### execution.csv
+### execution-results.csv
 
 This **csv** file contains the result of execution for all the transformations and for all the tools.
 
@@ -87,15 +90,27 @@ We use it to produce then the charts, statistics, etc.
 The file has the following shape:
 
 
-| ToolName | TrafoName | #Models | ExeTime | #Rules | coverage |
-|----------|-----------|---------|---------|--------|----------|
-| GRIMM    | HSM2FSM   | 20      | 300     | 5      | 30%      |
-| GRIMM    | RML2RDML  | 20      | 5800    | 15     | 20%      |
-| PRAMANA  | HSM2FSM   | 20      | 300     | 5      | 30%      |
-| PRAMANA  | RML2RDML  | 20      | 800     | 6      | 32%      |
+| ToolName | TrafoName | #Models | #ExecutedRules | #Rules | RulesNames     | coverageScore | maxScore | 
+|----------|-----------|---------|----------------|--------|----------------|---------------|----------|
+| GRIMM    | HSM2FSM   | 20      | 3              | 5      | [machin, truc] | 5             | 10       |
+| GRIMM    | RML2RDML  | 20      | 5              | 15     | [bidul, chose] | 10            | 15       |      
+| PRAMANA  | HSM2FSM   | 20      | 3              | 5      | [machin, truc] | 8             | 10       |
+| PRAMANA  | RML2RDML  | 20      | 8              | 15     | [bidul, chose] | 11            | 15       |
 
 More information can be found in this file: executed rules, executed rules per category (empty, simple, complex), etc. 
 
 ### execution.log
 
 It contains all the details about the execution. This files reports all the events that occurred during the execution of the model transformations.
+
+### failed-models.log
+
+This file contains the list of models that were not transformed.
+
+### TOOL-MT.csv
+
+For each given tool and model transformation, a **TOOL-MT.csv** file is created. It contains the details of execution for each xmi model.
+
+| Model     | ExeTime   | #ExecutedRules | #TotalRules | RulesNames     |
+|-----------|-----------|----------------|-------------|----------------|
+| bidule.xmi| 120.21    | 3              | 10          | [machin, truc] |

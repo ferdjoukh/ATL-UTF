@@ -25,7 +25,7 @@ public abstract class Utils {
 	 * @return
 	 */
 	public static String generateFileNamePostfix(String prefix, String filetype) {
-		String res=prefix+"_";
+		String res=prefix+"-";
 		
 		DateFormat format = new SimpleDateFormat("yyyyMMddHHmm");
 		Date date = new Date();
