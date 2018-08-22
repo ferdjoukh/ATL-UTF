@@ -8,4 +8,8 @@
   <semanticResources>trafosTest/HSM2FSM/models/traces/GRIMMtrace-StateMachine3.xmi</semanticResources>
   <semanticResources>trafosTest/HSM2FSM/models/traces/GRIMMtrace-StateMachine4.xmi</semanticResources>
   <semanticResources>trafosTest/HSM2FSM/models/traces/GRIMMtrace-StateMachine5.xmi</semanticResources>
+  <semanticResources>trafosTest/R2ML2RDM/models/output/PRAMANAout-RuleBase2.xmi</semanticResources>
+  <semanticResources>trafosTest/R2ML2RDM/models/output/PRAMANAout-RuleBase3.xmi</semanticResources>
+  <semanticResources>trafosTest/R2ML2RDM/models/traces/PRAMANAtrace-RuleBase2.xmi</semanticResources>
+  <semanticResources>trafosTest/R2ML2RDM/models/traces/PRAMANAtrace-RuleBase3.xmi</semanticResources>
 </viewpoint:DAnalysis>

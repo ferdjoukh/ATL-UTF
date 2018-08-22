@@ -2,8 +2,12 @@ package tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+
 import org.junit.jupiter.api.Test;
 
+import ATLUtils.ATLUtils;
 import ATLUtils.ExecutionOutput;
 import ATLauncher.ATLauncher;
 
@@ -24,6 +28,10 @@ class ATLauncherTests {
 		ExecutionOutput exec= l.launch(globalDir, TRname, TRmodule, toolName, inMMPath, inMM, outMMPath, outMM);
 		
 		System.out.println(exec.getLog());
+		
+		String logFile= ATLUtils.generateFileNamePostfix("log", "log");
+		ATLUtils.createOutputFile(globalDir+"/"+logFile, exec.getLog());
+		
 		assertEquals(exec.getTransformed(), exec.getModels());
 		assertEquals(4, exec.getTransformed());
 	}
