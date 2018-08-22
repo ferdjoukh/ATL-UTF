@@ -32,6 +32,12 @@ public abstract class ATLUtils {
 		}
 	}
 
+	/**
+	 * Given a List of rules and a rule R, it checks if R is contained in the list
+	 * @param execRule
+	 * @param allRules
+	 * @return 0 if not contained and kind=[1,2,3,4] otherwise
+	 */
 	public static int isRuleContained(String execRule, ArrayList<MyRule> allRules) {
 		
 		int kind=0;

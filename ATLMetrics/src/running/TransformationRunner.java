@@ -248,6 +248,13 @@ public class TransformationRunner {
 		return true;		
 	}
 	
+	/**
+	 * This function computes the weighted rule coverage
+	 * 
+	 * @param allRules
+	 * @param executedRules
+	 * @return
+	 */
 	public int weightedRuleCoverage(ArrayList<MyRule> allRules, Set<String> executedRules) {
 		int score=0;
 		
