@@ -7,8 +7,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import ATLUtils.ExecutionOutput;
 import ATLUtils.ModelTransformation;
 import ATLUtils.MyRule;
+import ATLauncher.ATLauncher;
 
 public class TransformationRunner {
 
@@ -212,6 +214,11 @@ public class TransformationRunner {
 				// After that, generate result files
 				// execution-heureDatename.log
 				// execution.result
+				ATLauncher l = new ATLauncher();
+				ExecutionOutput exec= l.launch(trafoDirPath, mt.getName(), mt.getModule(), tool, 
+						mt.getInMMRelativePath(), mt.getInMM(), mt.getOutMMRelativePath(), mt.getOutMM());
+				
+				System.out.println(exec.getLog());
 			}
 			
 			verbose= verbose+"\n";

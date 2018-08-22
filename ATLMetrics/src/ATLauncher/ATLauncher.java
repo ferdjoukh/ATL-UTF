@@ -141,6 +141,9 @@ public class ATLauncher {
 				success= success+res;
 				log=log+ "SUCCESS "+res;
 				
+				//Ici il manque le calcul des totaux
+				//Exemple: toutes les rules executes >> caclul du coverage
+				
 				nbSuccess++;
 				
 			} catch (Exception e) {

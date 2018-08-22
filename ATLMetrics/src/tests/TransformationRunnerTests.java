@@ -48,10 +48,5 @@ class TransformationRunnerTests {
 		System.out.println(trRun.getVerbose());
 		assertEquals(true, run);
 	} 
-	
-	@Test
-	void generateAFileName() {
-		TransformationRunner trRun= new TransformationRunner("trafosTest");
-	}
 }
 
