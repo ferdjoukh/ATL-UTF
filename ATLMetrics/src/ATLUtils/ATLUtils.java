@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public abstract class ATLUtils {
@@ -29,5 +30,23 @@ public abstract class ATLUtils {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static int isRuleContained(String execRule, ArrayList<MyRule> allRules) {
+		
+		int kind=0;
+		int i=0;
+		
+		while(kind==0 && i<allRules.size()) {
+			
+			MyRule currentrule=allRules.get(i);  
+			if(currentrule.getName().equals(execRule)) {
+				kind=currentrule.getKind();
+			}
+			i++;
+		}
+		
+		
+		return kind;
 	}
 }

@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Set;
 
 import ATLUtils.ATLUtils;
 import ATLUtils.ExecutionOutput;
@@ -222,8 +223,13 @@ public class TransformationRunner {
 				verbose= verbose+ exec.getLog();
 				verbose= verbose+"\n";
 				
-				globalResults= globalResults+ exec.getSummary();				
 				
+				int coverageScore= weightedRuleCoverage(mt.getRules(), exec.getExecutedRules());
+				
+				globalResults= globalResults+ exec.getSummary()+";"+coverageScore+"\n";
+				
+				verbose= verbose+ " coverageScore: "+coverageScore+ "\n\n";
+								
 				//Create the specific result per tool
 				String toolLog=ATLUtils.generateFileNamePostfix(tool+"-"+mt.getName(), "csv");
 				ATLUtils.createOutputFile(trafoDirPath+"/"+toolLog, exec.getSuccess());				
@@ -235,12 +241,26 @@ public class TransformationRunner {
 		//Create the global results file
 		ATLUtils.createOutputFile(trafoDirPath+"/"+resFile, globalResults);
 		
-		
 		//Create the global log file
 		ATLUtils.createOutputFile(trafoDirPath+"/"+logFile, verbose);
 		
 		
 		return true;		
+	}
+	
+	public int weightedRuleCoverage(ArrayList<MyRule> allRules, Set<String> executedRules) {
+		int score=0;
+		
+		for(String execRule: executedRules) {
+			int kind=ATLUtils.isRuleContained(execRule,allRules);
+			if(kind==0) {
+				score=score+1;
+			}else {
+				score=score+kind;
+			}
+		}
+		
+		return score;
 	}
 	/**
 	 * This method prints a detailed overview of all the MTs found in trafoDir

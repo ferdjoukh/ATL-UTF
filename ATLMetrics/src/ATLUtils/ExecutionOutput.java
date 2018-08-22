@@ -1,11 +1,15 @@
 package ATLUtils;
 
+import java.util.ArrayList;
+import java.util.Set;
+
 public class ExecutionOutput {
 
 	private String log;
 	private String success;
 	private String fail;
 	private String summary;
+	private Set<String> ExecutedRules;
 	private int models;
 	private int transformed;
 	
@@ -52,6 +56,13 @@ public class ExecutionOutput {
 
 	public int getTransformed() {
 		return transformed;
-	}	
-		
+	}
+
+	public Set<String> getExecutedRules() {
+		return ExecutedRules;
+	}
+
+	public void setExecutedRules(Set<String> totalExecutedRules) {
+		ExecutedRules = totalExecutedRules;
+	}			
 }

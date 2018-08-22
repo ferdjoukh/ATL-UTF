@@ -168,10 +168,11 @@ public class ATLauncher {
 		}
 		
 		//Add totalExecutedRules to summary
-		summary=toolName+";"+TRname+";"+totalExecutedRules.size()+";"+totalRules+";"+totalExecutedRules+"\n";
+		summary=toolName+";"+TRname+";"+totalExecutedRules.size()+";"+totalRules+";"+totalExecutedRules;
 		log=log+" SUMMARY "+summary;
 		
 		ExecutionOutput execOutput= new ExecutionOutput(nbInModels,nbSuccess);		
+		execOutput.setExecutedRules(totalExecutedRules);
 		execOutput.setSuccess(success);
 		execOutput.setFail(fail);
 		execOutput.setSummary(summary);
