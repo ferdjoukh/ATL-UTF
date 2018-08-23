@@ -90,12 +90,12 @@ We use it to produce then the charts, statistics, etc.
 The file has the following shape:
 
 
-| ToolName | TrafoName | #Models | #ExeRules | #Rules | RulesNames     | coverScore | maxScore | 
-|----------|-----------|---------|-----------|--------|----------------|------------|----------|
-| GRIMM    | HSM2FSM   | 20      | 3         | 5      | [machin, truc] | 5          | 10       |
-| GRIMM    | RML2RDML  | 20      | 5         | 15     | [bidul, chose] | 10         | 15       |      
-| PRAMANA  | HSM2FSM   | 20      | 3         | 5      | [machin, truc] | 8          | 10       |
-| PRAMANA  | RML2RDML  | 20      | 8         | 15     | [bidul, chose] | 11         | 15       |
+| ToolName | TrafoName | #Models | #ExecRules | #Rules | RulesNames     | coverScore | maxScore | 
+|----------|-----------|---------|------------|--------|----------------|------------|----------|
+| GRIMM    | HSM2FSM   | 20      | 3          | 5      | [machin, truc] | 5          | 10       |
+| GRIMM    | RML2RDML  | 20      | 5          | 15     | [bidul, chose] | 10         | 15       |      
+| PRAMANA  | HSM2FSM   | 20      | 3          | 5      | [machin, truc] | 8          | 10       |
+| PRAMANA  | RML2RDML  | 20      | 8          | 15     | [bidul, chose] | 11         | 15       |
 
 More information can be found in this file: executed rules, executed rules per category (empty, simple, complex), etc. 
 
@@ -111,6 +111,6 @@ This file contains the list of models that were not transformed.
 
 For each given tool and model transformation, a **TOOL-MT.csv** file is created. It contains the details of execution for each xmi model.
 
-| Model      | ExeTime   | #ExeRules | #TotalRules | RulesNames     |
-|------------|-----------|-----------|-------------|----------------|
-| bidule.xmi | 120.21    | 3         | 10          | [machin, truc] |
+| Model      | ExeTime   | #ExecRules | #TotalRules | RulesNames     |
+|------------|-----------|------------|-------------|----------------|
+| bidule.xmi | 120.21    | 3          | 10          | [machin, truc] |
