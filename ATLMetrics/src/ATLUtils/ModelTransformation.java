@@ -21,6 +21,7 @@ public class ModelTransformation {
 	private String outMMRelativePath;
 	private ArrayList<String> tools; 
 	private ArrayList<MyRule> rules;
+	private int maxScore;
 	
 	public ModelTransformation(String name, String module, String inMM, String inMMRelativePath,
 			String outMM, String outMMRelativePath) {
@@ -32,6 +33,7 @@ public class ModelTransformation {
 		this.outMM= outMM;
 		rules= new ArrayList<MyRule>();
 		tools= new ArrayList<String>();
+		maxScore=0;
 	}
 	
 	public void addTool(String tool) {
@@ -40,6 +42,7 @@ public class ModelTransformation {
 		
 	public void addRule(MyRule rule) {
 		this.rules.add(rule);
+		this.maxScore=this.maxScore+rule.getKind();
 	}
 
 	public String getName() {
@@ -72,6 +75,21 @@ public class ModelTransformation {
 
 	public void setRules(ArrayList<MyRule> rules) {
 		this.rules = rules;
+		computeMaxScore();
+	}
+		
+	private void computeMaxScore() {
+		
+		int sum=0;
+		for(MyRule rule: rules) {
+			sum=sum+rule.getKind();
+		}
+		System.out.println("maxScore"+sum);
+		this.maxScore=sum;
+	}
+	
+	public int getMaxScore() {
+		return maxScore;
 	}
 
 	public ArrayList<String> getTools() {

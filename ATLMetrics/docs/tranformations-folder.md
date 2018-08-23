@@ -111,6 +111,6 @@ This file contains the list of models that were not transformed.
 
 For each given tool and model transformation, a **TOOL-MT.csv** file is created. It contains the details of execution for each xmi model.
 
-| Model     | ExeTime   | #ExeRules | #TotalRules | RulesNames     |
-|-----------|-----------|-----------|-------------|----------------|
-| bidule.xmi| 120.21    | 3         | 10          | [machin, truc] |
+| Model      | ExeTime   | #ExeRules | #TotalRules | RulesNames     |
+|------------|-----------|-----------|-------------|----------------|
+| bidule.xmi | 120.21    | 3         | 10          | [machin, truc] |

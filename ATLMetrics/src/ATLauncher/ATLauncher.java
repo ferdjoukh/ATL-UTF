@@ -156,7 +156,7 @@ public class ATLauncher {
 								.map(r -> r.eResource().getURIFragment(r))
 								.collect(Collectors.toList()));
 				
-				String res=  inputModelFiles[i].getName()+";"+toolName+";"+ executionTime+ ";"+ executedRules.size()+";"+ totalRules+";"+ executedRulesNames+"\n";
+				String res=  inputModelFiles[i].getName()+";"+executionTime+ ";"+ executedRules.size()+";"+ totalRules+";"+ executedRulesNames+"\n";
 				success= success+res;
 				log=log+ "SUCCESS "+res;
 				
@@ -187,7 +187,7 @@ public class ATLauncher {
 		}
 		
 		//Add totalExecutedRules to summary
-		summary=toolName+";"+TRname+";"+totalExecutedRules.size()+";"+totalRules+";"+totalExecutedRules;
+		summary=toolName+";"+TRname+";"+totalExecutedRules.size()+";"+totalRules+";"+totalExecutedRules+";"+nbInModels;
 		log=log+" SUMMARY "+summary;
 		
 		ExecutionOutput execOutput= new ExecutionOutput(nbInModels,nbSuccess);		

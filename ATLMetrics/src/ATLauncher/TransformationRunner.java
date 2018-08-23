@@ -240,30 +240,37 @@ public class TransformationRunner {
 								
 				int coverageScore= weightedRuleCoverage(mt.getRules(), exec.getExecutedRules());
 				
-				globalResults= globalResults+ exec.getSummary()+";"+coverageScore+"\n";
+				globalResults= globalResults+ exec.getSummary()+";"+coverageScore+";"+mt.getMaxScore()+"\n";
 				
-				verbose= verbose+ " coverageScore: "+coverageScore+ "\n\n";
+				verbose= verbose+ " coverageScore: "+coverageScore+ "\n";
 				
 				failure=failure+exec.getFail();
 								
 				//Create the specific result per tool
-				String toolLog=Utils.generateFileNamePostfix(tool+"-"+mt.getName(), "csv");
-				Utils.createOutputFile(trafoDirPath+"/"+toolLog, exec.getSuccess());				
+				if(!exec.getSuccess().equals("")) {
+					String toolLog=Utils.generateFileNamePostfix(tool+"-"+mt.getName(), "csv");
+					Utils.createOutputFile(trafoDirPath+"/"+toolLog, exec.getSuccess());
+					verbose= verbose+ " creation of file: "+ toolLog+"\n";
+				}
+				verbose= verbose+"\n";
 			}
-			
-			verbose= verbose+"\n";
-			
+									
 			//Create the failure
 			if(!failure.equals("")) {
 				Utils.createOutputFile(trafoDirPath+"/"+failFile, failure);
+				verbose= verbose+ "creation of file: "+ failFile+"\n";
 			}
+			
+			verbose= verbose+"\n";
 		}	
 		
 		//Create the global results file
 		Utils.createOutputFile(trafoDirPath+"/"+resFile, globalResults);
+		verbose= verbose+ "creation of file: "+ resFile+"\n";
 		
 		//Create the global log file
 		Utils.createOutputFile(trafoDirPath+"/"+logFile, verbose);
+		verbose= verbose+ "creation of file: "+ logFile+"\n";
 				
 		return true;		
 	}
