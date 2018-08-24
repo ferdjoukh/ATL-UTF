@@ -11,11 +11,11 @@ public class MyRule {
 
 	private String name;
 	// kind in [1,2,3,4]
-	private int kind;
+	private int score;
 	
-	public MyRule(String name, int kind) {
+	public MyRule(String name, int score) {
 		this.name=name;
-		this.kind=kind;
+		this.score=score;
 	}
 
 	public String getName() {
@@ -23,6 +23,6 @@ public class MyRule {
 	}
 
 	public int getKind() {
-		return kind;
+		return score;
 	}
 }
