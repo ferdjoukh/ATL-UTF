@@ -58,20 +58,26 @@ public class ModelTransformation {
 	 * This method parses an .atl file into a EMF model Eobject.
 	 * 
 	 * @return the main module of the model transformation
-	 * @throws FileNotFoundException
-	 * @throws IOException
-	 * @throws ATLCoreException
 	 */
-	private Module readATLFile() throws FileNotFoundException, IOException, ATLCoreException {
+	private Module readATLFile(){
 		
 		//String atlFile="trafosTest/HSM2FSM/HSM2FSM.atl";
 		Module m = null;
 		
 		try (InputStream in = new FileInputStream(absoluteATLFilePath)) {
 		
-		    EObject ast = AtlParser.getDefault().parse(in);
+		    EObject ast = null;
+			try {
+				ast = AtlParser.getDefault().parse(in);
+			} catch (ATLCoreException e) {
+				e.printStackTrace();
+			}
 		    if(ast instanceof Module)
 		    	m=(Module) ast;
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
 		}
 		
 		return m;
@@ -86,7 +92,7 @@ public class ModelTransformation {
 	 * @throws IOException
 	 * @throws ATLCoreException
 	 */
-	public void createAllRulesScores() throws FileNotFoundException, IOException, ATLCoreException {
+	public void createAllRulesScores() {
 		
 		Module root= readATLFile();
 		

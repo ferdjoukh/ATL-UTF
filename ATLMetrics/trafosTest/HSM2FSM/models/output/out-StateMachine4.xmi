@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="ASCII"?>
-<FSM:StateMachine xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:FSM="http://FSM/1.0" name="sm1">
-  <states xsi:type="FSM:RegularState" name="is1"/>
-</FSM:StateMachine>

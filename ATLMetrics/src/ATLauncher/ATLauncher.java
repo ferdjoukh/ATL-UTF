@@ -117,8 +117,8 @@ public class ATLauncher {
 		for(int i=0; i<inputModelFiles.length;i++) {
 			
 			String inModelPath=inputModelFiles[i].getPath();
-			String outModelPath=outModelDir+"out-"+inputModelFiles[i].getName();
-			String traceModel = tracesDir + "trace-"+inputModelFiles[i].getName();
+			String outModelPath=outModelDir+"/out-"+inputModelFiles[i].getName();
+			String traceModel = tracesDir + "/trace-"+inputModelFiles[i].getName();
 			
 			//Load IN OUT and TRACE models
 			final Model inModel = EmftvmFactory.eINSTANCE.createModel();
