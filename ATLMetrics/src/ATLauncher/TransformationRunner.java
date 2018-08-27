@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Set;
 
+import org.eclipse.m2m.atl.core.ATLCoreException;
+
 import ATLUtils.Utils;
 import ATLUtils.ExecutionOutput;
 import ATLUtils.ModelTransformation;
@@ -37,9 +39,12 @@ public class TransformationRunner {
 	 * All other data is always structured in the same way (see. docs/transformations-folder.md for details) 
 	 * 
 	 * @param trafoDirPath: folder where to find all the model transformations and the data for running
+	 * @throws ATLCoreException 
+	 * @throws IOException 
+	 * @throws FileNotFoundException 
 	 * 
 	 */
-	public TransformationRunner(String trafoDirPath) {
+	public TransformationRunner(String trafoDirPath) throws FileNotFoundException, IOException, ATLCoreException {
 		this.trafoDirPath= trafoDirPath;
 		this.trafoDir= new File(trafoDirPath);
 		this.verbose="";
@@ -51,8 +56,11 @@ public class TransformationRunner {
 	/**
 	 * This method reads the data in folder trafoDirPath and collects all MTs 
 	 * and their data (inMM, outMM, rules, infos, etc)
+	 * @throws ATLCoreException 
+	 * @throws IOException 
+	 * @throws FileNotFoundException 
 	 */
-	private void collectMTandTools(){
+	private void collectMTandTools() throws FileNotFoundException, IOException, ATLCoreException{
 		File[] trDirContent= trafoDir.listFiles();
 		
 		for(File f: trDirContent) {
@@ -83,11 +91,16 @@ public class TransformationRunner {
 				ModelTransformation MT= new ModelTransformation(f.getName(),atlFilePath,infos[1],
 																infos[2], infos[3],
 																infos[4], infos[5]);
+				
+				//CreateRulesScores
+				MT.createAllRulesScores();
+				
+				
 				//Collect all the tools for that MT
 				collectToolsForMTFolder(MT);
-				//Read data about MT rules
-				readMTRules(MT);
-				//Add the MT to the list of MTs
+//				//Read data about MT rules
+//				readMTRules(MT);
+//				//Add the MT to the list of MTs
 				//At this step, we get it ready for running)
 				modelTransformations.add(MT);
 			}
