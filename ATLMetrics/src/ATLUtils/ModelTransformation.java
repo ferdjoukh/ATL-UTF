@@ -194,7 +194,7 @@ public class ModelTransformation {
 		this.rules = rules;
 		computeMaxScore();
 	}
-		
+	
 	private void computeMaxScore() {
 		
 		int sum=0;

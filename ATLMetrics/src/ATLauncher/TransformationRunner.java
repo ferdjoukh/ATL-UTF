@@ -80,27 +80,20 @@ public class TransformationRunner {
 				};
 				
 				File [] subfiles= f.listFiles(atlFilter);
-				
 				if(subfiles.length>=1) {
 					atlFilePath=subfiles[0].getPath();
 				}
-				
 				//Get all the infos from MT.infos file
 				String [] infos=readMTInfo(f.getName());
 				//Create the model transformation with all the information
 				ModelTransformation MT= new ModelTransformation(f.getName(),atlFilePath,infos[1],
 																infos[2], infos[3],
 																infos[4], infos[5]);
-				
 				//CreateRulesScores
 				MT.createAllRulesScores();
-				
-				
 				//Collect all the tools for that MT
 				collectToolsForMTFolder(MT);
-//				//Read data about MT rules
-//				readMTRules(MT);
-//				//Add the MT to the list of MTs
+				//Add the MT to the list of MTs
 				//At this step, we get it ready for running)
 				modelTransformations.add(MT);
 			}
@@ -166,8 +159,7 @@ public class TransformationRunner {
 	                    e.printStackTrace();
 	                }
 	            }
-	        }
-			
+	        }			
 		}
 	}
 	
@@ -229,8 +221,7 @@ public class TransformationRunner {
 		}
 		else {
 			return false;
-		}
-		
+		}		
 	}
 			
 	/**
@@ -251,8 +242,6 @@ public class TransformationRunner {
 		String resFile= Utils.generateFileNamePostfix("execution-results", "csv");
 		String globalResults="";
 		String failure;
-		
-		
 		
 		for(ModelTransformation mt: this.modelTransformations) {
 			verbose= verbose+ "RUNNING ["+ mt +"] model transformation...\n\n";
