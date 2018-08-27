@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Set;
@@ -57,11 +58,31 @@ public class TransformationRunner {
 		for(File f: trDirContent) {
 			if(f.isDirectory()) {
 				
+				//Get ATL file path
+				String atlFilePath="";
+				FilenameFilter atlFilter = new FilenameFilter() {
+					public boolean accept(File dir, String name) {
+						String lowercaseName = name.toLowerCase();
+						if (lowercaseName.endsWith(".atl")) {
+							return true;
+						} else {
+							return false;
+						}
+					}
+				};
+				
+				File [] subfiles= f.listFiles(atlFilter);
+				
+				if(subfiles.length>=1) {
+					atlFilePath=subfiles[0].getPath();
+				}
+				
 				//Get all the infos from MT.infos file
 				String [] infos=readMTInfo(f.getName());
 				//Create the model transformation with all the information
-				ModelTransformation MT= new ModelTransformation(f.getName(), infos[1],infos[2], infos[3],
-						infos[4], infos[5]);
+				ModelTransformation MT= new ModelTransformation(f.getName(),atlFilePath,infos[1],
+																infos[2], infos[3],
+																infos[4], infos[5]);
 				//Collect all the tools for that MT
 				collectToolsForMTFolder(MT);
 				//Read data about MT rules

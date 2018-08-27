@@ -39,10 +39,12 @@ public class ModelTransformation {
 	private ArrayList<MyRule> rules;
 	private int maxScore;
 	
-	public ModelTransformation(String name, String module, String inMM, String inMMRelativePath,
-			String outMM, String outMMRelativePath) {
+	public ModelTransformation(String name, String absoluteFilePath,String module, 
+							   String inMM, String inMMRelativePath,
+			                   String outMM, String outMMRelativePath) {
 		this.name= name;
 		this.module= module;
+		this.absoluteATLFilePath= absoluteFilePath;
 		this.inMMRelativePath= inMMRelativePath;
 		this.outMMRelativePath= outMMRelativePath;
 		this.inMM= inMM;
@@ -62,10 +64,10 @@ public class ModelTransformation {
 	 */
 	private Module readATLFile() throws FileNotFoundException, IOException, ATLCoreException {
 		
-		String atlFile="trafosTest/HSM2FSM/HSM2FSM.atl";
+		//String atlFile="trafosTest/HSM2FSM/HSM2FSM.atl";
 		Module m = null;
 		
-		try (InputStream in = new FileInputStream(atlFile)) {
+		try (InputStream in = new FileInputStream(absoluteATLFilePath)) {
 		
 		    EObject ast = AtlParser.getDefault().parse(in);
 		    if(ast instanceof Module)
