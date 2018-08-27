@@ -22,7 +22,11 @@ public class MyRule {
 		return name;
 	}
 
-	public int getKind() {
+	public int getScore() {
 		return score;
+	}
+	
+	public String toString() {
+		return name+","+score;
 	}
 }

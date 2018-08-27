@@ -107,17 +107,42 @@ public class ModelTransformation {
 					
 					int score=1+filter+ipes.size()-1+opes.size()-1;
 					
-					System.out.println(r.getName());
-					System.out.println("  guard:"+filter);
-				    System.out.println("  inVars:"+ipes.size());
-				    System.out.println("  outVars:"+opes.size());
-				    System.out.println("  SCORE="+score);
+//					System.out.println(r.getName());
+//					System.out.println("  guard:"+filter);
+//				    System.out.println("  inVars:"+ipes.size());
+//				    System.out.println("  outVars:"+opes.size());
+//				    System.out.println("  SCORE="+score);
 				    
 					MyRule rule= new MyRule(r.getName(), score);
 					addRule(rule);											
 				}
 			}
 		}
+	}
+	
+	/**
+	 * This method creates a file named: <ModelTransformationName>.rules
+	 * It contains all the rules of the model transformation and their complexity scroes
+	 * 
+	 */
+	public void createRulesFile(){
+		int begin=0;
+		int end= this.absoluteATLFilePath.lastIndexOf(".")+1;
+		String filePath= this.absoluteATLFilePath.substring(begin, end)+"rules";
+		Utils.createOutputFile(filePath,printableRules());		
+	}
+	
+	/**
+	 * This method return a printable visualisation for the rules of an MT
+	 * 
+	 * @return
+	 */
+	public String printableRules() {
+		String res="";
+		for(MyRule rule: this.rules) {
+			res=res+rule.toString()+"\n";
+		}
+		return res;
 	}
 	
 	public String getAbsoluteATLFilePath() {
@@ -134,7 +159,7 @@ public class ModelTransformation {
 		
 	public void addRule(MyRule rule) {
 		this.rules.add(rule);
-		this.maxScore=this.maxScore+rule.getKind();
+		this.maxScore=this.maxScore+rule.getScore();
 	}
 
 	public String getName() {
@@ -174,7 +199,7 @@ public class ModelTransformation {
 		
 		int sum=0;
 		for(MyRule rule: rules) {
-			sum=sum+rule.getKind();
+			sum=sum+rule.getScore();
 		}
 		System.out.println("maxScore"+sum);
 		this.maxScore=sum;
@@ -206,7 +231,7 @@ public class ModelTransformation {
 		
 		res=res+"\t Rules: ";
 		for(MyRule rule: this.rules) {
-			res=res+" "+rule.getName()+"("+rule.getKind()+")";
+			res=res+" "+rule.getName()+"("+rule.getScore()+")";
 		}
 		res=res+"\n\n";
 		return res;

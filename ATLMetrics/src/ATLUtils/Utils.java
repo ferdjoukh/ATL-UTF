@@ -71,7 +71,7 @@ public abstract class Utils {
 			
 			MyRule currentrule=allRules.get(i);  
 			if(currentrule.getName().equals(execRule)) {
-				kind=currentrule.getKind();
+				kind=currentrule.getScore();
 			}
 			i++;
 		}
