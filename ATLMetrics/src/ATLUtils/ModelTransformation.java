@@ -14,7 +14,14 @@ import org.eclipse.m2m.atl.common.ATL.MatchedRule;
 import org.eclipse.m2m.atl.common.ATL.Module;
 import org.eclipse.m2m.atl.common.ATL.ModuleElement;
 import org.eclipse.m2m.atl.common.ATL.OutPatternElement;
+import org.eclipse.m2m.atl.common.OCL.LoopExp;
+import org.eclipse.m2m.atl.common.OCL.NavigationOrAttributeCallExp;
 import org.eclipse.m2m.atl.common.OCL.OclExpression;
+import org.eclipse.m2m.atl.common.OCL.OclUndefinedExp;
+import org.eclipse.m2m.atl.common.OCL.OperationCallExp;
+import org.eclipse.m2m.atl.common.OCL.OperatorCallExp;
+import org.eclipse.m2m.atl.common.OCL.PropertyCallExp;
+import org.eclipse.m2m.atl.common.OCL.VariableExp;
 import org.eclipse.m2m.atl.core.ATLCoreException;
 import org.eclipse.m2m.atl.emftvm.Rule;
 import org.eclipse.m2m.atl.engine.parser.AtlParser;
@@ -111,6 +118,29 @@ public class ModelTransformation {
 					
 					OclExpression ocl= inp.getFilter();
 					
+					System.out.println(r.getName());
+					int compOCL=expandOCL(ocl," ",0);
+					System.out.println("score="+compOCL);
+					
+					System.out.println("");
+					
+					
+//					if(ocl!=null) {
+//						System.out.println(r.getName());
+//						System.out.println("  "+ocl);
+//						
+//						if(ocl instanceof OperationCallExp) {
+//							OperationCallExp oce= (OperationCallExp) ocl;
+//							
+//							System.out.println(oce.getArguments());
+//							System.out.println(oce.getSource());
+//							System.out.println(oce.getSource().getClass());
+//							
+//						}
+//					}
+					
+					//System.out.println(ocl.getOwningAttribute());
+					
 					int score=1+filter+ipes.size()-1+opes.size()-1;
 					
 //					System.out.println(r.getName());
@@ -149,6 +179,45 @@ public class ModelTransformation {
 			res=res+rule.toString()+"\n";
 		}
 		return res;
+	}
+	
+	public int expandOCL(OclExpression expr, String space, int depth) {
+		if(expr!=null) {
+			
+			String label="";
+			int score=0;
+			
+			if(expr instanceof PropertyCallExp) {
+				PropertyCallExp call= (PropertyCallExp) expr;
+				score=score+1+expandOCL(call.getSource(), space+" ",depth++);
+			
+			
+				if(call instanceof OperationCallExp) {
+					OperationCallExp operator= (OperationCallExp) call;
+					label=operator.getOperationName();
+					for(OclExpression o: operator.getArguments()) {
+						score=score+1+expandOCL(o, space+" ",depth++);
+					}
+				}
+				
+				if(call instanceof NavigationOrAttributeCallExp) {
+					NavigationOrAttributeCallExp ocl= (NavigationOrAttributeCallExp) call;
+					label=ocl.getName();
+				}
+			}
+			
+			if(expr instanceof VariableExp) {
+				VariableExp var= (VariableExp) expr;
+				label=var.getReferredVariable().getVarName();				
+			}
+			
+			
+			//System.out.println(space+" "+depth+" "+label+" "+expr);
+			return score;
+		}else
+		{
+			return 0;
+		}
 	}
 	
 	public String getAbsoluteATLFilePath() {

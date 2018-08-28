@@ -21,31 +21,31 @@ class ModelTransformationTests {
 		System.out.println(mt.prettyPrint());
 	}
 	
-	@Test
-	void testR2ML2RDM() throws FileNotFoundException, IOException, ATLCoreException {
-		ModelTransformation mt= new ModelTransformation("R2ML2RDM", "trafosTest/R2ML2RDM/R2ML2RDM.atl",
-				"R2ML2RDM", "inMM", "inMMRelativePath", "outMM", "outMMRelativePath");
-		
-		mt.createAllRulesScores();
-		System.out.println(mt.prettyPrint());
-	}
-	
-	@Test
-	void creationOfRulesFile() throws FileNotFoundException, IOException, ATLCoreException {
-		ModelTransformation mt= new ModelTransformation("HSM2FSM", "trafosTest/HSM2FSM/HSM2FSM.atl","HSM2FSM", "inMM", 
-				"inMMRelativePath", "outMM", "outMMRelativePath");
-		
-		mt.createAllRulesScores();
-		mt.createRulesFile();
-	}
-	
-	@Test
-	void creationOfRulesFile2() throws FileNotFoundException, IOException, ATLCoreException {
-		ModelTransformation mt= new ModelTransformation("R2ML2RDM", "trafosTest/R2ML2RDM/R2ML2RDM.atl",
-				"R2ML2RDM", "inMM", "inMMRelativePath", "outMM", "outMMRelativePath");
-		
-		mt.createAllRulesScores();
-		mt.createRulesFile();
-	}
+//	@Test
+//	void testR2ML2RDM() throws FileNotFoundException, IOException, ATLCoreException {
+//		ModelTransformation mt= new ModelTransformation("R2ML2RDM", "trafosTest/R2ML2RDM/R2ML2RDM.atl",
+//				"R2ML2RDM", "inMM", "inMMRelativePath", "outMM", "outMMRelativePath");
+//		
+//		mt.createAllRulesScores();
+//		System.out.println(mt.prettyPrint());
+//	}
+//	
+//	@Test
+//	void creationOfRulesFile() throws FileNotFoundException, IOException, ATLCoreException {
+//		ModelTransformation mt= new ModelTransformation("HSM2FSM", "trafosTest/HSM2FSM/HSM2FSM.atl","HSM2FSM", "inMM", 
+//				"inMMRelativePath", "outMM", "outMMRelativePath");
+//		
+//		mt.createAllRulesScores();
+//		mt.createRulesFile();
+//	}
+//	
+//	@Test
+//	void creationOfRulesFile2() throws FileNotFoundException, IOException, ATLCoreException {
+//		ModelTransformation mt= new ModelTransformation("R2ML2RDM", "trafosTest/R2ML2RDM/R2ML2RDM.atl",
+//				"R2ML2RDM", "inMM", "inMMRelativePath", "outMM", "outMMRelativePath");
+//		
+//		mt.createAllRulesScores();
+//		mt.createRulesFile();
+//	}
 
 }
