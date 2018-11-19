@@ -2,10 +2,12 @@ package ATLauncher;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -24,8 +26,11 @@ import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.m2m.atl.emftvm.EmftvmFactory;
 import org.eclipse.m2m.atl.emftvm.ExecEnv;
+import org.eclipse.m2m.atl.emftvm.compiler.AtlToEmftvmCompiler;
 import org.eclipse.m2m.atl.emftvm.Metamodel;
 import org.eclipse.m2m.atl.emftvm.Model;
+import org.eclipse.m2m.atl.emftvm.Rule;
+import org.eclipse.m2m.atl.emftvm.trace.*;
 import org.eclipse.m2m.atl.emftvm.impl.resource.EMFTVMResourceFactoryImpl;
 import org.eclipse.m2m.atl.emftvm.trace.TraceLinkSet;
 import org.eclipse.m2m.atl.emftvm.util.DefaultModuleResolver;
@@ -60,6 +65,7 @@ public class ATLauncher {
 	 * @return an Object of type ExecutionOutput that gathers all the information on the execution:
 	 * 			log, failed models, transformed models and covered rules
 	 */
+	@SuppressWarnings("finally")
 	public ExecutionOutput launch(
 			String globalDir,
 			String TRname, String TRmodule, String toolName, 
@@ -71,132 +77,145 @@ public class ATLauncher {
 		String fail="";
 		String summary="";
 		int nbSuccess=0;
-		
-		String transformationDir=globalDir+"/"+TRname+"/";
-		String inMetamodelPath= transformationDir+"metamodels/input/"+ inMetamodelFile;
-		String outMetamodelPath= transformationDir+"metamodels/output/"+ outMetamodelFile;
-		String inModelDir=transformationDir+"models/input/"+toolName;
-		String outModelDir=transformationDir+"models/output/"+toolName;
-		String tracesDir=transformationDir+"models/traces/"+toolName;
-		
-		registerNamespaces();
-		registerInputMetamodel(inMetamodelPath);
-		registerOutputMetamodel(outMetamodelPath); 
-		
-		File inputMetamodel = new File(inMetamodelPath);
-		File outputMetamodel = new File(outMetamodelPath);
-		URI inputMetamodelUri = URI
-				.createFileURI(inputMetamodel.getAbsolutePath());
-		URI outputMetamodelUri = URI
-				.createFileURI(outputMetamodel.getAbsolutePath());
-		
-		ExecEnv env = EmftvmFactory.eINSTANCE.createExecEnv();
-		ResourceSet rs = new ResourceSetImpl();
-		
-		rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
-		rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("emftvm", new EMFTVMResourceFactoryImpl());
-		
-		
-		Metamodel inMetamodel = EmftvmFactory.eINSTANCE.createMetamodel();
-		inMetamodel.setResource(rs.getResource(URI.createURI(inputMetamodelNsURI), true));
-		env.registerMetaModel(inMetamodelName, inMetamodel);
-		
-		Metamodel outMetamodel = EmftvmFactory.eINSTANCE.createMetamodel();
-		outMetamodel.setResource(rs.getResource(URI.createURI(outputMetamodelNsURI), true));
-		env.registerMetaModel(outMetamodelName, outMetamodel);
-		
-		
-		File inModelFolder = new File(inModelDir);
-		File[] inputModelFiles = inModelFolder.listFiles();
-		
+		int nbInModels=0;
 		int totalRules= 0;
 		final Set<String> totalExecutedRules = new HashSet<>();
+		
+		try {
+			
+			String transformationDir=globalDir+"/"+TRname+"/";
+			String inMetamodelPath= transformationDir+"metamodels/input/"+ inMetamodelFile;
+			String outMetamodelPath= transformationDir+"metamodels/output/"+ outMetamodelFile;
+			String inModelDir=transformationDir+"models/input/"+toolName;
+			String outModelDir=transformationDir+"models/output/"+toolName;
+			String tracesDir=transformationDir+"models/traces/"+toolName;
+			
+			ResourceSet rs = new ResourceSetImpl();
+			
+			registerNamespaces();
+			
+			File inputMetamodel = new File(inMetamodelPath);
+			File outputMetamodel = new File(outMetamodelPath);
+			
+			URI inputMetamodelUri = URI
+					.createFileURI(inputMetamodel.getAbsolutePath());
+			URI outputMetamodelUri = URI
+					.createFileURI(outputMetamodel.getAbsolutePath());
+
+			ExecEnv env = EmftvmFactory.eINSTANCE.createExecEnv();
+			env = setupEnvironment(rs, inputMetamodelUri, outputMetamodelUri);
+			
+			File inModelFolder = new File(inModelDir);
+			File[] inputModelFiles = inModelFolder.listFiles();
+					
+			nbInModels= inputModelFiles.length;
 				
-		int nbInModels= inputModelFiles.length;
+			for(int i=0; i<inputModelFiles.length;i++) {
 				
-		for(int i=0; i<inputModelFiles.length;i++) {
-			
-			String inModelPath=inputModelFiles[i].getPath();
-			String outModelPath=outModelDir+"/out-"+inputModelFiles[i].getName();
-			String traceModel = tracesDir + "/trace-"+inputModelFiles[i].getName();
-			
-			//Load IN OUT and TRACE models
-			final Model inModel = EmftvmFactory.eINSTANCE.createModel();
-			final URI uri = URI.createFileURI(inModelPath);
-			inModel.setResource(rs.getResource(uri, true));
-			env.registerInputModel("IN", inModel);
-			
-			Model outModel = EmftvmFactory.eINSTANCE.createModel();
-			outModel.setResource(rs.createResource(URI.createURI(outModelPath)));
-			env.registerOutputModel("OUT", outModel);
-			
-			Model inoutModel = EmftvmFactory.eINSTANCE.createModel();
-			inoutModel.setResource(rs.createResource(URI.createFileURI(traceModel)));
-			env.registerInOutModel("trace", inoutModel);
-						
-			ModuleResolver mr = new DefaultModuleResolver(transformationDir, rs);
-			TimingData td = new TimingData();
-			env.loadModule(mr, TRmodule);
-			
-			td.finishLoading();
-			
-			try {
-				env.run(td);
-				td.finish();
-								
-				totalRules= (int) env.getRules().stream().count();
-				float executionTime = td.getFinished() * 0.000001f;
+				String inModelPath=inputModelFiles[i].getPath();
+				String outModelPath=outModelDir+"/out-"+inputModelFiles[i].getName();
+				String traceModel = tracesDir + "/trace-"+inputModelFiles[i].getName();
 				
-				URI modelURI = URI.createFileURI(inModelPath);
-				TraceLinkSet tls = (TraceLinkSet) inoutModel.getResource().getContents().get(0);
-				Set<String> executedRulesNames = new HashSet<>(
-						tls.getRules().stream().map(r -> r.getRule()).collect(Collectors.toList()));
-				Set<String> executedRules = new HashSet<>(
-						env.getRules().stream().filter(r -> executedRulesNames.contains(r.getName()))
-								.map(r -> r.eResource().getURIFragment(r))
-								.collect(Collectors.toList()));
+				//Load IN OUT and TRACE models
+				final Model inModel = EmftvmFactory.eINSTANCE.createModel();
+				final URI uri = URI.createFileURI(inModelPath);
+				inModel.setResource(rs.getResource(uri, true));
+				env.registerInputModel("IN", inModel);
 				
-				String res=  inputModelFiles[i].getName()+";"+executionTime+ ";"+ executedRules.size()+";"+ totalRules+";"+ executedRulesNames+"\n";
-				success= success+res;
-				log=log+ "SUCCESS "+res;
+				Model outModel = EmftvmFactory.eINSTANCE.createModel();
+				outModel.setResource(rs.createResource(URI.createURI(outModelPath)));
+				env.registerOutputModel("OUT", outModel);
 				
-				//Ici il manque le calcul des totaux
-				//Exemple: toutes les rules executes >> caclul du coverage
-				for(String rule: executedRulesNames) {
-					if(!totalExecutedRules.contains(rule)) {
-						totalExecutedRules.add(rule);
+				Model inoutModel = EmftvmFactory.eINSTANCE.createModel();
+				inoutModel.setResource(rs.createResource(URI.createFileURI(traceModel)));
+				env.registerInOutModel("trace", inoutModel);
+							
+				ModuleResolver mr = new DefaultModuleResolver(transformationDir, rs);
+				TimingData td = new TimingData();
+				env.loadModule(mr, TRmodule);
+				
+				td.finishLoading();
+				
+				
+					try {
+						env.run(td);						
+					}catch(Exception e) {
+						String res=inputModelFiles[i].getName()+" "+toolName+"\n";
+						fail=fail+res;
+						fail=fail+"  "+e.getMessage()+"\n";
+						log=log+ "EXCEPTION "+ res;						
 					}
-				}
-				
-				nbSuccess++;
-				
-			} catch (Exception e) {
-				String res=inputModelFiles[i].getName()+" "+toolName+"\n";
-				fail=fail+res;
-				log=log+ "FAILURE "+ res;
+					finally {
+						td.finish();
+						
+						totalRules= (int) env.getRules().size();
+						float executionTime = td.getFinished() * 0.000001f;
+						
+						URI modelURI = URI.createFileURI(inModelPath);
+						TraceLinkSet tls = (TraceLinkSet) inoutModel.getResource().getContents().get(0);
+						
+						// with repetitions
+						final List<String> executedRulesNames = inoutModel.getResource().getContents()
+								.stream().findFirst().map(o -> new ArrayList<TracedRule>(((TraceLinkSet) o).getRules()))
+								.map(l -> l.stream().map(r -> r.getRule()).collect(Collectors.toList()))
+								.orElse(new ArrayList<String>());
+						
+						// without repetitions
+						final Set<Rule> executedRules = env.getRules().stream()
+								.filter(r -> executedRulesNames.contains(r.getName()))
+								.collect(Collectors.toSet());
+
+						
+//						Set<String> executedRulesNames = new HashSet<>(
+//								tls.getRules().stream().map(r -> r.getRule()).collect(Collectors.toList()));
+//						
+//						Set<String> executedRules = new HashSet<>(
+//								env.getRules().stream().filter(r -> executedRulesNames.contains(r.getName()))
+//										.map(r -> r.eResource().getURIFragment(r))
+//										.collect(Collectors.toList()));
+						
+						String res=  inputModelFiles[i].getName()+";"+executionTime+ ";"+ executedRules.size()+";"+ totalRules+";"+ executedRulesNames+"\n";
+						success= success+res;
+						log=log+ "SUCCESS "+res;
+						
+						//Ici il manque le calcul des totaux
+						//Exemple: toutes les rules executes >> caclul du coverage
+						for(String rule: executedRulesNames) {
+							if(!totalExecutedRules.contains(rule)) {
+								totalExecutedRules.add(rule);
+							}
+						}						
+						nbSuccess++;
+					}
+					
+				// Save models
+//				try {
+//					outModel.getResource().save(Collections.emptyMap());
+//					inoutModel.getResource().save(Collections.emptyMap());
+//				} catch (IOException e) {
+//					
+//				}
 			}
 			
+		} catch (Exception e) {
+			//If there is a global problem with the Model Transformation
+			fail=fail+e.getMessage();
+			log=log+ "MT FAILURE "+ e.getMessage();				
+		} finally {
 			
-			// Save models
-			try {
-				outModel.getResource().save(Collections.emptyMap());
-				inoutModel.getResource().save(Collections.emptyMap());
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		//Add totalExecutedRules to summary
-		summary=toolName+";"+TRname+";"+totalExecutedRules.size()+";"+totalRules+";"+totalExecutedRules+";"+nbInModels;
-		log=log+" SUMMARY "+summary;
-		
-		ExecutionOutput execOutput= new ExecutionOutput(nbInModels,nbSuccess);		
-		execOutput.setExecutedRules(totalExecutedRules);
-		execOutput.setSuccess(success);
-		execOutput.setFail(fail);
-		execOutput.setSummary(summary);
-		execOutput.setLog(log);
-		return execOutput;
+			//Add totalExecutedRules to summary
+			summary=toolName+";"+TRname+";"+totalExecutedRules.size()+";"+totalRules+";"+totalExecutedRules+";"+nbInModels;
+			log=log+" SUMMARY "+summary;
+			
+			ExecutionOutput execOutput= new ExecutionOutput(nbInModels,nbSuccess);		
+			execOutput.setExecutedRules(totalExecutedRules);
+			execOutput.setSuccess(success);
+			execOutput.setFail(fail);
+			execOutput.setSummary(summary);
+			execOutput.setLog(log);
+			
+			return execOutput;		
+		}				
 	}
 	
 	/*
@@ -254,20 +273,27 @@ public class ATLauncher {
 		trace.setResource(rs.getResource(URI.createURI("http://www.eclipse.org/m2m/atl/emftvm/2011/Trace"), true));
 		env.registerMetaModel("TRACE", emftvm);
 
-		final Metamodel IM = EmftvmFactory.eINSTANCE.createMetamodel();
-		final Resource inputMetamodelResource = rs.getResource(inputMetamodelUri, true);
-		IM.setResource(inputMetamodelResource);
-		env.registerMetaModel(inputMetamodelUri.trimFileExtension().lastSegment(), IM);
-		registerPackages(rs, inputMetamodelResource);
+		if (inputMetamodelUri.toString().endsWith("Ecore.ecore")) {
+			final Metamodel Ecore = EmftvmFactory.eINSTANCE.createMetamodel();
+			Ecore.setResource(rs.getResource(URI.createURI("http://www.eclipse.org/emf/2002/Ecore"), true));
+			env.registerMetaModel("Ecore", Ecore);
+		} else {
+			final Metamodel IM = EmftvmFactory.eINSTANCE.createMetamodel();
+			final Resource inputMetamodelResource = rs.getResource(inputMetamodelUri, true);
+			IM.setResource(inputMetamodelResource);
+			env.registerMetaModel(inputMetamodelUri.trimFileExtension().lastSegment(), IM);
+			registerPackages(rs, inputMetamodelResource);
 
-		final Metamodel Ecore = EmftvmFactory.eINSTANCE.createMetamodel();
-		Ecore.setResource(rs.getResource(URI.createURI("http://www.eclipse.org/emf/2002/Ecore"), true));
-		env.registerMetaModel("Ecore", Ecore);
+			final Metamodel Ecore = EmftvmFactory.eINSTANCE.createMetamodel();
+			Ecore.setResource(rs.getResource(URI.createURI("http://www.eclipse.org/emf/2002/Ecore"), true));
+			env.registerMetaModel("Ecore", Ecore);
+		}
 
 		final Metamodel OM = EmftvmFactory.eINSTANCE.createMetamodel();
-		OM.setResource(rs.getResource(outputMetamodelUri, true));
+		final Resource outputMetamodelResource = rs.getResource(outputMetamodelUri, true);
+		OM.setResource(outputMetamodelResource);
 		env.registerMetaModel(outputMetamodelUri.trimFileExtension().lastSegment(), OM);
-		registerPackages(rs, rs.getResource(outputMetamodelUri, true));
+		registerPackages(rs, outputMetamodelResource);
 
 		return env;
 	}

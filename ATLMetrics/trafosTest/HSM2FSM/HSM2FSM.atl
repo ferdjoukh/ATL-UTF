@@ -1,7 +1,6 @@
 -- @atlcompiler emftvm
 -- @path HSM=metamodels/input/HSM.ecore
 -- @path FSM=metamodels/output/FSM.ecore
-
  
 module HSM2FSM;
 

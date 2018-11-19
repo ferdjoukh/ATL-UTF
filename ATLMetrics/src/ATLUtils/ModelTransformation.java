@@ -118,11 +118,11 @@ public class ModelTransformation {
 					
 					OclExpression ocl= inp.getFilter();
 					
-					System.out.println(r.getName());
 					int compOCL=expandOCL(ocl," ",0);
-					System.out.println("score="+compOCL);
 					
-					System.out.println("");
+					//System.out.println(r.getName());
+					//System.out.println("score="+compOCL);
+					//System.out.println("");
 					
 					
 //					if(ocl!=null) {

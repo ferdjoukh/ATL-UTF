@@ -1,6 +1,6 @@
 -- @atlcompiler emftvm
--- @path R2ML=/R2ML2SWRL/metamodels/r2ml/r2ml.ecore
--- @path RDM=/R2ML2SWRL/metamodels/rdm/rdm.ecore
+-- @path R2ML=/metamodels/input/r2ml.ecore
+-- @path RDM=/metamodels/output/rdm.ecore
 
 
 -- ============================================================

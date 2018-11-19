@@ -48,10 +48,36 @@ class TransformationRunnerTests {
 	@Test
 	void runTheFolder() throws FileNotFoundException, IOException, ATLCoreException {
 		TransformationsReader reader= new TransformationsReader("trafosTest");
+		
+		System.out.println(reader.printAllMT());
 		TransformationsRunner trRun= new TransformationsRunner(reader);
 		boolean run=trRun.runAllTransformations();
 		System.out.println(trRun.getVerbose());
-		assertEquals(true, run);
+		assertEquals(true, run);		
 	} 
+	
+	@Test
+	void runTheFolder2() throws FileNotFoundException, IOException, ATLCoreException {
+		TransformationsReader reader= new TransformationsReader("trafosTest2");
+		System.out.println(reader.printAllMT());
+		
+		TransformationsRunner trRun= new TransformationsRunner(reader);
+		boolean run=trRun.runAllTransformations();
+		
+		System.out.println(trRun.getVerbose());
+		assertEquals(true, run);		
+	} 
+	
+	@Test
+	void runTheFolder3() throws FileNotFoundException, IOException, ATLCoreException {
+		TransformationsReader reader= new TransformationsReader("newMTS");
+		System.out.println(reader.printAllMT());
+		
+		TransformationsRunner trRun= new TransformationsRunner(reader);
+		boolean run=trRun.runAllTransformations();
+		
+		System.out.println(trRun.getVerbose());
+		assertEquals(true, run);		
+	} 	
 }
 
