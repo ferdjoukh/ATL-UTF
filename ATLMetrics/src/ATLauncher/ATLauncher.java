@@ -165,15 +165,6 @@ public class ATLauncher {
 								.filter(r -> executedRulesNames.contains(r.getName()))
 								.collect(Collectors.toSet());
 
-						
-//						Set<String> executedRulesNames = new HashSet<>(
-//								tls.getRules().stream().map(r -> r.getRule()).collect(Collectors.toList()));
-//						
-//						Set<String> executedRules = new HashSet<>(
-//								env.getRules().stream().filter(r -> executedRulesNames.contains(r.getName()))
-//										.map(r -> r.eResource().getURIFragment(r))
-//										.collect(Collectors.toList()));
-						
 						String res=  inputModelFiles[i].getName()+";"+executionTime+ ";"+ executedRules.size()+";"+ totalRules+";"+ executedRulesNames+"\n";
 						success= success+res;
 						log=log+ "SUCCESS "+res;
