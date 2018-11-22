@@ -1,0 +1,6 @@
+Transformation name=BibTexML2DocBook
+module=BibTeX2DocBook
+inMM=BibTeX
+inMMRelativePath=BibTeX.ecore
+outMM=DocBook
+outMMRelativePath=DocBook.ecore

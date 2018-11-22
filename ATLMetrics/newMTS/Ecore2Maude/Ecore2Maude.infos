@@ -1,0 +1,6 @@
+Transformation name=Ecore2Maude
+module=Ecore2Maude
+inMM=Ecore
+inMMRelativePath=Ecore.ecore
+outMM=Maude
+outMMRelativePath=Maude.ecore
