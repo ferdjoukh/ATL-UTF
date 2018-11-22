@@ -1,0 +1,6 @@
+Transformation name=R2ML2RDM
+module=R2ML2RDM
+inMM=R2ML
+inMMRelativePath=R2ML.ecore
+outMM=RDM
+outMMRelativePath=RDM.ecore

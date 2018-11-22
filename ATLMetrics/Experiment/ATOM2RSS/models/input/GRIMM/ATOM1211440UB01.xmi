@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ATOM:ATOM xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ATOM="ATOM"
+    xsi:schemaLocation="ATOM ../../../metamodels/input/ATOM.ecore"
+    title="ATOM_-2"
+    id="ATOM_-2"
+    subtitle="ATOM_-2"
+    rights="ATOM_-2"
+    icon="ATOM_-2"
+    logo="ATOM_-2"
+    lastUpdate="ATOM_-2">
+  <links rel="Link_18_rel_-2"
+      hrefl="Link_18_hrefl_-2"
+      type="Link_18_type_-2"
+      hreflang="Link_18_hreflang_-2"
+      title="Link_18_title_-2"
+      lenght="-2"/>
+  <generator
+      uri="Generator_15_uri_-2"
+      version="Generator_15_version_-2"
+      name="Generator_15_name_-2"/>
+  <categories
+      term="Category_16_term_-2"
+      scheme="Category_16_scheme_-2"
+      label="Category_16_label_-2"/>
+  <categories
+      term="Category_17_term_-2"
+      scheme="Category_17_scheme_-2"
+      label="Category_17_label_-2"/>
+  <authors name="Author_22_name_-2"
+      uri="Author_22_uri_-2"
+      email="Author_22_email_-2"/>
+  <authors name="Author_23_name_-2"
+      uri="Author_23_uri_-2"
+      email="Author_23_email_-2"/>
+  <contributors
+      name="Contributor_24_name_-2"
+      uri="Contributor_24_uri_-2"
+      email="Contributor_24_email_-2"/>
+  <contributors
+      name="Contributor_25_name_-2"
+      uri="Contributor_25_uri_-2"
+      email="Contributor_25_email_-2"/>
+  <entrie title="Entry_2_title_-2"
+      id="Entry_2_id_-2"
+      rights="Entry_2_rights_-2"
+      summary="Entry_2_summary_-2"
+      published="Entry_2_published_-2"
+      lastUpdate="Entry_2_lastUpdate_-2">
+    <links hrefl="a"/>
+    <content
+        xsi:type="ATOM:InLineTextContent"
+        type="j"
+        mode="h"
+        text="j"/>
+  </entrie>
+  <entrie title="Entry_3_title_-2"
+      id="Entry_3_id_-2"
+      rights="Entry_3_rights_-2"
+      summary="Entry_3_summary_-2"
+      published="Entry_3_published_-2"
+      lastUpdate="Entry_3_lastUpdate_-2">
+    <links rel="Link_19_rel_-2"
+        hrefl="Link_19_hrefl_-2"
+        type="Link_19_type_-2"
+        hreflang="Link_19_hreflang_-2"
+        title="Link_19_title_-2"
+        lenght="-2"/>
+    <source
+        id="Source_4_id_-2"
+        icon="Source_4_icon_-2"
+        logo="Source_4_logo_-2"
+        rights="Source_4_rights_-2"
+        title="Source_4_title_-2"
+        subtitle="Source_4_subtitle_-2"
+        lastUpdate="Source_4_lastUpdate_-2"/>
+    <content
+        xsi:type="ATOM:InLineTextContent"
+        type="InLineTextContent_6_type_-2"
+        mode="InLineTextContent_6_mode_-2"
+        text="InLineTextContent_6_text_-2"/>
+  </entrie>
+</ATOM:ATOM>

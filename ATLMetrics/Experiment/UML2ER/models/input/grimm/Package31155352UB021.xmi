@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="ASCII"?>
+<SimpleUML:Package xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SimpleUML="http://SimpleUML" xsi:schemaLocation="http://SimpleUML SimpleUML.ecore" name="SimpleUML_-2">
+  <ownedElements name="Class_1_name_-2" superClasses="//@ownedElements.0 //@ownedElements.1"/>
+  <ownedElements name="Class_2_name_-2" superClasses="//@ownedElements.0 //@ownedElements.1"/>
+  <ownedElements xsi:type="SimpleUML:Property" name="Property_3_name_-2" primitiveType="Property_3_primitiveType_-2" complexType="//@ownedElements.0"/>
+  <ownedElements xsi:type="SimpleUML:Property" name="Property_4_name_-2" primitiveType="Property_4_primitiveType_-2" complexType="//@ownedElements.1"/>
+</SimpleUML:Package>

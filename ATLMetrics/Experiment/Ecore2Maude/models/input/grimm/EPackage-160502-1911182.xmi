@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xsi:schemaLocation="http://www.eclipse.org/emf/2002/Ecore tests/Ecore.ecore" name="EPackage13" nsURI="TXDWNDRJ" nsPrefix="SDYKBVH">
+  <eClassifiers xsi:type="ecore:EClass" name="EClass4" instanceClassName="ROESCIGQ" instanceTypeName="RJXIMGI" abstract="true" interface="true" eSuperTypes="">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="EReference16" unique="false" lowerBound="28" upperBound="12" eType="//@eClassifiers.3" changeable="false" defaultValueLiteral="KRTSEC" unsettable="true" derived="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="EAttribute1" unique="false" lowerBound="80" upperBound="12" transient="true" defaultValueLiteral="FNCVTJ">
+      <eAnnotations source="JXMANJCL" references="//@eClassifiers.0/@eGenericSuperTypes.0">
+        <eAnnotations source="FEKPOIWAV"/>
+        <details key="FIELNCXN" value="ELYRFQGA"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eGenericSuperTypes eClassifier="//@eClassifiers.0"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EClass5" instanceClassName="JDPIS" instanceTypeName="QJHXQYKI" abstract="true" interface="true" eSuperTypes="">
+    <eTypeParameters name="ETypeParameter21"/>
+    <eOperations name="EOperation12" unique="false" lowerBound="24" upperBound="52" eType="//@eClassifiers.9" eExceptions="//@eClassifiers.2 //@eClassifiers.4 //@eClassifiers.1" eGenericExceptions="">
+      <eParameters name="EParameter15" lowerBound="64" upperBound="16"/>
+      <eParameters name="EParameter14" unique="false" lowerBound="88" upperBound="81" eType="//@eClassifiers.8"/>
+    </eOperations>
+    <eGenericSuperTypes/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="EDataType6" instanceClassName="NHJSBVDR" instanceTypeName="RSFUPO">
+    <eTypeParameters name="ETypeParameter20"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="EEnum7" instanceClassName="KBNFF" instanceTypeName="YODIRG" serializable="false">
+    <eLiterals name="EEnumLiteral9" value="85" literal="JTRBMK"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="EEnum8" instanceClassName="EUQRQPL" instanceTypeName="RWJYQTQOR" serializable="false"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EClass4" instanceClassName="XAFHXCC" instanceTypeName="TIJFDVVR"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EClass5" instanceClassName="KEVFL" instanceTypeName="QDSMVQHF"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="EDataType6" instanceClassName="VJYKSO" instanceTypeName="JTKUKI"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="EEnum7" instanceClassName="VYOSRMPSG" instanceTypeName="QORWP"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="EEnum8" instanceClassName="JWBCK" instanceTypeName="XTXPOVAW"/>
+</ecore:EPackage>

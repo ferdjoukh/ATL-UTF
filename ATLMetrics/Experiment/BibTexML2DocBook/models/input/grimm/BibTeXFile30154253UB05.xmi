@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ASCII"?>
+<BibTeX:BibTeXFile xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:BibTeX="http://BibTeX/1.0" xsi:schemaLocation="http://BibTeX/1.0 BibTeX.ecore">
+  <entries xsi:type="BibTeX:Author" author="Author_2_author_-4"/>
+  <entries xsi:type="BibTeX:Author" author="Author_3_author_-4"/>
+  <entries xsi:type="BibTeX:Article" id="Article_4_id_-4" year="Article_4_year_-4" title="Article_4_title_-4" journal="Article_4_journal_-4"/>
+  <entries xsi:type="BibTeX:Article" id="Article_5_id_-4" year="Article_5_year_-4" title="Article_5_title_-4" journal="Article_5_journal_-4"/>
+  <entries xsi:type="BibTeX:Article" id="Article_6_id_-4" year="Article_6_year_-4" title="Article_6_title_-4" journal="Article_6_journal_-4"/>
+  <entries xsi:type="BibTeX:TechReport" id="TechReport_7_id_-4" year="TechReport_7_year_-4" title="TechReport_7_title_-4"/>
+  <entries xsi:type="BibTeX:TechReport" id="TechReport_8_id_-4" year="TechReport_8_year_-4" title="TechReport_8_title_-4"/>
+  <entries xsi:type="BibTeX:TechReport" id="TechReport_9_id_-4" year="TechReport_9_year_-4" title="TechReport_9_title_-4"/>
+  <entries xsi:type="BibTeX:Unpublished" id="Unpublished_10_id_-4" title="Unpublished_10_title_-4" note="Unpublished_10_note_-4"/>
+  <entries xsi:type="BibTeX:Unpublished" id="Unpublished_11_id_-4" title="Unpublished_11_title_-4" note="Unpublished_11_note_-4"/>
+  <entries xsi:type="BibTeX:Unpublished" id="Unpublished_12_id_-4" title="Unpublished_12_title_-4" note="Unpublished_12_note_-4"/>
+  <entries xsi:type="BibTeX:Manual" id="Manual_13_id_-4" title="Manual_13_title_-4"/>
+  <entries xsi:type="BibTeX:Manual" id="Manual_14_id_-4" title="Manual_14_title_-4"/>
+  <entries xsi:type="BibTeX:Manual" id="Manual_15_id_-4" title="Manual_15_title_-4"/>
+  <entries xsi:type="BibTeX:Proceedings" id="Proceedings_16_id_-4" year="Proceedings_16_year_-4" title="Proceedings_16_title_-4"/>
+  <entries xsi:type="BibTeX:Proceedings" id="Proceedings_17_id_-4" year="Proceedings_17_year_-4" title="Proceedings_17_title_-4"/>
+  <entries xsi:type="BibTeX:Proceedings" id="Proceedings_18_id_-4" year="Proceedings_18_year_-4" title="Proceedings_18_title_-4"/>
+  <entries xsi:type="BibTeX:InProceedings" id="InProceedings_19_id_-4" year="InProceedings_19_year_-4" title="InProceedings_19_title_-4" booktitle="InProceedings_19_booktitle_-4"/>
+  <entries xsi:type="BibTeX:InProceedings" id="InProceedings_20_id_-4" year="InProceedings_20_year_-4" title="InProceedings_20_title_-4" booktitle="InProceedings_20_booktitle_-4"/>
+  <entries xsi:type="BibTeX:Booklet" id="Booklet_21_id_-4" year="Booklet_21_year_-4"/>
+  <entries xsi:type="BibTeX:Booklet" id="Booklet_22_id_-4" year="Booklet_22_year_-4"/>
+  <entries xsi:type="BibTeX:Book" id="Book_23_id_-4" year="Book_23_year_-4" title="Book_23_title_-4" publisher="Book_23_publisher_-4"/>
+  <entries xsi:type="BibTeX:Book" id="Book_24_id_-4" year="Book_24_year_-4" title="Book_24_title_-4" publisher="Book_24_publisher_-4"/>
+  <entries xsi:type="BibTeX:InCollection" id="InCollection_25_id_-4" year="InCollection_25_year_-4" title="InCollection_25_title_-4" publisher="InCollection_25_publisher_-4" booktitle="InCollection_25_booktitle_-4"/>
+  <entries xsi:type="BibTeX:InCollection" id="InCollection_26_id_-4" year="InCollection_26_year_-4" title="InCollection_26_title_-4" publisher="InCollection_26_publisher_-4" booktitle="InCollection_26_booktitle_-4"/>
+  <entries xsi:type="BibTeX:InCollection" id="InCollection_27_id_-4" year="InCollection_27_year_-4" title="InCollection_27_title_-4" publisher="InCollection_27_publisher_-4" booktitle="InCollection_27_booktitle_-4"/>
+  <entries xsi:type="BibTeX:InBook" id="InBook_28_id_-4" year="InBook_28_year_-4" title="InBook_28_title_-4" publisher="InBook_28_publisher_-4" chapter="-4"/>
+  <entries xsi:type="BibTeX:InBook" id="InBook_29_id_-4" year="InBook_29_year_-4" title="InBook_29_title_-4" publisher="InBook_29_publisher_-4" chapter="-4"/>
+  <entries xsi:type="BibTeX:InBook" id="InBook_30_id_-4" year="InBook_30_year_-4" title="InBook_30_title_-4" publisher="InBook_30_publisher_-4" chapter="-4"/>
+  <entries xsi:type="BibTeX:Misc" id="Misc_31_id_-4"/>
+  <entries xsi:type="BibTeX:Misc" id="Misc_32_id_-4"/>
+  <entries xsi:type="BibTeX:Misc" id="Misc_33_id_-4"/>
+  <entries xsi:type="BibTeX:PhDThesis" id="PhDThesis_34_id_-4" year="PhDThesis_34_year_-4" title="PhDThesis_34_title_-4" school="PhDThesis_34_school_-4"/>
+  <entries xsi:type="BibTeX:PhDThesis" id="PhDThesis_35_id_-4" year="PhDThesis_35_year_-4" title="PhDThesis_35_title_-4" school="PhDThesis_35_school_-4"/>
+  <entries xsi:type="BibTeX:PhDThesis" id="PhDThesis_36_id_-4" year="PhDThesis_36_year_-4" title="PhDThesis_36_title_-4" school="PhDThesis_36_school_-4"/>
+  <entries xsi:type="BibTeX:MasterThesis" id="MasterThesis_37_id_-4" year="MasterThesis_37_year_-4" title="MasterThesis_37_title_-4" school="MasterThesis_37_school_-4"/>
+  <entries xsi:type="BibTeX:MasterThesis" id="MasterThesis_38_id_-4" year="MasterThesis_38_year_-4" title="MasterThesis_38_title_-4" school="MasterThesis_38_school_-3"/>
+</BibTeX:BibTeXFile>

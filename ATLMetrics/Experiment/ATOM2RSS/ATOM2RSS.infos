@@ -1,0 +1,6 @@
+Transformation name=ATOM2RSS
+module=ATOM2RSS
+inMM=ATOM
+inMMRelativePath=ATOM.ecore
+outMM=RSS
+outMMRelativePath=RSS.ecore
