@@ -79,5 +79,17 @@ class TransformationRunnerTests {
 		System.out.println(trRun.getVerbose());
 		assertEquals(true, run);		
 	} 	
+	
+	@Test
+	void runExperimentFolderTest() throws FileNotFoundException, IOException, ATLCoreException {
+		TransformationsReader reader= new TransformationsReader("Experiment");
+		System.out.println(reader.printAllMT());
+		
+		TransformationsRunner trRun= new TransformationsRunner(reader);
+		boolean run=trRun.runAllTransformations();
+		
+		System.out.println(trRun.getVerbose());
+		assertEquals(true, run);		
+	} 	
 }
 

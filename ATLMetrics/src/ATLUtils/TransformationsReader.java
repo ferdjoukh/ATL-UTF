@@ -62,11 +62,10 @@ public class TransformationsReader {
 				//Get all the infos from MT.infos file
 				String [] infos=readMTInfo(f.getName());
 				//Create the model transformation with all the information
-				ModelTransformation MT= new ModelTransformation(f.getName(),atlFilePath,infos[1],
+				ModelTransformation MT= new ModelTransformation(trafoDirPath, f.getName(),
+																atlFilePath,infos[1],
 																infos[2], infos[3],
 																infos[4], infos[5]);
-				//CreateRulesScores
-				MT.createAllRulesScores();
 				//Collect all the tools for that MT
 				collectToolsForMTFolder(MT);
 				//Add the MT to the list of MTs

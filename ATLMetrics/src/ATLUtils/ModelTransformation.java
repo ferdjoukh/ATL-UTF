@@ -8,8 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.m2m.atl.common.ATL.CalledRule;
+import org.eclipse.m2m.atl.common.ATL.Helper;
 import org.eclipse.m2m.atl.common.ATL.InPattern;
 import org.eclipse.m2m.atl.common.ATL.InPatternElement;
+import org.eclipse.m2m.atl.common.ATL.LazyMatchedRule;
 import org.eclipse.m2m.atl.common.ATL.MatchedRule;
 import org.eclipse.m2m.atl.common.ATL.Module;
 import org.eclipse.m2m.atl.common.ATL.ModuleElement;
@@ -26,6 +29,8 @@ import org.eclipse.m2m.atl.core.ATLCoreException;
 import org.eclipse.m2m.atl.emftvm.Rule;
 import org.eclipse.m2m.atl.engine.parser.AtlParser;
 
+import Ecore.MetaModelReader;
+
 /**
  * This class creates an object of type Model Transformation. 
  * Its purpose is to gather all the information about on model transformation in one object.
@@ -35,8 +40,9 @@ import org.eclipse.m2m.atl.engine.parser.AtlParser;
  *
  */
 public class ModelTransformation {
+	private String rootFolder;
 	private String name;
-	private String module;
+	private String moduleName;
 	private String absoluteATLFilePath;
 	private String inMM;
 	private String inMMRelativePath;
@@ -46,11 +52,26 @@ public class ModelTransformation {
 	private ArrayList<MyRule> rules;
 	private int maxScore;
 	
-	public ModelTransformation(String name, String absoluteFilePath,String module, 
-							   String inMM, String inMMRelativePath,
-			                   String outMM, String outMMRelativePath) {
+	private Module module;
+	private ArrayList<Helper> helpers = new ArrayList<Helper>();
+	private ArrayList<CalledRule> calledRules = new ArrayList<CalledRule>();
+	private ArrayList<MatchedRule> matchedRules = new ArrayList<MatchedRule>();
+	private ArrayList<LazyMatchedRule> lazyMatchedRules = new ArrayList<LazyMatchedRule>();
+	
+	private int classes=0;
+	private int treeDepth=0;
+	private int references=0;
+	private int generalizations=0;
+	private int attributes=0;
+	private ArrayList<String> attributesTypes=new ArrayList<String>();
+	
+	public ModelTransformation( String rootFolder, String name, 
+								String absoluteFilePath,String module, 
+							    String inMM, String inMMRelativePath,
+			                    String outMM, String outMMRelativePath) {
+		this.rootFolder= rootFolder;
 		this.name= name;
-		this.module= module;
+		this.moduleName= module;
 		this.absoluteATLFilePath= absoluteFilePath;
 		this.inMMRelativePath= inMMRelativePath;
 		this.outMMRelativePath= outMMRelativePath;
@@ -59,6 +80,11 @@ public class ModelTransformation {
 		rules= new ArrayList<MyRule>();
 		tools= new ArrayList<String>();
 		maxScore=0;
+		
+		readModuleFromATLFile();
+		createAllRulesScores();
+		readMetrics();
+		readMetaModelMetris();
 	}
 	
 	/**
@@ -66,28 +92,23 @@ public class ModelTransformation {
 	 * 
 	 * @return the main module of the model transformation
 	 */
-	private Module readATLFile(){
+	private void readModuleFromATLFile(){
 		
-		//String atlFile="trafosTest/HSM2FSM/HSM2FSM.atl";
 		Module m = null;
-		
 		try (InputStream in = new FileInputStream(absoluteATLFilePath)) {
 		
 		    EObject ast = null;
 			try {
 				ast = AtlParser.getDefault().parse(in);
 			} catch (ATLCoreException e) {
-				e.printStackTrace();
+				System.out.println(e.getMessage());
 			}
 		    if(ast instanceof Module)
-		    	m=(Module) ast;
-		} catch (FileNotFoundException e1) {
-			e1.printStackTrace();
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-		
-		return m;
+		    	m = (Module) ast;
+		} catch (Exception e1) {
+			System.out.println(e1.getMessage());
+		} 
+		this.module = m;
 	}
 		
 	/**
@@ -99,13 +120,11 @@ public class ModelTransformation {
 	 * @throws IOException
 	 * @throws ATLCoreException
 	 */
-	public void createAllRulesScores() {
+	private void createAllRulesScores() {
 		
-		Module root= readATLFile();
-		
-		if(root instanceof Module){
-			Module mod = (Module) root;
-			for(ModuleElement elem : mod.getElements()){
+		if(module instanceof Module){
+			for(ModuleElement elem : module.getElements()){
+				
 				if(elem instanceof MatchedRule){
 					MatchedRule r = (MatchedRule) elem;	
 					int filter=0;
@@ -120,35 +139,8 @@ public class ModelTransformation {
 					
 					int compOCL=expandOCL(ocl," ",0);
 					
-					//System.out.println(r.getName());
-					//System.out.println("score="+compOCL);
-					//System.out.println("");
-					
-					
-//					if(ocl!=null) {
-//						System.out.println(r.getName());
-//						System.out.println("  "+ocl);
-//						
-//						if(ocl instanceof OperationCallExp) {
-//							OperationCallExp oce= (OperationCallExp) ocl;
-//							
-//							System.out.println(oce.getArguments());
-//							System.out.println(oce.getSource());
-//							System.out.println(oce.getSource().getClass());
-//							
-//						}
-//					}
-					
-					//System.out.println(ocl.getOwningAttribute());
-					
 					int score=1+filter+ipes.size()-1+opes.size()-1;
 					
-//					System.out.println(r.getName());
-//					System.out.println("  guard:"+filter);
-//				    System.out.println("  inVars:"+ipes.size());
-//				    System.out.println("  outVars:"+opes.size());
-//				    System.out.println("  SCORE="+score);
-				    
 					MyRule rule= new MyRule(r.getName(), score);
 					addRule(rule);											
 				}
@@ -156,12 +148,37 @@ public class ModelTransformation {
 		}
 	}
 	
+	private void readMetrics() {
+		for(ModuleElement elem : module.getElements()){
+			
+			if(elem instanceof MatchedRule){
+				this.matchedRules.add((MatchedRule) elem);
+			}
+			if(elem instanceof Helper) {
+				this.helpers.add((Helper) elem);
+			}
+			if(elem instanceof CalledRule) {
+				this.calledRules.add((CalledRule) elem);
+			}
+			if(elem instanceof LazyMatchedRule) {
+				this.lazyMatchedRules.add((LazyMatchedRule) elem);
+			}			
+		}
+	}
+	
+	private void readMetaModelMetris() {
+		String inMMAbsolutePath = rootFolder+"/"+name+"/metamodels/input/"+inMMRelativePath;
+		System.out.println(inMMAbsolutePath);
+		MetaModelReader reader = new MetaModelReader(inMMAbsolutePath, "");
+		classes = reader.getClasses().size();
+	}
+	
 	/**
 	 * This method creates a file named: <ModelTransformationName>.rules
-	 * It contains all the rules of the model transformation and their complexity scroes
+	 * It contains all the rules of the model transformation and their complexity scores
 	 * 
 	 */
-	public void createRulesFile(){
+	private void createRulesFile(){
 		int begin=0;
 		int end= this.absoluteATLFilePath.lastIndexOf(".")+1;
 		String filePath= this.absoluteATLFilePath.substring(begin, end)+"rules";
@@ -173,7 +190,7 @@ public class ModelTransformation {
 	 * 
 	 * @return
 	 */
-	public String printableRules() {
+	private String printableRules() {
 		String res="";
 		for(MyRule rule: this.rules) {
 			res=res+rule.toString()+"\n";
@@ -181,7 +198,7 @@ public class ModelTransformation {
 		return res;
 	}
 	
-	public int expandOCL(OclExpression expr, String space, int depth) {
+	private int expandOCL(OclExpression expr, String space, int depth) {
 		if(expr!=null) {
 			
 			String label="";
@@ -220,6 +237,16 @@ public class ModelTransformation {
 		}
 	}
 	
+	private void computeMaxScore() {
+		
+		int sum=0;
+		for(MyRule rule: rules) {
+			sum=sum+rule.getScore();
+		}
+		System.out.println("maxScore"+sum);
+		this.maxScore=sum;
+	}
+	
 	public String getAbsoluteATLFilePath() {
 		return absoluteATLFilePath;
 	}
@@ -242,7 +269,7 @@ public class ModelTransformation {
 	}
 
 	public String getModule() {
-		return module;
+		return moduleName;
 	}
 
 	public String getInMMRelativePath() {
@@ -270,16 +297,6 @@ public class ModelTransformation {
 		computeMaxScore();
 	}
 	
-	private void computeMaxScore() {
-		
-		int sum=0;
-		for(MyRule rule: rules) {
-			sum=sum+rule.getScore();
-		}
-		System.out.println("maxScore"+sum);
-		this.maxScore=sum;
-	}
-	
 	public int getMaxScore() {
 		return maxScore;
 	}
@@ -295,11 +312,31 @@ public class ModelTransformation {
 	public String toString() {
 		return this.getName();
 	}
-	
+		
+	public String getModuleName() {
+		return moduleName;
+	}
+
+	public ArrayList<Helper> getHelpers() {
+		return helpers;
+	}
+
+	public ArrayList<CalledRule> getCalledRules() {
+		return calledRules;
+	}
+
+	public ArrayList<MatchedRule> getMatchedRules() {
+		return matchedRules;
+	}
+
+	public ArrayList<LazyMatchedRule> getLazyMatchedRules() {
+		return lazyMatchedRules;
+	}
+
 	public String prettyPrint() {
 		String res="";
 		
-		res=res+this.name+" [ module:"+ this.module+", "
+		res=res+this.name+" [ module:"+ this.moduleName+", "
 				+ "maxScore:"+ this.maxScore+", "
 				+ "meta-models: "+ this.inMM +"("+this.inMMRelativePath+") > "
 				+ this.outMM+"("+this.outMMRelativePath+") ]\n";
@@ -309,6 +346,26 @@ public class ModelTransformation {
 			res=res+" "+rule.getName()+"("+rule.getScore()+")";
 		}
 		res=res+"\n\n";
+		return res;
+	}
+	
+	public String metrics2string() {
+		//String res= "Transformation, Helper,CalledRule,MatchedRule,LazyMatchedRule,ComplexityScore\n";
+		String res = moduleName + "," + helpers.size() + "," + calledRules.size() + 
+				"," + matchedRules.size() + "," + lazyMatchedRules.size()+ 
+				","+ maxScore;
+		
+		return res;		
+	}
+	
+	public String metamodelMetrics2String() {
+		//String res= "Classes,Tree depth,References,Generalizations,Attributes,Attribute types\n";
+		
+		String res= moduleName + "," + inMM + "," 
+					+ classes + "," + treeDepth + "," 
+					+ references + "," + generalizations + "," 
+					+ attributes + "," + attributesTypes;
+		
 		return res;
 	}
 }

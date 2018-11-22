@@ -58,13 +58,21 @@ public class TransformationsRunner {
 		verbose= verbose+ reader.printInfo();
 		verbose= verbose+ reader.printAllMT();
 		verbose= verbose+ "RUNNING\n\n";
+		
 		String logFile= Utils.generateFileNamePostfix("execution", "log");
 		String resFile= Utils.generateFileNamePostfix("execution-results", "csv");
+		
+		String transformationMetricsFile= Utils.generateFileNamePostfix("transformations-metrics", "csv");
+		
+		String transformationMetrics = "Transformation,Helper,CalledRule,MatchedRule,LazyMatchedRule,ComplexityScore\n";
+		
 		String globalResults="";
 		String failure;
 		
 		for(ModelTransformation mt: reader.getModelTransformations()) {
 			verbose= verbose+ "RUNNING ["+ mt +"] model transformation...\n\n";
+			
+			transformationMetrics = transformationMetrics + mt.metrics2string()+ "\n";
 		
 			//Create a failure file for each Model Transformation
 			String failFile= Utils.generateFileNamePostfix("failed-models-"+mt.getName(), "log");
@@ -106,6 +114,10 @@ public class TransformationsRunner {
 			
 			verbose= verbose+"\n";
 		}	
+		
+		//Create the transformations metrics file
+		Utils.createOutputFile(reader.getTrafoDirPath()+"/"+transformationMetricsFile, transformationMetrics);
+		verbose= verbose+ "creation of file: "+ transformationMetricsFile+"\n";
 		
 		//Create the global results file
 		Utils.createOutputFile(reader.getTrafoDirPath()+"/"+resFile, globalResults);

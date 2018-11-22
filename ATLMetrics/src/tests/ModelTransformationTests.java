@@ -13,39 +13,20 @@ import ATLUtils.ModelTransformation;
 class ModelTransformationTests {
 
 	@Test
-	void test() throws FileNotFoundException, IOException, ATLCoreException {
-		ModelTransformation mt= new ModelTransformation("HSM2FSM", "trafosTest/HSM2FSM/HSM2FSM.atl","HSM2FSM", "inMM", 
-				"inMMRelativePath", "outMM", "outMMRelativePath");
+	void HSM2FSMmetrics() throws Exception {
+		ModelTransformation mt= new ModelTransformation("Experiment","HSM2FSM", 
+				"Experiment/HSM2FSM/HSM2FSM.atl","HSM2FSM", 
+				"HSM", "HSM.ecore", 
+				"outMM", "outMMRelativePath");
 		
-		mt.createAllRulesScores();
-		System.out.println(mt.prettyPrint());
+		assertEquals(7, mt.getMatchedRules().size());
+		assertEquals(0, mt.getCalledRules().size());
+		assertEquals(0, mt.getLazyMatchedRules().size());
+		assertEquals(0, mt.getHelpers().size());
+		
+		System.out.println(mt.metrics2string());
+		
+		System.out.println(mt.metamodelMetrics2String());
 	}
 	
-//	@Test
-//	void testR2ML2RDM() throws FileNotFoundException, IOException, ATLCoreException {
-//		ModelTransformation mt= new ModelTransformation("R2ML2RDM", "trafosTest/R2ML2RDM/R2ML2RDM.atl",
-//				"R2ML2RDM", "inMM", "inMMRelativePath", "outMM", "outMMRelativePath");
-//		
-//		mt.createAllRulesScores();
-//		System.out.println(mt.prettyPrint());
-//	}
-//	
-//	@Test
-//	void creationOfRulesFile() throws FileNotFoundException, IOException, ATLCoreException {
-//		ModelTransformation mt= new ModelTransformation("HSM2FSM", "trafosTest/HSM2FSM/HSM2FSM.atl","HSM2FSM", "inMM", 
-//				"inMMRelativePath", "outMM", "outMMRelativePath");
-//		
-//		mt.createAllRulesScores();
-//		mt.createRulesFile();
-//	}
-//	
-//	@Test
-//	void creationOfRulesFile2() throws FileNotFoundException, IOException, ATLCoreException {
-//		ModelTransformation mt= new ModelTransformation("R2ML2RDM", "trafosTest/R2ML2RDM/R2ML2RDM.atl",
-//				"R2ML2RDM", "inMM", "inMMRelativePath", "outMM", "outMMRelativePath");
-//		
-//		mt.createAllRulesScores();
-//		mt.createRulesFile();
-//	}
-
 }

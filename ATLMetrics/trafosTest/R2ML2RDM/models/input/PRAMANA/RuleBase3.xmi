@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<r2ml:RuleBase
-    xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:r2ml="r2ml"
-    xsi:schemaLocation="r2ml ../../metamodels/input/R2ML.ecore#/0">
-  <rules xsi:type="r2ml:IntegrityRuleSet"/>
-</r2ml:RuleBase>
