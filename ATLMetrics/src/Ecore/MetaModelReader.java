@@ -10,19 +10,17 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 /**
  * This class is used to read information of Ecore Metamodels
+ * and compute some metrics 
  * 
  * @author Adel Ferdjoukh
  *
  */
 public class MetaModelReader {
 	
+	private String metamodelFilePath;
+	private String rootClassName;
 	private Resource resource;
 	private EPackage BasePackage;
-	private String rootClassName;
-	private ArrayList<Integer> sizeOfClasses;
-	private ArrayList<Integer> minSizesOfClasses;
-	private String metamodelFilePath;
-	private Hashtable<String,ArrayList<String>> attributesDomains; 
 	
 	public void loadRootPackage(String metamodel,String rootClass) {
 		Resource.Factory.Registry reg=Resource.Factory.Registry.INSTANCE;
@@ -36,21 +34,16 @@ public class MetaModelReader {
 		this.metamodelFilePath = metamodel;
 		this.rootClassName=rootClass;
 		this.resource=resource;
-		this.BasePackage= rootpackage;
-		this.attributesDomains = new Hashtable<String, ArrayList<String>>();
+		this.BasePackage= rootpackage;		
 	}
 	
 	public MetaModelReader(String metamodel,String rootClass){
 		loadRootPackage(metamodel, rootClass);
 	}
 	
-	public MetaModelReader(String metamodel,String rootClass, int lb, int ub){
-		loadRootPackage(metamodel, rootClass);
-		
-		sizeClassMinInit(1,lb);
-		sizeClassInit(lb,ub);
-	}
-	
+	///////////////////////////////////////////////////
+	//   Getters
+	///////////////////////////////////////////////////
 	public String getMetamodel(){
 		return metamodelFilePath;
 	}
@@ -67,44 +60,10 @@ public class MetaModelReader {
 		return this.BasePackage;
 	}
 	
-	public Hashtable<String, ArrayList<String>> getAttributesDomains() {
-		return attributesDomains;
-	}
-
-	/**
-	 * This method read class sizes and returns the begin of the domain of each class
-	 * 
-	 * domain D = [a,b]
-	 * 
-	 * to get a: call the method with classID-1, then add 1
-	 * to get b: call the method with classID
-	 * 
-	 * @param classID
-	 * @return
-	 */
-	public int domaineSum(int classID){
-		int end=0;
-		if (classID <= 0)
-			return 0;
-		
-		for(int i=0;i<=classID-1;i++){
-			end+= sizeOfClasses.get(i);
-		}
-		return end;
-	}
-	
-	public int domaineSumMin(int classID){
-		int end=0;
-		if (classID <= 0)
-			return 0;
-	
-		for(int i=0;i<=classID-1;i++){
-			end+= minSizesOfClasses.get(i);
-		}
-		return end;
-	}
-	
-	public List<EClass> getClasses(){
+	///////////////////////////////////////////////////////
+	//   Classes
+	///////////////////////////////////////////////////////
+	public List<EClass> getConcreteClasses(){
 		
 		ArrayList<EClass> cls= new ArrayList<EClass>();
 		for( EClassifier cf :BasePackage.getEClassifiers()){
@@ -117,17 +76,7 @@ public class MetaModelReader {
 		return cls;
 	}
 	
-	public EClass getClassByName(String className) {
-		
-		for(EClass eclass: getClasses()) {
-			if (eclass.getName().equals(className)) {
-				return eclass;
-			}
-		}
-		return null;
-	}
-	
-	public List<EClass> getAbtractClasses(){
+	public List<EClass> getAbstractClasses(){
 		
 		ArrayList<EClass> cls= new ArrayList<EClass>();
 		for( EClassifier cf :BasePackage.getEClassifiers()){
@@ -140,80 +89,9 @@ public class MetaModelReader {
 		return cls;
 	}
 	
-	public int getClassIndex(EClass c){
-		
-		int i=1;
-		ArrayList<EClass> cls= (ArrayList<EClass>) getClasses();
-		for (EClass cc: cls){
-			
-			if(cc==c) return i;
-			else i++;
-		}
-		return -1;
-	}
-	
-	public int getClassIndex(String c){
-		
-		int i=1;
-		ArrayList<EClass> cls= (ArrayList<EClass>) getClasses();
-		for (EClass cc: cls){
-			
-			if(cc.getName().equals(c))	return i;
-			else	i++;
-		}
-		return -1;
-	}
-		
-	//Méthode initialisant les size(class)
-	//Met 1 à la racine: size(racine)= 1
-	private void sizeClassInit(int moy,int upperb){
-		
-		ArrayList<EClass> cls= (ArrayList<EClass>) getClasses();
-		ArrayList<Integer> sizes= new ArrayList<Integer>(cls.size());
-		for (int i=0; i<=cls.size();i++){			
-			int random = (int)(Math.random() * (upperb-moy)) + moy;
-			sizes.add(i, random);
-		}
-		sizes.add(getClassIndex(rootClassName)-1,1);
-	    this.sizeOfClasses=sizes;
-	}
-	
-	//Init les sizeMin d'une classe
-	//Met 0 à la recine, MinSize(Racine)=1
-	private void sizeClassMinInit(int lowerb,int moy)
-	{
-		
-		ArrayList<EClass> cls= (ArrayList<EClass>) getClasses();
-		ArrayList<Integer> sizes= new ArrayList<Integer>(cls.size());
-		for (int i=0; i<=cls.size();i++)
-		{
-			//Générer un size entre 1 et 5
-			int random = (int)(Math.random() * (moy-lowerb)) + lowerb;
-			sizes.add(i, random);
-		}
-		sizes.add(getClassIndex(rootClassName)-1,1);
-		this.minSizesOfClasses=sizes;
-	}
-	
-
-	public ArrayList<Integer> getClassSize(){
-		return this.sizeOfClasses;
-	}
-	
-	
-	public ArrayList<Integer> getClassSizeMin(){
-		return this.minSizesOfClasses;
-	}
-	
-	/**
-	 * This method collects all the attributes of a Class
-	 * It includes also the attributes of all the inheritance tree.
-	 * 
-	 * Unchangeable attributes are not considered
-	 * 
-	 * @param c
-	 * @return
-	 */
+	///////////////////////////////////////////////////////
+	//     Attributes
+	///////////////////////////////////////////////////////
 	public List<EAttribute> getAllAttributesFromClass(EClass c)
 	{
 		ArrayList<EAttribute> attributes= new ArrayList<EAttribute>();
@@ -226,10 +104,28 @@ public class MetaModelReader {
 		return attributes;
 	}
 	
+	public List<EAttribute> getAllAttributesofMetamodel(){
+		
+		ArrayList<EAttribute> attributes= new ArrayList<EAttribute>();
+		
+		for(EClass eclass: getConcreteClasses()) {
+			attributes.addAll(eclass.getEAttributes());
+		}
+		
+		for(EClass eclass: getAbstractClasses()) {
+			attributes.addAll(eclass.getEAttributes());
+		}
+		
+		return attributes;
+	}
+	
+	//////////////////////////////////////////////////////
+	//
+	//////////////////////////////////////////////////////
 	public List<EClass> getAllSubtypes(EClass c)
 	{
 		ArrayList<EClass> allClasses= new ArrayList<EClass>();
-		for(EClass subClass: getClasses()){
+		for(EClass subClass: getConcreteClasses()){
 			
 			if(subClass.getEAllSuperTypes().contains(c))
 			allClasses.add(subClass);
@@ -322,7 +218,7 @@ public class MetaModelReader {
 	{
 
 			ArrayList<EClass> cls= new ArrayList<EClass>();
-			for(EClass cc: getClasses())
+			for(EClass cc: getConcreteClasses())
 			{
 				if (!cc.isAbstract())
 				{

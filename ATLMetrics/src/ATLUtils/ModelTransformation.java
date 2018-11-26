@@ -58,7 +58,8 @@ public class ModelTransformation {
 	private ArrayList<MatchedRule> matchedRules = new ArrayList<MatchedRule>();
 	private ArrayList<LazyMatchedRule> lazyMatchedRules = new ArrayList<LazyMatchedRule>();
 	
-	private int classes=0;
+	private int concreteClasses=0;
+	private int abstractClasses=0;
 	private int treeDepth=0;
 	private int references=0;
 	private int generalizations=0;
@@ -170,7 +171,9 @@ public class ModelTransformation {
 		String inMMAbsolutePath = rootFolder+"/"+name+"/metamodels/input/"+inMMRelativePath;
 		System.out.println(inMMAbsolutePath);
 		MetaModelReader reader = new MetaModelReader(inMMAbsolutePath, "");
-		classes = reader.getClasses().size();
+		concreteClasses = reader.getConcreteClasses().size();
+		abstractClasses = reader.getAbstractClasses().size();
+		attributes = reader.getAllAttributesofMetamodel().size();
 	}
 	
 	/**
@@ -359,10 +362,10 @@ public class ModelTransformation {
 	}
 	
 	public String metamodelMetrics2String() {
-		//String res= "Classes,Tree depth,References,Generalizations,Attributes,Attribute types\n";
+		//concreteClasses, abstractClasses, Tree depth, References, Generalizations, Attributes, Attribute types
 		
-		String res= moduleName + "," + inMM + "," 
-					+ classes + "," + treeDepth + "," 
+		String res= moduleName + "," + inMM + "," + concreteClasses + "," +
+					+ abstractClasses + "," + treeDepth + "," 
 					+ references + "," + generalizations + "," 
 					+ attributes + "," + attributesTypes;
 		
