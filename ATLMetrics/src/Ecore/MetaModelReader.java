@@ -1,5 +1,6 @@
 package Ecore;
 
+import java.lang.reflect.Array;
 import java.util.*;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.*;
@@ -117,6 +118,31 @@ public class MetaModelReader {
 		}
 		
 		return attributes;
+	}
+	
+	public List<String> getAllTypesOfAttributes(){
+		
+		ArrayList<String> types = new ArrayList<String>();
+		
+		ArrayList<EAttribute> attributes = (ArrayList<EAttribute>) getAllAttributesofMetamodel();
+		
+		for(EAttribute attr: attributes) {
+			
+			String typeName;
+			if(attr.getEType().eClass().getName().equals("EEnum")) {
+				typeName = "EEnum";
+			}else if (attr.getEType().eClass().getName().equals("EEnum")) {
+				typeName = attr.getEType().getName(); 
+			}else {
+				typeName = attr.getEType().getName();
+			}
+			
+			if(!types.contains(typeName)) {
+				types.add(typeName);
+			}
+		}
+		
+		return types;
 	}
 	
 	//////////////////////////////////////////////////////

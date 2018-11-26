@@ -348,6 +348,7 @@
     <semanticResources>Experiment/UML2ER/models/input/Git/SimpleUml2ER_Mutant7.xmi</semanticResources>
     <semanticResources>Experiment/UML2ER/models/input/Git/SimpleUml2ER_Mutant8.xmi</semanticResources>
     <semanticResources>Experiment/UML2ER/models/input/Git/SimpleUml2ER_Mutant9.xmi</semanticResources>
+    <semanticResources>meta-models/maps.ecore</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_Xcm_UKeCEeiLSZ63Y1Btbg">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_ZUhjMKeCEeiLSZ63Y1Btbg" name="ATL class diagram" repPath="#_ZTclIKeCEeiLSZ63Y1Btbg">

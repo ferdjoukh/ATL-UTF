@@ -174,6 +174,7 @@ public class ModelTransformation {
 		concreteClasses = reader.getConcreteClasses().size();
 		abstractClasses = reader.getAbstractClasses().size();
 		attributes = reader.getAllAttributesofMetamodel().size();
+		attributesTypes = (ArrayList<String>) reader.getAllTypesOfAttributes();
 	}
 	
 	/**
