@@ -25,7 +25,6 @@ class ModelTransformationTests {
 		assertEquals(0, mt.getHelpers().size());
 		
 		System.out.println(mt.metrics2string());
-		
 		System.out.println(mt.metamodelMetrics2String());
 	}
 	

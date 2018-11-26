@@ -56,9 +56,9 @@ public class MetaModelReader {
 	public Resource getModelResource(){
 		return this.resource;
 	}
-	
-	public EPackage getModelPackage(){
-		return this.BasePackage;
+		
+	public EPackage getBasePackage() {
+		return BasePackage;
 	}
 	
 	///////////////////////////////////////////////////////
@@ -88,6 +88,24 @@ public class MetaModelReader {
 			}
 		}
 		return cls;
+	}
+	
+	public ArrayList<EClass> getAllClasses() {
+		ArrayList<EClass> allClasses = (ArrayList<EClass>) getConcreteClasses();
+		ArrayList<EClass> abstratClasses = (ArrayList<EClass>) getAbstractClasses();
+		allClasses.addAll(abstratClasses);
+		
+		return allClasses;
+	}
+	
+	public EClass getClassByName(String className) {
+		
+		for(EClass eclass: getAllClasses()) {
+			if (eclass.getName().equals(className)) {
+				return eclass;
+			}
+		}
+		return null;
 	}
 	
 	///////////////////////////////////////////////////////
@@ -146,10 +164,10 @@ public class MetaModelReader {
 	}
 	
 	//////////////////////////////////////////////////////
-	//
-	//////////////////////////////////////////////////////
-	public List<EClass> getAllSubtypes(EClass c)
-	{
+	// Inheritance
+	//////////////////////////////////////////////////////	
+	public List<EClass> getAllSubtypes(EClass c){
+		
 		ArrayList<EClass> allClasses= new ArrayList<EClass>();
 		for(EClass subClass: getConcreteClasses()){
 			
@@ -159,6 +177,22 @@ public class MetaModelReader {
 		return allClasses;
 	}
 	
+	public List<EClass> getConcreteSubTypes(EClass c) {
+
+		ArrayList<EClass> cls= new ArrayList<EClass>();
+		for(EClass cc: getConcreteClasses()){
+			if (!cc.isAbstract()){
+				if(cc.getEAllSuperTypes().contains(c))	
+					cls.add(cc);
+			}
+		}
+		return cls;
+	}
+
+	
+	//////////////////////////////////////////////////////
+	// References
+	//////////////////////////////////////////////////////
 	/**
 	 * This method collects all the references of a given class.
 	 * It includes also the references of superClasses of c.
@@ -189,6 +223,16 @@ public class MetaModelReader {
 	public List<EReference> getAllContainmentFromClass(EClass c){
 		ArrayList<EReference> containments= new ArrayList<EReference>();
 		for (EReference r: c.getEAllReferences()){
+			if (r.isChangeable() && r.isContainment()){
+				containments.add(r);
+			}
+		}
+		return containments;
+	}
+
+	public List<EReference> getContainmentFromClass(EClass c){
+		ArrayList<EReference> containments= new ArrayList<EReference>();
+		for (EReference r: c.getEReferences()){
 			if (r.isChangeable() && r.isContainment()){
 				containments.add(r);
 			}
@@ -240,22 +284,67 @@ public class MetaModelReader {
 		return references;
     }
 	
-	public List<EClass> getConcreteSubTypes(EClass c) 
-	{
-
-			ArrayList<EClass> cls= new ArrayList<EClass>();
-			for(EClass cc: getConcreteClasses())
-			{
-				if (!cc.isAbstract())
-				{
-				if(cc.getEAllSuperTypes().contains(c))	
-				cls.add(cc);
+	public List<EReference> getAllReferencesOfMetamodel(){
+		ArrayList<EReference> references = new ArrayList<EReference>();
+		ArrayList<EClass> allClasses = getAllClasses();
+		
+		for(EClass eclass: allClasses) {
+			for(EReference ref: getAllReferencesFromClass(eclass)) {
+				if(!references.contains(ref)) {
+					references.add(ref);
 				}
 			}
-			return cls;
+			for(EReference ref: getAllContainmentFromClass(eclass)) {
+				if(!references.contains(ref)) {
+					references.add(ref);
+				}
+			}
+		}
+		
+		return references;
+	}	
+	
+	////////////////////////////////////////////
+	// Composition tree depth
+	///////////////////////////////////////////
+	private int containmentTreeOfClass(EClass eclass) {
+		
+		ArrayList<EReference> containments = (ArrayList<EReference>) getContainmentFromClass(eclass);
+		
+		if(containments.size() == 0) {
+			return 0;
+		}else {
+			int [] trees = new int[containments.size()];
+			int i=0;
+			for(EReference containment: containments) {
+				if(containment.getEType().getName().equals(eclass.getName())) {
+					trees[i] = 0;
+				}else {
+					trees[i] = containmentTreeOfClass((EClass)containment.getEType());
+				}
+				i++;
+			}
+			return 1 + dichotomicMax(trees,0, trees.length-1);
+		}		
+	}
+	
+	private int dichotomicMax(int[] trees, int begin, int end) {
+		
+		if(begin == end) {
+			return trees[begin];
+		}else {
+			return max(dichotomicMax(trees, begin, (begin+end)/2),dichotomicMax(trees, (begin+end)/2 + 1, end));
+		}			
+	}
+	
+	private int max(int a, int b) {
+		if (a>b) {return a;}
+		else return b;
 	}
 
-	public EPackage getBasePackage() {
-		return BasePackage;
-	}		
+	public int containmentTreeDepth() {
+		EClass rootClass = getClassByName(rootClassName);
+		
+		return containmentTreeOfClass(rootClass);		
+	}
 }

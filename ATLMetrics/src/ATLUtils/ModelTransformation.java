@@ -60,11 +60,11 @@ public class ModelTransformation {
 	
 	private int concreteClasses=0;
 	private int abstractClasses=0;
-	private int treeDepth=0;
 	private int references=0;
-	private int generalizations=0;
 	private int attributes=0;
 	private ArrayList<String> attributesTypes=new ArrayList<String>();
+	private int containTreeDepth=0;
+	private int inheritanceTressDepth=0;
 	
 	public ModelTransformation( String rootFolder, String name, 
 								String absoluteFilePath,String module, 
@@ -175,6 +175,8 @@ public class ModelTransformation {
 		abstractClasses = reader.getAbstractClasses().size();
 		attributes = reader.getAllAttributesofMetamodel().size();
 		attributesTypes = (ArrayList<String>) reader.getAllTypesOfAttributes();
+		references = reader.getAllReferencesOfMetamodel().size();
+		containTreeDepth = reader.containmentTreeDepth();
 	}
 	
 	/**
@@ -366,8 +368,8 @@ public class ModelTransformation {
 		//concreteClasses, abstractClasses, Tree depth, References, Generalizations, Attributes, Attribute types
 		
 		String res= moduleName + "," + inMM + "," + concreteClasses + "," +
-					+ abstractClasses + "," + treeDepth + "," 
-					+ references + "," + generalizations + "," 
+					+ abstractClasses + "," + containTreeDepth + "," 
+					+ references + "," + inheritanceTressDepth + "," 
 					+ attributes + "," + attributesTypes;
 		
 		return res;
