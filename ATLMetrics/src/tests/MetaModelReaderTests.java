@@ -3,6 +3,7 @@ package tests;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
+import java.util.function.Consumer;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
@@ -11,6 +12,14 @@ import org.junit.jupiter.api.Test;
 import Ecore.MetaModelReader;
 
 public class MetaModelReaderTests {
+	
+	private int i=0;
+	private int[] candidates;
+	
+	Consumer<EClass> printCandidates = (a) -> {
+		i++; 
+		System.out.println(a.getName()+"="+candidates[i]);
+	};
 
 	@Test
 	public void metricsMapsMM() {
@@ -178,9 +187,14 @@ public class MetaModelReaderTests {
 		MetaModelReader reader = new MetaModelReader("meta-models/Ecore.ecore", "EPackage");
 		EClass A = reader.getClassByName("EOperation");
 		ArrayList<EClass> containers = reader.reverseContainingTree(A,new ArrayList<EReference>());
-		containers.forEach((c)->System.out.println(c.getName()));
+		candidates = reader.generateVecotrOfCandidates(A, containers);
 		
 		assertEquals(3, containers.size());
+		assertEquals(4, candidates.length);
+		
+		i=0;
+		System.out.println(A.getName()+"="+candidates[i]);
+		containers.forEach(printCandidates);		
 	}
 	
 	@Test

@@ -422,5 +422,21 @@ public class MetaModelReader {
 		}
 		return containers;
 	}	
+	
+	public static int randomInt(int min, int max) {
+		Random rand= new Random();
+		return rand.nextInt(max-min) + min ;
+	}
+	
+	public int [] generateVecotrOfCandidates(EClass eclass, ArrayList<EClass> containmentTree){
+		int [] results= new int[1+containmentTree.size()];
+		results[0] = randomInt(1, 3);
+		
+		for(int i=0;i<containmentTree.size();i++) {
+			results[i+1] = randomInt(1, 3); 
+		}
+		
+		return results;
+	}
 
 }
