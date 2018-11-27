@@ -177,6 +177,7 @@ public class ModelTransformation {
 		attributesTypes = (ArrayList<String>) reader.getAllTypesOfAttributes();
 		references = reader.getAllReferencesOfMetamodel().size();
 		containTreeDepth = reader.containmentTreeDepth();
+		inheritanceTressDepth = reader.getMetamodelMaxInheritanceDepth();
 	}
 	
 	/**

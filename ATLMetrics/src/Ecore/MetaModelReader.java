@@ -188,6 +188,20 @@ public class MetaModelReader {
 		}
 		return cls;
 	}
+	
+	public int getMetamodelMaxInheritanceDepth() {
+		
+		int [] allDepth = new int[getAllClasses().size()];
+		int i = 0;
+		
+		for(EClass eclass: getAllClasses()) {
+			allDepth[i] = eclass.getEAllSuperTypes().size(); 
+			i++;
+		}
+		
+		return dichotomicMax(allDepth, 0, allDepth.length-1);
+		
+	}
 
 	
 	//////////////////////////////////////////////////////
@@ -235,6 +249,35 @@ public class MetaModelReader {
 		for (EReference r: c.getEReferences()){
 			if (r.isChangeable() && r.isContainment()){
 				containments.add(r);
+			}
+		}
+		return containments;
+	}
+	
+	public ArrayList<EReference> allTargetingContainment(EClass eclass){
+		ArrayList<EReference> containments= new ArrayList<EReference>();
+		
+		for(EReference containment: getAllContainmentsOfMetamodel()) {
+			EClass target = containment.getEReferenceType();
+			EClass container = containment.getEContainingClass();
+			
+			if(!eclass.equals(container)) {
+				if(target.equals(eclass) || eclass.getEAllSuperTypes().contains(target)) {
+					containments.add(containment);
+				}	
+			}
+		}
+		return containments;
+	}
+	
+	public List<EReference> getAllContainmentsOfMetamodel() {
+		ArrayList<EReference> containments= new ArrayList<EReference>();
+		for(EClass eclass: getAllClasses()) {
+			ArrayList<EReference> currentContainments = (ArrayList<EReference>) getContainmentFromClass(eclass);
+			for(EReference ref: currentContainments) {
+				if(!containments.contains(ref)) {
+					containments.add(ref);
+				}
 			}
 		}
 		return containments;
@@ -309,7 +352,7 @@ public class MetaModelReader {
 	///////////////////////////////////////////
 	private int containmentTreeOfClass(EClass eclass) {
 		
-		ArrayList<EReference> containments = (ArrayList<EReference>) getContainmentFromClass(eclass);
+		ArrayList<EReference> containments = (ArrayList<EReference>) getAllContainmentFromClass(eclass);
 		
 		if(containments.size() == 0) {
 			return 0;
@@ -344,7 +387,40 @@ public class MetaModelReader {
 
 	public int containmentTreeDepth() {
 		EClass rootClass = getClassByName(rootClassName);
+		ArrayList<EClass> allClasses = (ArrayList<EClass>) getConcreteClasses();
+		int [] alldepths = new int[allClasses.size()];
+		int i = 0;
 		
-		return containmentTreeOfClass(rootClass);		
+		for(EClass eclass : allClasses) {
+			alldepths[i] = containmentTreeOfClass(eclass);
+			//System.out.println(eclass.getName()+"  =  "+ alldepths[i]);
+			i++;
+		}
+		
+		return dichotomicMax(alldepths, 0, alldepths.length-1);		
 	}
+	
+	
+	public ArrayList<EClass> reverseContainingTree(EClass eclass, ArrayList<EReference> visitedContainments){
+		ArrayList<EClass> containers = new ArrayList<EClass>();
+		
+		for(EReference targeting: allTargetingContainment(eclass)) {
+			
+			if(!visitedContainments.contains(targeting)) {
+				EClass container = (EClass) targeting.eContainer();
+				if(!container.isAbstract() && !containers.contains(container)) {
+					containers.add(container);
+				}
+				visitedContainments.add(targeting);
+				
+				for (EClass container1: reverseContainingTree(container, visitedContainments)) {
+					if(!containers.contains(container1)) {
+						containers.add(container1);
+					}
+				}							
+			}						
+		}
+		return containers;
+	}	
+
 }
