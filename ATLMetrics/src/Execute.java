@@ -2,6 +2,7 @@
 
 import ATLUtils.ExecutionOutput;
 import ATLauncher.ATLauncher;
+import exceptions.UnknownParameterException;
 
 public class Execute {
 
@@ -32,24 +33,94 @@ public class Execute {
 	 *   
 	 *   constant: inMDir: models/input
 	 *             outMDir: models/output 
+	 * @throws UnknownParameterException 
 	 */
 		
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		String globalDir = "trafosTest";
-		String TRname= "HSM2FSM";
-		String TRmodule= "HSM2FSM";
-			
-		String inMMPath = "HSM.ecore";
-		String inMM = "HSM";
-		String outMMPath = "FSM.ecore";
-		String outMM = "FSM";
+	public static void main(String[] args){
 		
-		String toolName= "GRIMM";
+		if(args.length == 0) {
+			Help.printGeneralHelp();
+		}else {
+			switch (args[0]) {
+				case "help":
+				case "h": {
+					
+					if(args.length == 1) {					
+						Help.printGeneralHelp();
+					}else {
+						switch (args[1]) {
+							case "ut":{
+								Help.printUTHelp();
+							}
+							break;
+							
+							case "cc":{
+								Help.printCoverageCalculatorHelp();
+							}
+							break;
+							
+							default:{
+								try {
+									incorrectParameter(args[1]);
+								}
+								catch (UnknownParameterException e) {
+									System.out.println(e.getMessage());
+								}
+							}							
+						}
+					}
+				}
+				break;
+				
+				case "ut": {
+					unitTest();
+				}
+				break;
+				
+				case "cc": {
+					coverageCalculator();
+				}
+				break;
+				
+				default:{
+					try {
+						incorrectParameter(args[0]);
+					}
+					catch (UnknownParameterException e) {
+						System.out.println(e.getMessage());
+					}
+				}
+			}
+		}
 		
-		ATLauncher l = new ATLauncher();
-		ExecutionOutput exec= l.launch(globalDir, TRname, TRmodule, toolName, inMMPath, inMM, outMMPath, outMM);
 		
+//		String globalDir = "trafosTest";
+//		String TRname= "HSM2FSM";
+//		String TRmodule= "HSM2FSM";
+//			
+//		String inMMPath = "HSM.ecore";
+//		String inMM = "HSM";
+//		String outMMPath = "FSM.ecore";
+//		String outMM = "FSM";
+//		
+//		String toolName= "GRIMM";
+//		
+//		ATLauncher l = new ATLauncher();
+//		ExecutionOutput exec= l.launch(globalDir, TRname, TRmodule, toolName, inMMPath, inMM, outMMPath, outMM);
+//		
+	}
+	
+	private static void unitTest() {
+		System.out.println("UT");
+	}
+	
+	private static void coverageCalculator() {
+		System.out.println("CC");
+	}
+	
+	private static void incorrectParameter(String arg) throws UnknownParameterException {
+		UnknownParameterException e= new UnknownParameterException(arg);
+		throw e;
 	}
 
 }
