@@ -1,0 +1,6 @@
+Transformation name=CPL2SPL
+module=CPL2SPL
+inMM=CPL
+inMMRelativePath=CPL.ecore
+outMM=SPL
+outMMRelativePath=SPL.ecore

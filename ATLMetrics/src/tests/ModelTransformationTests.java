@@ -16,7 +16,7 @@ class ModelTransformationTests {
 	void HSM2FSMmetrics() throws Exception {
 		ModelTransformation mt= new ModelTransformation("Experiment","HSM2FSM", 
 				"Experiment/HSM2FSM/HSM2FSM.atl","HSM2FSM", 
-				"HSM", "HSM.ecore", 
+				"HSM", "HSM.ecore", "StateMachine",
 				"outMM", "outMMRelativePath");
 		
 		assertEquals(7, mt.getMatchedRules().size());

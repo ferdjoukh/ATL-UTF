@@ -10,6 +10,8 @@ import java.util.ArrayList;
 
 import org.eclipse.m2m.atl.core.ATLCoreException;
 
+import exceptions.MissingParameterException;
+
 public class TransformationsReader {
 
 	private String trafoDirPath;
@@ -22,8 +24,9 @@ public class TransformationsReader {
 	 * contains all the information on Model Transformations  
 	 * 
 	 * @param trafoDirPath: folder where to find all the model transformations and the data for running
+	 * @throws MissingParameterException 
 	 */
-	public TransformationsReader(String trafoDirPath) {
+	public TransformationsReader(String trafoDirPath) throws MissingParameterException {
 		this.trafoDirPath= trafoDirPath;
 		this.trafoDir= new File(trafoDirPath);
 		
@@ -35,8 +38,9 @@ public class TransformationsReader {
 	/**
 	 * This method reads the data in folder trafoDirPath and collects all MTs 
 	 * and their data (inMM, outMM, rules, infos, etc)
+	 * @throws MissingParameterException 
 	 */
-	private void collectMTandTools(){
+	private void collectMTandTools() throws MissingParameterException{
 		File[] trDirContent= trafoDir.listFiles();
 		
 		for(File f: trDirContent) {
@@ -60,17 +64,26 @@ public class TransformationsReader {
 					atlFilePath=subfiles[0].getPath();
 				}
 				//Get all the infos from MT.infos file
-				String [] infos=readMTInfo(f.getName());
-				//Create the model transformation with all the information
-				ModelTransformation MT= new ModelTransformation(trafoDirPath, f.getName(),
-																atlFilePath,infos[1],
-																infos[2], infos[3],
-																infos[4], infos[5]);
-				//Collect all the tools for that MT
-				collectToolsForMTFolder(MT);
-				//Add the MT to the list of MTs
-				//At this step, we get it ready for running)
-				modelTransformations.add(MT);
+				String[] infos;
+				try {
+					infos = readMTInfo(f.getName());
+					
+					//Create the model transformation with all the information
+					ModelTransformation MT= new ModelTransformation(trafoDirPath, f.getName(),
+																	atlFilePath, infos[1],
+																	infos[2], infos[3], infos[4],
+																	infos[5], infos[6]);
+					
+					//Collect all the tools for that MT
+					collectToolsForMTFolder(MT);
+					//Add the MT to the list of MTs
+					//At this step, we get it ready for running)
+					modelTransformations.add(MT);
+					
+				} catch (MissingParameterException e) {
+					System.out.println(e.getMessage());
+					throw e;
+				}				
 			}
 		}
 	}
@@ -147,38 +160,44 @@ public class TransformationsReader {
 	 * @param MTname: model transformation name
 	 * @return list of information on this model transformation
 	 *   [0=MTname, 1=module, 2=,3=,4=,5=]
+	 * @throws MissingParameterException 
 	 */
-	private String [] readMTInfo(String MTname){
+	private String [] readMTInfo(String MTname) throws MissingParameterException{
 		
 		File MTinfos= new File(trafoDir+"/"+MTname+"/"+MTname+".infos");
-		String [] infos= new String[6];
+		String [] infos= new String[7];
 				
 		if(MTinfos.exists()) {
 			BufferedReader br = null;
 	        String line = "";
 	        String cvsSplitBy = "=";
+	        int i=0;
 	        
 	        try {
 	            br = new BufferedReader(new FileReader(MTinfos));
-	            int i=0;
-	            while (i<6 && (line = br.readLine()) != null) {
+	            
+	            while (i<7 && (line = br.readLine()) != null) {
 	            	String[] data = line.split(cvsSplitBy);
 	                infos[i]=data[1];
 	                i++;
-	            }
+	            }	            
 	        } catch (FileNotFoundException e) {
-	            e.printStackTrace();
+	            System.out.println(e.getMessage());
 	        } catch (IOException e) {
-	            e.printStackTrace();
+	        	System.out.println(e.getMessage());
 	        } finally {
 	            if (br != null) {
 	                try {
 	                    br.close();
 	                } catch (IOException e) {
-	                    e.printStackTrace();
+	                	System.out.println(e.getMessage());
 	                }
 	            }
-	        }
+	            
+	            if(i < 7) {
+	            	throw new MissingParameterException("info missing in "+MTname+".infos file");
+		        }
+	        }	        
 		}
 				
 		return infos;

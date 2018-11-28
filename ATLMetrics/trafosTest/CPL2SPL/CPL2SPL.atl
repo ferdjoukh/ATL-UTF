@@ -46,7 +46,7 @@ rule CPL2Program {
 		service : SPL!Service (
 			name <- 'unnamed',
 			declarations <- s.subActions,
-			sessions <- dialog
+			sessions <- Sequence {dialog}
 		),
 		dialog : SPL!Dialog (
 			methods <- Sequence {s.incoming, s.outgoing}
@@ -69,10 +69,10 @@ rule SubAction2Function {
 						       then Sequence{}
 			              	   else if s.contents.oclIsTypeOf(CPL!Proxy)
 							        then if s.contents.isSimple or not s.contents.isSimple
-									     then s.contents.statement
+									     then Sequence {s.contents.statement}
 										 else Sequence{}
 			              	   			 endif
-									else s.contents.statement
+									else Sequence { s.contents.statement}
 							   	    endif
 							   endif
 						  endif
@@ -98,10 +98,10 @@ rule Incoming2Method {
 			       then Sequence{}
               	   else if s.contents.oclIsTypeOf(CPL!Proxy)
 				        then if s.contents.isSimple or not s.contents.isSimple
-						     then s.contents.statement
+						     then Sequence {s.contents.statement}
 							 else Sequence{}
               	   			 endif
-						else s.contents.statement
+						else Sequence {s.contents.statement}
 				   	    endif
 				   endif
 			  endif
@@ -131,10 +131,10 @@ rule Outgoing2Method {
 			       then Sequence{}
               	   else if s.contents.oclIsTypeOf(CPL!Proxy)
 				        then if s.contents.isSimple or not s.contents.isSimple
-						     then s.contents.statement
+						     then Sequence {s.contents.statement}
 							 else Sequence{}
               	   			 endif
-						else s.contents.statement
+						else Sequence {s.contents.statement}
 				   	    endif
 				   endif
 			  endif

@@ -46,6 +46,7 @@ public class ModelTransformation {
 	private String absoluteATLFilePath;
 	private String inMM;
 	private String inMMRelativePath;
+	private String rootClass;
 	private String outMM;
 	private String outMMRelativePath;
 	private ArrayList<String> tools; 
@@ -68,7 +69,7 @@ public class ModelTransformation {
 	
 	public ModelTransformation( String rootFolder, String name, 
 								String absoluteFilePath,String module, 
-							    String inMM, String inMMRelativePath,
+							    String inMM, String inMMRelativePath, String rootClass,
 			                    String outMM, String outMMRelativePath) {
 		this.rootFolder= rootFolder;
 		this.name= name;
@@ -78,6 +79,7 @@ public class ModelTransformation {
 		this.outMMRelativePath= outMMRelativePath;
 		this.inMM= inMM;
 		this.outMM= outMM;
+		this.rootClass = rootClass;
 		rules= new ArrayList<MyRule>();
 		tools= new ArrayList<String>();
 		maxScore=0;
@@ -169,7 +171,6 @@ public class ModelTransformation {
 	
 	private void readMetaModelMetris() {
 		String inMMAbsolutePath = rootFolder+"/"+name+"/metamodels/input/"+inMMRelativePath;
-		System.out.println(inMMAbsolutePath);
 		MetaModelReader reader = new MetaModelReader(inMMAbsolutePath, "");
 		concreteClasses = reader.getConcreteClasses().size();
 		abstractClasses = reader.getAbstractClasses().size();

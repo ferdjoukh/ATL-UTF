@@ -2,5 +2,6 @@ Transformation name=CPL2SPL
 module=CPL2SPL
 inMM=CPL
 inMMRelativePath=CPL.ecore
+rootClass=CPLModel
 outMM=SPL
 outMMRelativePath=SPL.ecore

@@ -3,7 +3,9 @@
 import java.io.File;
 
 import ATLUtils.ExecutionOutput;
+import ATLUtils.TransformationsReader;
 import ATLauncher.ATLauncher;
+import ATLauncher.TransformationsRunner;
 import exceptions.FileOrFolderNotFoundException;
 import exceptions.MissingParameterException;
 import exceptions.UnknownParameterException;
@@ -37,10 +39,11 @@ public class Execute {
 	 *   
 	 *   constant: inMDir: models/input
 	 *             outMDir: models/output 
+	 * @throws Exception 
 	 * @throws UnknownParameterException 
 	 */
 		
-	public static void main(String[] args){
+	public static void main(String[] args) throws Exception{
 		
 		if(args.length == 0) {
 			Help.printGeneralHelp();
@@ -105,9 +108,10 @@ public class Execute {
 	 * The way how this folder has to be structured is very important. It is described here:
 	 * 
 	 * https://github.com/ferdjoukh/ATLrunner/blob/master/documentation/tranformations-folder.md
+	 * @throws Exception 
 	 * 
 	 */
-	private static void unitTest(String[] args) {
+	private static void unitTest(String[] args) throws Exception {
 		
 		if(args.length < 2) {
 			try {
@@ -118,7 +122,8 @@ public class Execute {
 		}else {
 			try {
 				if(isFolderExisiting(args[1])) {
-					System.out.println("UT");
+					System.out.println("Unit Test mode is under developement");
+					
 				}
 			} catch (FileOrFolderNotFoundException e) {
 				System.out.println(e.getMessage());
@@ -134,9 +139,10 @@ public class Execute {
 	 * The way how this folder has to be structured is very important. It is described here:
 	 * 
 	 * https://github.com/ferdjoukh/ATLrunner/blob/master/documentation/tranformations-folder.md
+	 * @throws Exception 
 	 * 
 	 */
-	private static void coverageCalculator(String[] args) {
+	private static void coverageCalculator(String[] args) throws Exception {
 		
 		if(args.length < 2) {
 			try {
@@ -147,7 +153,24 @@ public class Execute {
 		}else {
 			try {
 				if(isFolderExisiting(args[1])) {
-					System.out.println("CC");
+					System.out.println("ATL Unit Test Framework");
+					System.out.println("");
+					System.out.println("Coverage Calculator Mode");
+					System.out.println("");
+					System.out.println(" Collecting Model Transformations..");
+					
+					TransformationsReader reader= new TransformationsReader(args[1]);
+
+					if(reader.getModelTransformations().size()!=0) {
+						System.out.println(reader.printAllMT());
+						
+						TransformationsRunner trRun= new TransformationsRunner(reader);
+						trRun.runAllTransformations();
+						
+						System.out.println(trRun.getVerbose());
+					}else {
+						System.out.println("No model transformation was found ! Please check error messages !");
+					}
 				}
 			} catch (FileOrFolderNotFoundException e) {
 				System.out.println(e.getMessage());

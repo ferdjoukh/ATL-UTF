@@ -2,5 +2,6 @@ Transformation name=BibTexML2DocBook
 module=BibTeX2DocBook
 inMM=BibTeX
 inMMRelativePath=BibTeX.ecore
+rootClass=BibTeXFile
 outMM=DocBook
 outMMRelativePath=DocBook.ecore
