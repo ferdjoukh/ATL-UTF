@@ -9,9 +9,6 @@ This document explains how these folders **have to be structured**.
 - folder = A folder containing **1** Model Transformation is used for unit testing
 - transformations folder = A folder containing several Model Transformations is used for coverage calculation
 
-## folder
-
-
 ### Unit testing
 
 The folder that contains **1** model transformation must include the following files and subfolders:
