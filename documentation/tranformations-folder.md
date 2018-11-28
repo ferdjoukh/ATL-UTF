@@ -4,14 +4,14 @@ ATL Unit Testing Framework needs input folder containing one or many model trans
 
 This document explains how these folders **have to be structured**.
 
-### Namespace
+### name space
 
 - folder = A folder containing **1** Model Transformation is used for unit testing
 - transformations folder = A folder containing several Model Transformations is used for coverage calculation
 
 ### Unit testing
 
-The folder that contains **1** model transformation must include the following files and subfolders:
+The folder that contains **1** model transformation must include the following files and sub-folders:
 
 - The ATL model transformation source file: *.atl* (use emftvm to compile it to produce *.emftvm* file).
 - All needed meta-models (at least 1 or 2 for each model transformation).
@@ -75,6 +75,11 @@ rootClass=StateMachine
 outMM=FSM
 outMMRelativePath=FSM.ecore
 ```
+
+## Init a model transformation folder
+
+This [bash](https://github.com/ferdjoukh/ATLrunner/blob/master/init-MT.sh) script can be used to init the correct structure of a folder containing the model transformation.
+Mainly, a pre-filled file **mt.infos** is created.
 
 # Output files
 
