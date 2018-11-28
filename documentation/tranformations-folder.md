@@ -1,19 +1,17 @@
 # Model Transformations folder
 
-ATL Unit Testing Framework needs input folder containing one or many model transformations.
+**ATL Unit Testing Framework** needs an input folder containing one or many model transformations. This document explains how this folder **has to be structured**.
 
-This document explains how these folders **have to be structured**.
+### Name space
 
-### name space
-
-- folder = A folder containing **1** Model Transformation is used for unit testing
-- transformations folder = A folder containing several Model Transformations is used for coverage calculation
+- *folder* : A folder containing **1** Model Transformation is used for unit testing
+- *transformations folder* : A folder containing several Model Transformations is used for coverage calculation
 
 ### Unit testing
 
-The folder that contains **1** model transformation must include the following files and sub-folders:
+The folder that contains **1** model transformation must include the following information:
 
-- The ATL model transformation source file: *.atl* (use emftvm to compile it to produce *.emftvm* file).
+- The ATL model transformation source files: *.atl* (use emftvm to compile it and to produce *.emftvm* file).
 - All needed meta-models (at least 1 or 2 for each model transformation).
 - Some additional information about the MT: module, name of meta-models, rootClass (written in *file.infos*).
 
@@ -21,7 +19,7 @@ The folder that contains **1** model transformation must include the following f
 
 For coverage calculation, we also need: 
 
-- Input models. Separated in sub-folders.
+- Input models that are separated in sub-folders.
 
 ## Tree structure
 
