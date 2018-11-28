@@ -1,7 +1,11 @@
 
 
+import java.io.File;
+
 import ATLUtils.ExecutionOutput;
 import ATLauncher.ATLauncher;
+import exceptions.FileOrFolderNotFoundException;
+import exceptions.MissingParameterException;
 import exceptions.UnknownParameterException;
 
 public class Execute {
@@ -73,12 +77,12 @@ public class Execute {
 				break;
 				
 				case "ut": {
-					unitTest();
+					unitTest(args);
 				}
 				break;
 				
 				case "cc": {
-					coverageCalculator();
+					coverageCalculator(args);
 				}
 				break;
 				
@@ -92,34 +96,83 @@ public class Execute {
 				}
 			}
 		}
+	}
+	/**
+	 * This method is used to Unit Test one given model transformation.
+	 * 
+	 * The folder containing the model transformation is the needed parameter.
+	 * 
+	 * The way how this folder has to be structured is very important. It is described here:
+	 * 
+	 * https://github.com/ferdjoukh/ATLrunner/blob/master/documentation/tranformations-folder.md
+	 * 
+	 */
+	private static void unitTest(String[] args) {
 		
-		
-//		String globalDir = "trafosTest";
-//		String TRname= "HSM2FSM";
-//		String TRmodule= "HSM2FSM";
-//			
-//		String inMMPath = "HSM.ecore";
-//		String inMM = "HSM";
-//		String outMMPath = "FSM.ecore";
-//		String outMM = "FSM";
-//		
-//		String toolName= "GRIMM";
-//		
-//		ATLauncher l = new ATLauncher();
-//		ExecutionOutput exec= l.launch(globalDir, TRname, TRmodule, toolName, inMMPath, inMM, outMMPath, outMM);
-//		
+		if(args.length < 2) {
+			try {
+				missingParameter("Folder containing 1 Model Transformation");
+			} catch (MissingParameterException e) {
+				System.out.println(e.getMessage());
+			}
+		}else {
+			try {
+				if(isFolderExisiting(args[1])) {
+					System.out.println("UT");
+				}
+			} catch (FileOrFolderNotFoundException e) {
+				System.out.println(e.getMessage());
+			}
+		}
 	}
 	
-	private static void unitTest() {
-		System.out.println("UT");
+	/**
+	 * This method is used to launch the Coverage Calculation mode.
+	 * 
+	 * For that, we need the name of a folder containing many model transformations.
+	 * 
+	 * The way how this folder has to be structured is very important. It is described here:
+	 * 
+	 * https://github.com/ferdjoukh/ATLrunner/blob/master/documentation/tranformations-folder.md
+	 * 
+	 */
+	private static void coverageCalculator(String[] args) {
+		
+		if(args.length < 2) {
+			try {
+				missingParameter("Folder containing Model Transformations");
+			} catch (MissingParameterException e) {
+				System.out.println(e.getMessage());
+			}
+		}else {
+			try {
+				if(isFolderExisiting(args[1])) {
+					System.out.println("CC");
+				}
+			} catch (FileOrFolderNotFoundException e) {
+				System.out.println(e.getMessage());
+			}
+		}
 	}
 	
-	private static void coverageCalculator() {
-		System.out.println("CC");
+	private static boolean isFolderExisiting(String filePath) throws FileOrFolderNotFoundException {
+		File folder= new File(filePath);
+		if(!folder.exists()) {
+			throw new FileOrFolderNotFoundException("Folder",filePath);
+		}else if (!folder.isDirectory()) {
+			throw new FileOrFolderNotFoundException("Folder",filePath);
+		}else{
+			return true;
+		}
 	}
 	
 	private static void incorrectParameter(String arg) throws UnknownParameterException {
 		UnknownParameterException e= new UnknownParameterException(arg);
+		throw e;
+	}
+	
+	private static void missingParameter(String arg) throws MissingParameterException {
+		MissingParameterException e= new MissingParameterException(arg);
 		throw e;
 	}
 

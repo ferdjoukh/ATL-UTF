@@ -1,28 +1,40 @@
 # Model Transformations folder
 
-This document explains how the folder that contains the model transformations (MTs) **must** be built.
+ATL Unit Testing Framework needs input folder containing one or many model transformations.
 
-## Content
+This document explains how these folders **have to be structured**.
 
-In this folder, we find the following data:
+### Namespace
 
-- The ATL model transformations source files (*.atl*, *.asm*, *.emftvm*)
+- folder = A folder containing **1** Model Transformation is used for unit testing
+- transformations folder = A folder containing several Model Transformations is used for coverage calculation
+
+## folder
+
+
+### Unit testing
+
+The folder that contains **1** model transformation must include the following files and subfolders:
+
+- The ATL model transformation source file: *.atl* (use emftvm to compile it to produce *.emftvm* file).
 - All needed meta-models (at least 1 or 2 for each model transformation).
-- Input models. They are separated by origin (generation tool or hand-crafted).
-- Some additional text information about the MT: module, name of meta-models, etc.
-- A file containing information about the complexity of rules for the model transformation.
+- Some additional information about the MT: module, name of meta-models, rootClass (written in *file.infos*).
+
+### Coverage calculation
+
+For coverage calculation, we also need: 
+
+- Input models. Separated in sub-folders.
 
 ## Tree structure
 
 The following tree structure is mandatory. All the model transformations you bring for the tool have to follow it.
 
-- **TransformationsDir**
-	- **Trafo1**
-		- trafo1.atl
-		- trafo1.asm
-		- trafo1.emftvm
-		- *trafo1.infos*
-		- *trafo1.rules*
+- **transformations folder**
+	- **folder1**
+		- folder1.atl
+		- folder1.emftvm
+		- **folder1.infos**
 		- **meta-models**
 			- **input**
 				- intputMM.ecore
@@ -34,18 +46,16 @@ The following tree structure is mandatory. All the model transformations you bri
 					- input-models-by-grimm.xmi
 				- **PRAMANA**
 					- input-models-by-pramana.xmi	
+				- **HAND**
+					- input-models-handcrafted.xmi	
 			- **output**
 			- **traces**
-	- **trafo2**
-	- **trafo3**
-	- execution.log					
-	- execution-resutls.csv
-	- failed-models.log
-	- TOOL-MT.csv
+	- **folder2**
+	- **folder3**
 
 # Additional input files
 
-### MTname.infos
+### folder.infos
 
 This file contains a short summary about the model transformation:
 
@@ -53,23 +63,25 @@ This file contains a short summary about the model transformation:
 - Module name
 - Input meta-model package name
 - Input meta-model relative path (.ecore)
+- rootClass
 - Output meta-model package name
 - Output meta-model relative path (.ecore)
 
-Here is an example of .infos file for  `HSM2FSM` model transformation
+Here is an example of **HSM2FSM.infos** file for `HSM2FSM` model transformation
 
 ```
 Transformation name=HSM2FSM
 module=HSM2FSM
 inMM=HSM
 inMMRelativePath=HSM.ecore
+rootClass=StateMachine
 outMM=FSM
 outMMRelativePath=FSM.ecore
 ```
 
 # Output files
 
-### MTname.rules
+### folder.rules
 
 This files contains score evaluation for the rules of a model transformation.
 
@@ -79,6 +91,14 @@ Rules are divided into several categories:
 - Simple: very simple guards (2)
 - Medium: guards are not very complex (3) 
 - Complex: the guards are very complex (4)
+
+### folder-atl.metrics
+
+Computed ATL metrics for the given transformation
+
+### folder-ecore.metrics
+
+Computed Ecore metrics for the given input meta-model
 
 ### execution-results.csv
 
@@ -106,7 +126,7 @@ It contains all the details about the execution. This files reports all the even
 
 This file contains the list of models that were not transformed.
 
-### TOOL-MT.csv
+### tool-mt.csv
 
 For each given tool and model transformation, a **TOOL-MT.csv** file is created. It contains the details of execution for each xmi model.
 

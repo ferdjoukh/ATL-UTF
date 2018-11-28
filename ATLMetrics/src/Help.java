@@ -59,19 +59,22 @@ public class Help {
 		
 		printHelp();
 		
-		System.out.println("Unit Tester");
-		System.out.println("");		
+		System.out.println("Unit Tester (help)");
 		System.out.println("  java -jar atlutf.jar ut modelTransformationFolder");
-		
+		System.out.println("");
+		System.out.println("  The mandatory structure of input folder is described here:");
+		System.out.println("     https://github.com/ferdjoukh/ATLrunner/blob/master/documentation/tranformations-folder.md");
 	}
 	
 	public static void printCoverageCalculatorHelp() {
 		
 		printHelp();
 		
-		System.out.println("Coverage Calculator");
-		System.out.println("");		
+		System.out.println("Coverage Calculator (help)");
 		System.out.println("  java -jar atlutf.jar cc modelTransformationsFolder");
+		System.out.println("");		
+		System.out.println("  The mandatory structure of input folder is described here:");
+		System.out.println("     https://github.com/ferdjoukh/ATLrunner/blob/master/documentation/tranformations-folder.md");
 		
 	}
 }
