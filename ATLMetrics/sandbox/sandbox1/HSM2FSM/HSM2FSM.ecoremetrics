@@ -1,2 +1,0 @@
-moduleName,Metamodel,concreteClasses,abstractClasses,containTreeDepth,references,inherTreeDepth,attributes,attributeTypes
-HSM2FSM,HSM,5,1,1,8,1,3,[EString]

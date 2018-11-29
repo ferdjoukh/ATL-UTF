@@ -1,7 +1,0 @@
-Transformation,Helper,CalledRule,MatchedRule,LazyMatchedRule,ComplexityScore
-Transformation,Helper,CalledRule,MatchedRule,LazyMatchedRule,ComplexityScore
-HSM2FSM,0,0,7,0,18
-
-Transformation,Helper,CalledRule,MatchedRule,LazyMatchedRule,ComplexityScore
-UML2ER,0,0,8,0,12
-

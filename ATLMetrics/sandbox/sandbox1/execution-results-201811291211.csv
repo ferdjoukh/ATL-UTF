@@ -1,3 +1,0 @@
-grimm;HSM2FSM;7;7;[IS2RS, SM2SM, RS2RS, IS2IS, T2TB, T2TC, T2TA];4;18;18
-grimm;UML2ER;4;8;[Attributes, Class, Package, StrongReferences];5;6;12
-Git;UML2ER;5;8;[WeakReferences, Attributes, Class, Package, StrongReferences];119;8;12

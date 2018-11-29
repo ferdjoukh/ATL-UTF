@@ -1,7 +1,0 @@
-Transformation name=HSM2FSM
-module=HSM2FSM
-inMM=HSM
-inMMRelativePath=HSM.ecore
-rootClass=StateMachine
-outMM=FSM
-outMMRelativePath=FSM.ecore

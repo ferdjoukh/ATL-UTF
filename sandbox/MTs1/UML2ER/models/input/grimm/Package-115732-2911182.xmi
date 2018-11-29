@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ASCII"?>
+<SimpleUML:Package xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SimpleUML="http://SimpleUML" xsi:schemaLocation="http://SimpleUML UML/SimpleUML.ecore" name="Package7">
+  <ownedElements name="Class1" superClasses="//@ownedElements.4 //@ownedElements.5">
+    <ownedProperty name="Property6" primitiveType="FQRDQE" complexType="//@ownedElements.5" isContainment="true"/>
+  </ownedElements>
+  <ownedElements name="Class2" superClasses="//@ownedElements.2">
+    <ownedProperty name="Property5" primitiveType="VYBARUCV"/>
+  </ownedElements>
+  <ownedElements name="Class3" superClasses="//@ownedElements.3 //@ownedElements.2"/>
+  <ownedElements name="Class1"/>
+  <ownedElements name="Class2"/>
+  <ownedElements name="Class3"/>
+</SimpleUML:Package>
