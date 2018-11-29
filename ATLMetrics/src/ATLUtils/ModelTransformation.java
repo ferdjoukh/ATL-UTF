@@ -393,4 +393,8 @@ public class ModelTransformation {
 	public ArrayList<LazyMatchedRule> getLazyMatchedRules() {
 		return lazyMatchedRules;
 	}
+	
+	public String toString() {
+		return this.name;
+	}
 }

@@ -72,88 +72,8 @@
     <semanticResources>trafosTest/CPL2SPL/CPL2SPL.atl</semanticResources>
     <semanticResources>trafosTest/CPL2SPL/metamodels/input/CPL.ecore</semanticResources>
     <semanticResources>trafosTest/CPL2SPL/metamodels/output/SPL.ecore</semanticResources>
-    <semanticResources>newMTS/BibTexML2DocBook/BibTeX2DocBook.atl</semanticResources>
-    <semanticResources>newMTS/BibTexML2DocBook/metamodels/input/BibTeX.ecore</semanticResources>
-    <semanticResources>newMTS/BibTexML2DocBook/metamodels/output/DocBook.ecore</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/CPL2SPL.atl</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/metamodels/input/CPL.ecore</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/metamodels/output/SPL.ecore</semanticResources>
     <semanticResources>newMTS/Ecore2Maude/Ecore2Maude.atl</semanticResources>
     <semanticResources>newMTS/Ecore2Maude/metamodels/output/Maude.ecore</semanticResources>
-    <semanticResources>newMTS/UML2ER/metamodels/output/ER.ecore</semanticResources>
-    <semanticResources>newMTS/UML2ER/metamodels/input/SimpleUML.ecore</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant1.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant10.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant11.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant12.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant13.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant14.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant15.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant16.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant17.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant18.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant19.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant2.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant20.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant21.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant22.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant23.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant24.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant25.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant26.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant27.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant28.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant29.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant3.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant30.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant31.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant32.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant33.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant34.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant35.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant36.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant37.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant38.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant39.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant4.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant40.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant41.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant42.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant43.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant44.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant45.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant46.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant47.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant48.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant49.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant5.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant50.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant6.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant7.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant8.xmi</semanticResources>
-    <semanticResources>newMTS/CPL2SPL/models/input/Git/CPL2SPL_Mutant9.xmi</semanticResources>
-    <semanticResources>newMTS/UML2ER/models/input/Git/SimpleUml2ER.xmi</semanticResources>
-    <semanticResources>newMTS/UML2ER/models/input/Git/SimpleUml2ER_Mutant1.xmi</semanticResources>
-    <semanticResources>newMTS/UML2ER/models/input/Git/SimpleUml2ER_Mutant10.xmi</semanticResources>
-    <semanticResources>newMTS/UML2ER/models/input/Git/SimpleUml2ER_Mutant11.xmi</semanticResources>
-    <semanticResources>newMTS/UML2ER/models/input/Git/SimpleUml2ER_Mutant12.xmi</semanticResources>
-    <semanticResources>newMTS/UML2ER/models/input/Git/SimpleUml2ER_Mutant13.xmi</semanticResources>
-    <semanticResources>newMTS/UML2ER/models/input/Git/SimpleUml2ER_Mutant14.xmi</semanticResources>
-    <semanticResources>newMTS/UML2ER/models/input/Git/SimpleUml2ER_Mutant15.xmi</semanticResources>
-    <semanticResources>newMTS/UML2ER/models/input/Git/SimpleUml2ER_Mutant16.xmi</semanticResources>
-    <semanticResources>newMTS/UML2ER/models/input/Git/SimpleUml2ER_Mutant17.xmi</semanticResources>
-    <semanticResources>newMTS/UML2ER/models/input/Git/SimpleUml2ER_Mutant18.xmi</semanticResources>
-    <semanticResources>newMTS/UML2ER/models/input/Git/SimpleUml2ER_Mutant2.xmi</semanticResources>
-    <semanticResources>newMTS/UML2ER/models/input/Git/SimpleUml2ER_Mutant3.xmi</semanticResources>
-    <semanticResources>newMTS/UML2ER/models/input/Git/SimpleUml2ER_Mutant4.xmi</semanticResources>
-    <semanticResources>newMTS/UML2ER/models/input/Git/SimpleUml2ER_Mutant5.xmi</semanticResources>
-    <semanticResources>newMTS/UML2ER/models/input/Git/SimpleUml2ER_Mutant6.xmi</semanticResources>
-    <semanticResources>newMTS/UML2ER/models/input/Git/SimpleUml2ER_Mutant7.xmi</semanticResources>
-    <semanticResources>newMTS/UML2ER/models/input/Git/SimpleUml2ER_Mutant8.xmi</semanticResources>
-    <semanticResources>newMTS/UML2ER/models/input/Git/SimpleUml2ER_Mutant9.xmi</semanticResources>
-    <semanticResources>newMTS/UML2ER/UML2ER.atl</semanticResources>
-    <semanticResources>newMTS/Ecore2Maude/metamodels/input/Ecore.ecore</semanticResources>
     <semanticResources>grimm/grimm-executable/BibTeX.ecore</semanticResources>
     <semanticResources>grimm/grimm-executable/CPL.ecore</semanticResources>
     <semanticResources>grimm/grimm-executable/Ecore.ecore</semanticResources>
@@ -170,7 +90,6 @@
     <semanticResources>newMTS/Ecore2Maude/models/input/grimm/EPackage13115435UB02.xmi</semanticResources>
     <semanticResources>newMTS/Ecore2Maude/models/input/grimm/EPackage13115435UB03.xmi</semanticResources>
     <semanticResources>newMTS/Ecore2Maude/models/input/grimm/EPackage13115435UB04.xmi</semanticResources>
-    <semanticResources>newMTS/Ecore2Maude/metamodels/input/EPackage.xmi</semanticResources>
     <semanticResources>newMTS/Ecore2Maude/models/input/grimm/EPackage-160502-1911181.xmi</semanticResources>
     <semanticResources>newMTS/Ecore2Maude/models/input/grimm/EPackage-160502-19111810.xmi</semanticResources>
     <semanticResources>newMTS/Ecore2Maude/models/input/grimm/EPackage-160502-1911182.xmi</semanticResources>
@@ -328,6 +247,17 @@
     <semanticResources>meta-models/maps.ecore</semanticResources>
     <semanticResources>meta-models/Ecore.ecore</semanticResources>
     <semanticResources>meta-models/containTest.ecore</semanticResources>
+    <semanticResources>newMTS/Ecore2Maude/models/input/grimm/EPackage-151946-2911181.xmi</semanticResources>
+    <semanticResources>newMTS/Ecore2Maude/models/input/grimm/EPackage-151946-2911182.xmi</semanticResources>
+    <semanticResources>newMTS/Ecore2Maude/models/input/grimm/EPackage-153136-2911181.xmi</semanticResources>
+    <semanticResources>newMTS/Ecore2Maude/models/input/grimm/EPackage-153136-2911182.xmi</semanticResources>
+    <semanticResources>newMTS/Ecore2Maude/models/input/grimm/EPackage-153321-2911181.xmi</semanticResources>
+    <semanticResources>newMTS/Ecore2Maude/models/input/grimm/EPackage-153321-2911182.xmi</semanticResources>
+    <semanticResources>newMTS/Ecore2Maude/models/input/grimm/EPackage-154104-2911181.xmi</semanticResources>
+    <semanticResources>newMTS/Ecore2Maude/models/input/grimm/EPackage-155102-2911181.xmi</semanticResources>
+    <semanticResources>newMTS/Ecore2Maude/models/input/grimm/EPackage-155105-2911181.xmi</semanticResources>
+    <semanticResources>newMTS/Ecore2Maude/models/input/grimm/EPackage-155110-2911181.xmi</semanticResources>
+    <semanticResources>newMTS/Ecore2Maude/metamodels/input/Ecore.ecore</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_Xcm_UKeCEeiLSZ63Y1Btbg">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_ZUhjMKeCEeiLSZ63Y1Btbg" name="ATL class diagram" repPath="#_ZTclIKeCEeiLSZ63Y1Btbg">

@@ -1,0 +1,13 @@
+Package2Operation,1
+Class2Sort,4
+createSort,2
+EmptyList,1
+NamedElList,1
+NamedElConstant,1
+Reference2Operation,1
+Attribute2Operation,1
+Enum2Sort,3
+mtOrdConstant,1
+EnumLitList,2
+EnumLitConstant,2
+EnumLiteral2Operation,1

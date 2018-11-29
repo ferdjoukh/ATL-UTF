@@ -1,54 +1,54 @@
 <?xml version="1.0" encoding="ASCII"?>
-<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xsi:schemaLocation="http://www.eclipse.org/emf/2002/Ecore tests/Ecore.ecore" name="EPackage13" nsURI="UFISVFG" nsPrefix="KTAGEAU">
-  <eClassifiers xsi:type="ecore:EClass" name="EClass4" instanceClassName="ROESCIGQ" instanceTypeName="RJXIMGI" abstract="true" interface="true" eSuperTypes="">
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="EPackage13" nsURI="UFISVFG" nsPrefix="KTAGEAU">
+  <eClassifiers xsi:type="ecore:EClass" name="EClass4" instanceTypeName="RJXIMGI" abstract="true" interface="true">
     <eTypeParameters name="ETypeParameter20"/>
+    <eSuperTypes href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="EReference16" ordered="false" lowerBound="1" upperBound="93" defaultValueLiteral="BJKUGCPOX" resolveProxies="false"/>
-    <eGenericSuperTypes/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="EClass5" instanceClassName="JDPIS" instanceTypeName="QJHXQYKI" abstract="true" interface="true" eSuperTypes="">
+  <eClassifiers xsi:type="ecore:EClass" name="EClass5" instanceTypeName="QJHXQYKI" abstract="true" interface="true">
     <eTypeParameters name="ETypeParameter20"/>
     <eTypeParameters name="ETypeParameter21"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="EReference16" unique="false" lowerBound="28" upperBound="12" eType="//@eClassifiers.6" changeable="false" defaultValueLiteral="KRTSEC" unsettable="true" derived="true" resolveProxies="false"/>
-    <eGenericSuperTypes/>
+    <eSuperTypes href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="EReference16" unique="false" lowerBound="28" upperBound="12" eType="//EClass5.1" changeable="false" defaultValueLiteral="KRTSEC" unsettable="true" derived="true" resolveProxies="false"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="EDataType6" instanceClassName="NHJSBVDR" instanceTypeName="RSFUPO"/>
-  <eClassifiers xsi:type="ecore:EEnum" name="EEnum7" instanceClassName="KBNFF" instanceTypeName="YODIRG" serializable="false">
+  <eClassifiers xsi:type="ecore:EDataType" name="EDataType6" instanceTypeName="RSFUPO"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="EEnum7" instanceTypeName="YODIRG" serializable="false">
     <eLiterals name="EEnumLiteral9" value="65" literal="TRDARM"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="EEnum8" instanceClassName="EUQRQPL" instanceTypeName="RWJYQTQOR" serializable="false"/>
-  <eClassifiers xsi:type="ecore:EClass" name="EClass4" instanceClassName="XAFHXCC" instanceTypeName="TIJFDVVR"/>
-  <eClassifiers xsi:type="ecore:EClass" name="EClass5" instanceClassName="KEVFL" instanceTypeName="QDSMVQHF"/>
-  <eClassifiers xsi:type="ecore:EDataType" name="EDataType6" instanceClassName="VJYKSO" instanceTypeName="JTKUKI"/>
-  <eClassifiers xsi:type="ecore:EEnum" name="EEnum7" instanceClassName="VYOSRMPSG" instanceTypeName="QORWP"/>
-  <eClassifiers xsi:type="ecore:EEnum" name="EEnum8" instanceClassName="JWBCK" instanceTypeName="XTXPOVAW"/>
-  <eClassifiers xsi:type="ecore:EClass" name="EClass4" instanceClassName="MTPDYTG" instanceTypeName="YGHJGYP"/>
-  <eClassifiers xsi:type="ecore:EClass" name="EClass5" instanceClassName="JQAHD" instanceTypeName="WBHXTTS" interface="true"/>
-  <eClassifiers xsi:type="ecore:EDataType" name="EDataType6" instanceClassName="YBQTDOR" instanceTypeName="EPKPAF"/>
-  <eClassifiers xsi:type="ecore:EEnum" name="EEnum7" instanceClassName="VDFNQU" instanceTypeName="HFDUVLILV"/>
-  <eClassifiers xsi:type="ecore:EEnum" name="EEnum8" instanceClassName="SCOXX" instanceTypeName="NGAURLX"/>
-  <eClassifiers xsi:type="ecore:EClass" name="EClass4" instanceClassName="WEJQEL" instanceTypeName="PWWFY" abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="EClass5" instanceClassName="BJUNIC" instanceTypeName="NTNKIOX" abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EDataType" name="EDataType6" instanceClassName="KSJPGPISS" instanceTypeName="PRXXVNH" serializable="false"/>
-  <eClassifiers xsi:type="ecore:EEnum" name="EEnum7" instanceClassName="XIUNPHRV" instanceTypeName="HARBGGMIH" serializable="false"/>
-  <eClassifiers xsi:type="ecore:EEnum" name="EEnum8" instanceClassName="BFSHAP" instanceTypeName="YOLQEAUJ"/>
-  <eClassifiers xsi:type="ecore:EClass" name="EClass4" instanceClassName="ASGPAKIDS" instanceTypeName="DGINFPTEA" abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="EClass5" instanceClassName="UHOGG" instanceTypeName="FROUPNG" abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EDataType" name="EDataType6" instanceClassName="UYGDBLH" instanceTypeName="LDDYSGPHK" serializable="false"/>
-  <eClassifiers xsi:type="ecore:EEnum" name="EEnum7" instanceClassName="SWFHFOEP" instanceTypeName="UBDGEM"/>
-  <eClassifiers xsi:type="ecore:EEnum" name="EEnum8" instanceClassName="LPYANMOWC" instanceTypeName="ULQKLLC"/>
-  <eClassifiers xsi:type="ecore:EClass" name="EClass4" instanceClassName="JRDIDIAOJ" instanceTypeName="SFTSHM"/>
-  <eClassifiers xsi:type="ecore:EClass" name="EClass5" instanceClassName="OBMQC" instanceTypeName="IYOAR" interface="true"/>
-  <eClassifiers xsi:type="ecore:EDataType" name="EDataType6" instanceClassName="ARKTWGVDI" instanceTypeName="QLNWGYWO" serializable="false"/>
-  <eClassifiers xsi:type="ecore:EEnum" name="EEnum7" instanceClassName="HTOXABY" instanceTypeName="EIQFDPI" serializable="false"/>
-  <eClassifiers xsi:type="ecore:EEnum" name="EEnum8" instanceClassName="CYYMNM" instanceTypeName="TLYMKTKVI" serializable="false"/>
-  <eClassifiers xsi:type="ecore:EClass" name="EClass4" instanceClassName="TYNFUNE" instanceTypeName="SHLHECWY" abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="EClass5" instanceClassName="DRFHADHV" instanceTypeName="JWBLUNP" abstract="true"/>
-  <eClassifiers xsi:type="ecore:EDataType" name="EDataType6" instanceClassName="XBQMRSYG" instanceTypeName="MNPTFGQUO" serializable="false"/>
-  <eClassifiers xsi:type="ecore:EEnum" name="EEnum7" instanceClassName="REQHTAOL" instanceTypeName="MGVMDV" serializable="false"/>
-  <eClassifiers xsi:type="ecore:EEnum" name="EEnum8" instanceClassName="YSFGT" instanceTypeName="CPSJMGK" serializable="false"/>
-  <eClassifiers xsi:type="ecore:EClass" name="EClass4" instanceClassName="SACWMN" instanceTypeName="LMGONQD"/>
-  <eClassifiers xsi:type="ecore:EClass" name="EClass5" instanceClassName="FGAKB" instanceTypeName="MCNVPUO" interface="true"/>
-  <eClassifiers xsi:type="ecore:EDataType" name="EDataType6" instanceClassName="HKRUNNF" instanceTypeName="SVWESIRJU" serializable="false"/>
-  <eClassifiers xsi:type="ecore:EEnum" name="EEnum7" instanceClassName="PWOQX" instanceTypeName="BTAWXEKAX"/>
-  <eClassifiers xsi:type="ecore:EEnum" name="EEnum8" instanceClassName="DVJKMCIOX" instanceTypeName="LEWRHKK" serializable="false"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="EEnum8" instanceTypeName="RWJYQTQOR" serializable="false"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EClass4" instanceTypeName="TIJFDVVR"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EClass5" instanceTypeName="QDSMVQHF"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="EDataType6" instanceTypeName="JTKUKI"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="EEnum7" instanceTypeName="QORWP"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="EEnum8" instanceTypeName="XTXPOVAW"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EClass4" instanceTypeName="YGHJGYP"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EClass5" instanceTypeName="WBHXTTS" interface="true"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="EDataType6" instanceTypeName="EPKPAF"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="EEnum7" instanceTypeName="HFDUVLILV"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="EEnum8" instanceTypeName="NGAURLX"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EClass4" instanceTypeName="PWWFY" abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EClass5" instanceTypeName="NTNKIOX" abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="EDataType6" instanceTypeName="PRXXVNH" serializable="false"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="EEnum7" instanceTypeName="HARBGGMIH" serializable="false"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="EEnum8" instanceTypeName="YOLQEAUJ"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EClass4" instanceTypeName="DGINFPTEA" abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EClass5" instanceTypeName="FROUPNG" abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="EDataType6" instanceTypeName="LDDYSGPHK" serializable="false"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="EEnum7" instanceTypeName="UBDGEM"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="EEnum8" instanceTypeName="ULQKLLC"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EClass4" instanceTypeName="SFTSHM"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EClass5" instanceTypeName="IYOAR" interface="true"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="EDataType6" instanceTypeName="QLNWGYWO" serializable="false"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="EEnum7" instanceTypeName="EIQFDPI" serializable="false"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="EEnum8" instanceTypeName="TLYMKTKVI" serializable="false"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EClass4" instanceTypeName="SHLHECWY" abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EClass5" instanceTypeName="JWBLUNP" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="EDataType6" instanceTypeName="MNPTFGQUO" serializable="false"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="EEnum7" instanceTypeName="MGVMDV" serializable="false"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="EEnum8" instanceTypeName="CPSJMGK" serializable="false"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EClass4" instanceTypeName="LMGONQD"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EClass5" instanceTypeName="MCNVPUO" interface="true"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="EDataType6" instanceTypeName="SVWESIRJU" serializable="false"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="EEnum7" instanceTypeName="BTAWXEKAX"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="EEnum8" instanceTypeName="LEWRHKK" serializable="false"/>
 </ecore:EPackage>

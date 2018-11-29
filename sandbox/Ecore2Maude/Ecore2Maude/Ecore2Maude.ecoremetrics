@@ -1,0 +1,2 @@
+moduleName,Metamodel,concreteClasses,abstractClasses,containTreeDepth,references,inherTreeDepth,attributes,attributeTypes
+Ecore2Maude,Ecore,15,5,4,29,5,33,[EBoolean, EString, EInt, EEnumerator, EJavaClass, EJavaObject]

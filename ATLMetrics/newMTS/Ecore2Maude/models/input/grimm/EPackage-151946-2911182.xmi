@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xsi:schemaLocation="http://www.eclipse.org/emf/2002/Ecore meta-models/Ecore.ecore" name="EPackage18" nsURI="XSHSYI" nsPrefix="TGGTFLV">
+  <eClassifiers xsi:type="ecore:EClass" name="EClass7" instanceClassName="WMXHFWE" instanceTypeName="GVRDDBCC" abstract="true" interface="true" eSuperTypes="//@eClassifiers.0"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EClass8" instanceClassName="FTSULN" instanceTypeName="GEURCCVBA" eSuperTypes="//@eClassifiers.2 //@eClassifiers.0" eGenericSuperTypes="">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="EReference19" ordered="false" unique="false" lowerBound="13" upperBound="88" eType="//@eClassifiers.0" changeable="false" volatile="true" defaultValueLiteral="IQHGG" containment="true" resolveProxies="false" eKeys="//@eClassifiers.2/@eStructuralFeatures.1 //@eClassifiers.2/@eStructuralFeatures.0"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EClass9" instanceClassName="VXFQXJNIG" instanceTypeName="PSCPR" interface="true" eSuperTypes="//@eClassifiers.0 //@eClassifiers.1">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="EAttribute4" ordered="false" lowerBound="81" upperBound="57" eType="//@eClassifiers.1" volatile="true" transient="true" defaultValueLiteral="KGTWJRD" unsettable="true" iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="EAttribute3" ordered="false" unique="false" lowerBound="78" upperBound="96" eType="//@eClassifiers.0" changeable="false" defaultValueLiteral="JMCABBJ"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="EEnum10" instanceClassName="VLTNQ" instanceTypeName="VFJFHJYCY"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="EEnum11" instanceClassName="LOBNJWYM" instanceTypeName="OBQVDGYH" serializable="false"/>
+</ecore:EPackage>

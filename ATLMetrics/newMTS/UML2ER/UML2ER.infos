@@ -1,6 +1,0 @@
-Transformation name=UML2ER
-module=UML2ER
-inMM=SimpleUML
-inMMRelativePath=SimpleUML.ecore
-outMM=ER
-outMMRelativePath=ER.ecore
