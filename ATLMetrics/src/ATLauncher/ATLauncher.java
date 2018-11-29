@@ -1,10 +1,7 @@
 package ATLauncher;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -17,16 +14,11 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.util.BasicExtendedMetaData;
-import org.eclipse.emf.ecore.util.ExtendedMetaData;
-import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.m2m.atl.emftvm.EmftvmFactory;
 import org.eclipse.m2m.atl.emftvm.ExecEnv;
-import org.eclipse.m2m.atl.emftvm.compiler.AtlToEmftvmCompiler;
 import org.eclipse.m2m.atl.emftvm.Metamodel;
 import org.eclipse.m2m.atl.emftvm.Model;
 import org.eclipse.m2m.atl.emftvm.Rule;
@@ -46,10 +38,6 @@ import ATLUtils.ExecutionOutput;
  *
  */
 public class ATLauncher {
-	
-	// The input and output metamodel nsURIs are resolved using lazy registration of metamodels, see below.
-	private String inputMetamodelNsURI;
-	private String outputMetamodelNsURI;
 		
 	//Main transformation launch method
 	/**
@@ -151,9 +139,6 @@ public class ATLauncher {
 						totalRules= (int) env.getRules().size();
 						float executionTime = td.getFinished() * 0.000001f;
 						
-						URI modelURI = URI.createFileURI(inModelPath);
-						TraceLinkSet tls = (TraceLinkSet) inoutModel.getResource().getContents().get(0);
-						
 						// with repetitions
 						final List<String> executedRulesNames = inoutModel.getResource().getContents()
 								.stream().findFirst().map(o -> new ArrayList<TracedRule>(((TraceLinkSet) o).getRules()))
@@ -216,26 +201,7 @@ public class ATLauncher {
 	 * This method does two things, it initializes an Ecore parser and then programmatically looks for
 	 * the package definition on it, obtains the NsUri and registers it.
 	 */
-	private String lazyMetamodelRegistration(String metamodelPath){
-		
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
-   	
-	    ResourceSet rs = new ResourceSetImpl();
-	    // Enables extended meta-data, weird we have to do this but well...
-	    final ExtendedMetaData extendedMetaData = new BasicExtendedMetaData(EPackage.Registry.INSTANCE);
-	    rs.getLoadOptions().put(XMLResource.OPTION_EXTENDED_META_DATA, extendedMetaData);
-	
-	    Resource r = rs.getResource(URI.createFileURI(metamodelPath), true);
-	    EObject eObject = r.getContents().get(0);
-	    // A meta-model might have multiple packages we assume the main package is the first one listed
-	    if (eObject instanceof EPackage) {
-	        EPackage p = (EPackage)eObject;
-	        //System.out.println(p.getNsURI());
-	        EPackage.Registry.INSTANCE.put(p.getNsURI(), p);
-	        return p.getNsURI();
-	    }
-	    return null;
-	}
+
 	
 	/*
 	 * As shown above we need the inputMetamodelNsURI and the outputMetamodelNsURI to create the context of
@@ -244,14 +210,7 @@ public class ATLauncher {
 	 * find a package in the given metamodel, so watch out for malformed metamodels.
 	 * 
 	 */
-	public void registerInputMetamodel(String inputMetamodelPath){	
-		inputMetamodelNsURI = lazyMetamodelRegistration(inputMetamodelPath);
-	}
 
-	public void registerOutputMetamodel(String outputMetamodelPath){
-		outputMetamodelNsURI = lazyMetamodelRegistration(outputMetamodelPath);
-	}
-	
 	private ExecEnv setupEnvironment(ResourceSet rs, URI inputMetamodelUri, URI outputMetamodelUri) {
 
 		final ExecEnv env = EmftvmFactory.eINSTANCE.createExecEnv();

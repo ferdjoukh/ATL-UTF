@@ -1,0 +1,6 @@
+Transformation name=MT
+module=MOD
+inMM=MM1
+inMMRelativePath=MM1.ecore
+outMM=MM2
+outMMRelativePath=MM2.ecore

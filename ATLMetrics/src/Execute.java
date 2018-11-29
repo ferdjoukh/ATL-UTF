@@ -2,9 +2,7 @@
 
 import java.io.File;
 
-import ATLUtils.ExecutionOutput;
 import ATLUtils.TransformationsReader;
-import ATLauncher.ATLauncher;
 import ATLauncher.TransformationsRunner;
 import exceptions.FileOrFolderNotFoundException;
 import exceptions.MissingParameterException;

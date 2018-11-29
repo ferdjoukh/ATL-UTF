@@ -1,6 +1,5 @@
 package ATLUtils;
 
-import java.util.ArrayList;
 import java.util.Set;
 
 /**

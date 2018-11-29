@@ -17,26 +17,19 @@ import org.eclipse.m2m.atl.common.ATL.MatchedRule;
 import org.eclipse.m2m.atl.common.ATL.Module;
 import org.eclipse.m2m.atl.common.ATL.ModuleElement;
 import org.eclipse.m2m.atl.common.ATL.OutPatternElement;
-import org.eclipse.m2m.atl.common.OCL.LoopExp;
-import org.eclipse.m2m.atl.common.OCL.NavigationOrAttributeCallExp;
-import org.eclipse.m2m.atl.common.OCL.OclExpression;
-import org.eclipse.m2m.atl.common.OCL.OclUndefinedExp;
-import org.eclipse.m2m.atl.common.OCL.OperationCallExp;
-import org.eclipse.m2m.atl.common.OCL.OperatorCallExp;
-import org.eclipse.m2m.atl.common.OCL.PropertyCallExp;
-import org.eclipse.m2m.atl.common.OCL.VariableExp;
 import org.eclipse.m2m.atl.core.ATLCoreException;
-import org.eclipse.m2m.atl.emftvm.Rule;
 import org.eclipse.m2m.atl.engine.parser.AtlParser;
 
 import Ecore.MetaModelReader;
 
 /**
- * This class creates an object of type Model Transformation. 
+ * This class creates Model Transformations.
+ *  
  * Its purpose is to gather all the information about on model transformation in one object.
+ * It produces also metrics on: the complexity of rules, ATL and Ecore input meta-model
  * 
  *   
- * @author Adel Ferdjoukh
+ * @author Adel Ferdjoukh <ferdjoukh@gmail.com>
  *
  */
 public class ModelTransformation {
@@ -49,28 +42,36 @@ public class ModelTransformation {
 	private String rootClass;
 	private String outMM;
 	private String outMMRelativePath;
+	
 	private ArrayList<String> tools; 
 	private ArrayList<MyRule> rules;
-	private int maxScore;
 	
+	///////////////////////////
+	// ATL Metrics
+	//////////////////////////
 	private Module module;
 	private ArrayList<Helper> helpers = new ArrayList<Helper>();
 	private ArrayList<CalledRule> calledRules = new ArrayList<CalledRule>();
 	private ArrayList<MatchedRule> matchedRules = new ArrayList<MatchedRule>();
 	private ArrayList<LazyMatchedRule> lazyMatchedRules = new ArrayList<LazyMatchedRule>();
+	private int complexityScore;
 	
+	///////////////////////////
+	// Ecore Metrics
+	//////////////////////////
 	private int concreteClasses=0;
 	private int abstractClasses=0;
 	private int references=0;
 	private int attributes=0;
 	private ArrayList<String> attributesTypes=new ArrayList<String>();
-	private int containTreeDepth=0;
-	private int inheritanceTressDepth=0;
+	private int containmentTreeDepth=0;
+	private int inheritanceTreeDepth=0;
 	
 	public ModelTransformation( String rootFolder, String name, 
 								String absoluteFilePath,String module, 
 							    String inMM, String inMMRelativePath, String rootClass,
 			                    String outMM, String outMMRelativePath) {
+		
 		this.rootFolder= rootFolder;
 		this.name= name;
 		this.moduleName= module;
@@ -80,9 +81,9 @@ public class ModelTransformation {
 		this.inMM= inMM;
 		this.outMM= outMM;
 		this.rootClass = rootClass;
-		rules= new ArrayList<MyRule>();
-		tools= new ArrayList<String>();
-		maxScore=0;
+		this.rules= new ArrayList<MyRule>();
+		this.tools= new ArrayList<String>();
+		this.complexityScore = 0;
 		
 		////////////////////////////////////////////////////////////////////
 		//Create all the metrics: rules score, ATL metrics and Ecore Metrics
@@ -101,7 +102,7 @@ public class ModelTransformation {
 	}
 	
 	/**
-	 * This method parses an .atl file into a EMF model Eobject.
+	 * This method parses an ATL file into a EMF model EObject.
 	 * 
 	 * @return the main module of the model transformation
 	 */
@@ -148,9 +149,8 @@ public class ModelTransformation {
 					if(inp.getFilter()!=null)
 						filter=1;
 					
-					OclExpression ocl= inp.getFilter();
-					
-					int compOCL=expandOCL(ocl," ",0);
+					//OclExpression ocl= inp.getFilter();
+					//int compOCL=expandOCL(ocl," ",0);
 					
 					int score=1+filter+ipes.size()-1+opes.size()-1;
 					
@@ -180,61 +180,53 @@ public class ModelTransformation {
 	}
 	
 	private void readMetaModelMetris() {
+		
 		String inMMAbsolutePath = rootFolder+"/"+name+"/metamodels/input/"+inMMRelativePath;
-		MetaModelReader reader = new MetaModelReader(inMMAbsolutePath, "");
+		MetaModelReader reader = new MetaModelReader(inMMAbsolutePath, rootClass);
+		
 		concreteClasses = reader.getConcreteClasses().size();
 		abstractClasses = reader.getAbstractClasses().size();
 		attributes = reader.getAllAttributesofMetamodel().size();
 		attributesTypes = (ArrayList<String>) reader.getAllTypesOfAttributes();
 		references = reader.getAllReferencesOfMetamodel().size();
-		containTreeDepth = reader.containmentTreeDepth();
-		inheritanceTressDepth = reader.getMetamodelMaxInheritanceDepth();
+		containmentTreeDepth = reader.containmentTreeDepth();
+		inheritanceTreeDepth = reader.getMetamodelMaxInheritanceDepth();
 	}
 	
-	private int expandOCL(OclExpression expr, String space, int depth) {
-		if(expr!=null) {
-			
-			String label="";
-			int score=0;
-			
-			if(expr instanceof PropertyCallExp) {
-				PropertyCallExp call= (PropertyCallExp) expr;
-				score=score+1+expandOCL(call.getSource(), space+" ",depth++);
-			
-			
-				if(call instanceof OperationCallExp) {
-					OperationCallExp operator= (OperationCallExp) call;
-					label=operator.getOperationName();
-					for(OclExpression o: operator.getArguments()) {
-						score=score+1+expandOCL(o, space+" ",depth++);
-					}
-				}
-				
-				if(call instanceof NavigationOrAttributeCallExp) {
-					NavigationOrAttributeCallExp ocl= (NavigationOrAttributeCallExp) call;
-					label=ocl.getName();
-				}
-			}
-			
-			if(expr instanceof VariableExp) {
-				VariableExp var= (VariableExp) expr;
-				label=var.getReferredVariable().getVarName();				
-			}
-			
-			return score;
-		}else
-		{
-			return 0;
-		}
-	}
+//	private int expandOCL(OclExpression expr, String space, int depth) {
+//		if(expr!=null) {
+//			int score=0;
+//			if(expr instanceof PropertyCallExp) {
+//				PropertyCallExp call= (PropertyCallExp) expr;
+//				score=score+1+expandOCL(call.getSource(), space+" ",depth++);
+//			
+//				if(call instanceof OperationCallExp) {
+//					OperationCallExp operator= (OperationCallExp) call;
+//					for(OclExpression o: operator.getArguments()) {
+//						score=score+1+expandOCL(o, space+" ",depth++);
+//					}
+//				}
+//				
+//				if(call instanceof NavigationOrAttributeCallExp) {
+//					NavigationOrAttributeCallExp ocl= (NavigationOrAttributeCallExp) call;
+//				}
+//			}
+//			
+//			if(expr instanceof VariableExp) {
+//				VariableExp var= (VariableExp) expr;								
+//			}			
+//			return score;
+//		}else{
+//			return 0;
+//		}
+//	}
 	
 	private void computeMaxScore() {
-		int sum=0;
+		int maxScore=0;
 		for(MyRule rule: rules) {
-			sum=sum+rule.getScore();
+			maxScore=maxScore+rule.getScore();
 		}
-		System.out.println("maxScore"+sum);
-		this.maxScore=sum;
+		this.complexityScore=maxScore;
 	}
 	
 	///////////////////////////////////////////////////////////////////
@@ -270,7 +262,7 @@ public class ModelTransformation {
 		String res="";
 		
 		res=res+this.name+" [ module:"+ this.moduleName+", "
-				+ "maxScore:"+ this.maxScore+", "
+				+ "maxScore:"+ this.complexityScore+", "
 				+ "meta-models: "+ this.inMM +"("+this.inMMRelativePath+") > "
 				+ this.outMM+"("+this.outMMRelativePath+") ]\n";
 		
@@ -289,7 +281,7 @@ public class ModelTransformation {
 					+ calledRules.size() + "," 
 					+ matchedRules.size() + "," 
 					+ lazyMatchedRules.size()+ ","
-					+ maxScore + "\n";
+					+ complexityScore + "\n";
 		
 		return res;		
 	}
@@ -309,9 +301,9 @@ public class ModelTransformation {
 					+ inMM + "," 
 					+ concreteClasses + "," 
 					+ abstractClasses + "," 
-					+ containTreeDepth + ","
+					+ containmentTreeDepth + ","
 					+ references + "," 
-					+ inheritanceTressDepth + ","
+					+ inheritanceTreeDepth + ","
 					+ attributes + "," 
 					+ attributesTypes + "\n";
 		return res;
@@ -334,7 +326,7 @@ public class ModelTransformation {
 		
 	public void addRule(MyRule rule) {
 		this.rules.add(rule);
-		this.maxScore=this.maxScore+rule.getScore();
+		this.complexityScore=this.complexityScore+rule.getScore();
 	}
 
 	public String getName() {
@@ -371,7 +363,7 @@ public class ModelTransformation {
 	}
 	
 	public int getMaxScore() {
-		return maxScore;
+		return complexityScore;
 	}
 
 	public ArrayList<String> getTools() {

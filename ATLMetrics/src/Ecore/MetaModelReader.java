@@ -1,6 +1,5 @@
 package Ecore;
 
-import java.lang.reflect.Array;
 import java.util.*;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.*;
@@ -386,14 +385,12 @@ public class MetaModelReader {
 	}
 
 	public int containmentTreeDepth() {
-		EClass rootClass = getClassByName(rootClassName);
 		ArrayList<EClass> allClasses = (ArrayList<EClass>) getConcreteClasses();
 		int [] alldepths = new int[allClasses.size()];
 		int i = 0;
 		
 		for(EClass eclass : allClasses) {
 			alldepths[i] = containmentTreeOfClass(eclass);
-			//System.out.println(eclass.getName()+"  =  "+ alldepths[i]);
 			i++;
 		}
 		

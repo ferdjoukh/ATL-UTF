@@ -1,14 +1,9 @@
 package tests;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.Test;
+
 import exceptions.*;
-
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import org.eclipse.m2m.atl.core.ATLCoreException;
-
 import ATLUtils.TransformationsReader;
 
 public class TransformationsReaderTests {

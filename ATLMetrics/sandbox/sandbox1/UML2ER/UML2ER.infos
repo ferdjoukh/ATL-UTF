@@ -1,0 +1,7 @@
+Transformation name=UML2ER
+module=UML2ER
+inMM=SimpleUML
+inMMRelativePath=SimpleUML.ecore
+rootClass=Package
+outMM=ER
+outMMRelativePath=ER.ecore

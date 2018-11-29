@@ -1,15 +1,7 @@
 package ATLauncher;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FilenameFilter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Set;
-
-import org.eclipse.m2m.atl.core.ATLCoreException;
 
 import ATLUtils.Utils;
 import ATLUtils.ExecutionOutput;
@@ -19,12 +11,10 @@ import ATLUtils.TransformationsReader;
 
 /**
  * This class reads, collects, runs and gathers results of execution for model transformations.
- * 
  * All the model transformations are contained in a given folder (the key field of any TransformationRunner object).
- * 
  * Calling the methods if this Object produces many output files: log, csv ...
  * 
- * @author Adel Ferdjoukh
+ * @author Adel Ferdjoukh <ferdjoukh@gmail.com>
  *
  */
 public class TransformationsRunner {

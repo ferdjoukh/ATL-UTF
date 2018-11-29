@@ -8,8 +8,6 @@ import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import org.eclipse.m2m.atl.core.ATLCoreException;
-
 import exceptions.MissingParameterException;
 
 public class TransformationsReader {
@@ -108,46 +106,6 @@ public class TransformationsReader {
 				}
 				MT.addTool(toolName.getName());
 			}
-		}
-	}
-	
-	/**
-	 * This method reads the MT.rules file of a given transformation
-	 * 
-	 * this file must be located in: trafoDir/MT/MT.rules.
-	 * It contains the complexity weights of all rules
-	 * 
-	 * @param MT: a ModelTransformation object
-	 */
-	private void readMTRules(ModelTransformation MT) {
-		File MTRules= new File(trafoDir+"/"+MT.getName()+"/"+MT.getName()+".rules");
-		//System.out.println(MTRules.getName());
-		if(MTRules.exists()) {
-			
-			BufferedReader br = null;
-	        String line = "";
-	        String cvsSplitBy = ",";
-	        
-	        try {
-	            br = new BufferedReader(new FileReader(MTRules));
-	            while ((line = br.readLine()) != null) {
-	                String[] data = line.split(cvsSplitBy);
-	                MyRule rule = new MyRule(data[0], Integer.parseInt(data[1]));
-	                MT.addRule(rule);
-	            }
-	        } catch (FileNotFoundException e) {
-	            e.printStackTrace();
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	        } finally {
-	            if (br != null) {
-	                try {
-	                    br.close();
-	                } catch (IOException e) {
-	                    e.printStackTrace();
-	                }
-	            }
-	        }			
 		}
 	}
 	

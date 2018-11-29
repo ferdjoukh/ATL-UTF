@@ -14,5 +14,4 @@ class UtilsTests {
 		String fileName= Utils.generateFileNamePostfix(prefix, filetype);
 		assertEquals(3+3+2+12, fileName.length());
 	}
-
 }

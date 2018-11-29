@@ -1,14 +1,9 @@
 package tests;
 
-import static org.junit.Assert.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
-
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.ArrayList;
-
-import org.eclipse.m2m.atl.core.ATLCoreException;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
 
 import ATLUtils.ModelTransformation;
 import ATLUtils.TransformationsReader;
