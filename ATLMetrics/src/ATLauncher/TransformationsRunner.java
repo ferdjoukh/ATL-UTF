@@ -72,7 +72,7 @@ public class TransformationsRunner {
 		for(ModelTransformation mt: reader.getModelTransformations()) {
 			verbose= verbose+ "RUNNING ["+ mt +"] model transformation...\n\n";
 			
-			transformationMetrics = transformationMetrics + mt.metrics2string()+ "\n";
+			transformationMetrics = transformationMetrics + mt.atlMetricsTostring()+ "\n";
 		
 			//Create a failure file for each Model Transformation
 			String failFile= Utils.generateFileNamePostfix("failed-models-"+mt.getName(), "log");

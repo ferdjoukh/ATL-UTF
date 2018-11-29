@@ -72,29 +72,6 @@
     <semanticResources>trafosTest/CPL2SPL/CPL2SPL.atl</semanticResources>
     <semanticResources>trafosTest/CPL2SPL/metamodels/input/CPL.ecore</semanticResources>
     <semanticResources>trafosTest/CPL2SPL/metamodels/output/SPL.ecore</semanticResources>
-    <semanticResources>trafosTest/CPL2SPL/models/input/Res-CPL/CPL2SPL.xmi</semanticResources>
-    <semanticResources>trafosTest/CPL2SPL/models/input/Res-CPL/CPL2SPL_Mutant1.xmi</semanticResources>
-    <semanticResources>trafosTest/UML2ER/metamodels/input/SimpleUml.ecore</semanticResources>
-    <semanticResources>trafosTest/UML2ER/metamodels/output/ER.ecore</semanticResources>
-    <semanticResources>trafosTest/UML2ER/models/input/Res-SimpleUml/SimpleUml2ER.xmi</semanticResources>
-    <semanticResources>trafosTest/UML2ER/models/input/Res-SimpleUml/SimpleUml2ER_Mutant1.xmi</semanticResources>
-    <semanticResources>trafosTest/UML2ER/models/input/Res-SimpleUml/SimpleUml2ER_Mutant10.xmi</semanticResources>
-    <semanticResources>trafosTest/UML2ER/models/input/Res-SimpleUml/SimpleUml2ER_Mutant11.xmi</semanticResources>
-    <semanticResources>trafosTest/UML2ER/models/input/Res-SimpleUml/SimpleUml2ER_Mutant12.xmi</semanticResources>
-    <semanticResources>trafosTest/UML2ER/models/input/Res-SimpleUml/SimpleUml2ER_Mutant13.xmi</semanticResources>
-    <semanticResources>trafosTest/UML2ER/models/input/Res-SimpleUml/SimpleUml2ER_Mutant14.xmi</semanticResources>
-    <semanticResources>trafosTest/UML2ER/models/input/Res-SimpleUml/SimpleUml2ER_Mutant15.xmi</semanticResources>
-    <semanticResources>trafosTest/UML2ER/models/input/Res-SimpleUml/SimpleUml2ER_Mutant16.xmi</semanticResources>
-    <semanticResources>trafosTest/UML2ER/models/input/Res-SimpleUml/SimpleUml2ER_Mutant17.xmi</semanticResources>
-    <semanticResources>trafosTest/UML2ER/models/input/Res-SimpleUml/SimpleUml2ER_Mutant18.xmi</semanticResources>
-    <semanticResources>trafosTest/UML2ER/models/input/Res-SimpleUml/SimpleUml2ER_Mutant2.xmi</semanticResources>
-    <semanticResources>trafosTest/UML2ER/models/input/Res-SimpleUml/SimpleUml2ER_Mutant3.xmi</semanticResources>
-    <semanticResources>trafosTest/UML2ER/models/input/Res-SimpleUml/SimpleUml2ER_Mutant4.xmi</semanticResources>
-    <semanticResources>trafosTest/UML2ER/models/input/Res-SimpleUml/SimpleUml2ER_Mutant5.xmi</semanticResources>
-    <semanticResources>trafosTest/UML2ER/models/input/Res-SimpleUml/SimpleUml2ER_Mutant6.xmi</semanticResources>
-    <semanticResources>trafosTest/UML2ER/models/input/Res-SimpleUml/SimpleUml2ER_Mutant7.xmi</semanticResources>
-    <semanticResources>trafosTest/UML2ER/models/input/Res-SimpleUml/SimpleUml2ER_Mutant8.xmi</semanticResources>
-    <semanticResources>trafosTest/UML2ER/models/input/Res-SimpleUml/SimpleUml2ER_Mutant9.xmi</semanticResources>
     <semanticResources>newMTS/BibTexML2DocBook/BibTeX2DocBook.atl</semanticResources>
     <semanticResources>newMTS/BibTexML2DocBook/metamodels/input/BibTeX.ecore</semanticResources>
     <semanticResources>newMTS/BibTexML2DocBook/metamodels/output/DocBook.ecore</semanticResources>

@@ -84,10 +84,20 @@ public class ModelTransformation {
 		tools= new ArrayList<String>();
 		maxScore=0;
 		
+		////////////////////////////////////////////////////////////////////
+		//Create all the metrics: rules score, ATL metrics and Ecore Metrics
+		////////////////////////////////////////////////////////////////////
 		readModuleFromATLFile();
 		createAllRulesScores();
-		readMetrics();
+		readATLMetrics();
 		readMetaModelMetris();
+
+		////////////////////////////////////////////////////////////////////
+		//Create 3 metrics files
+		////////////////////////////////////////////////////////////////////
+		createMetricsFile("rules", printableRules());
+		createMetricsFile("atlmetrics", atlMetricsTostring());
+		createMetricsFile("ecoremetrics", metamodelMetricsToString());
 	}
 	
 	/**
@@ -151,7 +161,7 @@ public class ModelTransformation {
 		}
 	}
 	
-	private void readMetrics() {
+	private void readATLMetrics() {
 		for(ModuleElement elem : module.getElements()){
 			
 			if(elem instanceof MatchedRule){
@@ -179,31 +189,6 @@ public class ModelTransformation {
 		references = reader.getAllReferencesOfMetamodel().size();
 		containTreeDepth = reader.containmentTreeDepth();
 		inheritanceTressDepth = reader.getMetamodelMaxInheritanceDepth();
-	}
-	
-	/**
-	 * This method creates a file named: <ModelTransformationName>.rules
-	 * It contains all the rules of the model transformation and their complexity scores
-	 * 
-	 */
-	private void createRulesFile(){
-		int begin=0;
-		int end= this.absoluteATLFilePath.lastIndexOf(".")+1;
-		String filePath= this.absoluteATLFilePath.substring(begin, end)+"rules";
-		Utils.createOutputFile(filePath,printableRules());		
-	}
-	
-	/**
-	 * This method return a printable visualisation for the rules of an MT
-	 * 
-	 * @return
-	 */
-	private String printableRules() {
-		String res="";
-		for(MyRule rule: this.rules) {
-			res=res+rule.toString()+"\n";
-		}
-		return res;
 	}
 	
 	private int expandOCL(OclExpression expr, String space, int depth) {
@@ -236,8 +221,6 @@ public class ModelTransformation {
 				label=var.getReferredVariable().getVarName();				
 			}
 			
-			
-			//System.out.println(space+" "+depth+" "+label+" "+expr);
 			return score;
 		}else
 		{
@@ -246,7 +229,6 @@ public class ModelTransformation {
 	}
 	
 	private void computeMaxScore() {
-		
 		int sum=0;
 		for(MyRule rule: rules) {
 			sum=sum+rule.getScore();
@@ -255,6 +237,89 @@ public class ModelTransformation {
 		this.maxScore=sum;
 	}
 	
+	///////////////////////////////////////////////////////////////////
+	//  methods to print all types of metrics for ModelTransformation
+	///////////////////////////////////////////////////////////////////
+	/**
+	 * This method creates a file named: <ModelTransformationName>.rules
+	 * It contains all the rules of the model transformation and their complexity scores
+	 * 
+	 */
+	private void createMetricsFile(String suffix, String content){
+		int begin=0;
+		int end= this.absoluteATLFilePath.lastIndexOf(".")+1;
+		String filePath= this.absoluteATLFilePath.substring(begin, end)+suffix;
+		Utils.createOutputFile(filePath,content);		
+	}
+	
+	/**
+	 * This method return a printable visualization for the rules of an MT
+	 * 
+	 * @return
+	 */
+	private String printableRules() {
+		String res="";
+		for(MyRule rule: this.rules) {
+			res=res+rule.toString()+"\n";
+		}
+		return res;
+	}
+	
+	
+	public String prettyPrint() {
+		String res="";
+		
+		res=res+this.name+" [ module:"+ this.moduleName+", "
+				+ "maxScore:"+ this.maxScore+", "
+				+ "meta-models: "+ this.inMM +"("+this.inMMRelativePath+") > "
+				+ this.outMM+"("+this.outMMRelativePath+") ]\n";
+		
+		res=res+"\t Rules: ";
+		for(MyRule rule: this.rules) {
+			res=res+" "+rule.getName()+"("+rule.getScore()+")";
+		}
+		res=res+"\n\n";
+		return res;
+	}
+	
+	public String atlMetricsTostring() {
+		String res= "Transformation,Helper,CalledRule,MatchedRule,LazyMatchedRule,ComplexityScore\n";
+		res = res 	+ moduleName + "," 
+					+ helpers.size() + "," 
+					+ calledRules.size() + "," 
+					+ matchedRules.size() + "," 
+					+ lazyMatchedRules.size()+ ","
+					+ maxScore + "\n";
+		
+		return res;		
+	}
+	
+	public String metamodelMetricsToString() {
+		String res = "moduleName,"
+					+ "Metamodel,"
+					+ "concreteClasses,"
+					+ "abstractClasses,"
+					+ "containTreeDepth,"
+					+ "references,"
+					+ "inherTreeDepth,"
+					+ "attributes,"
+					+ "attributeTypes\n";
+		
+		res = res 	+ moduleName + "," 
+					+ inMM + "," 
+					+ concreteClasses + "," 
+					+ abstractClasses + "," 
+					+ containTreeDepth + ","
+					+ references + "," 
+					+ inheritanceTressDepth + ","
+					+ attributes + "," 
+					+ attributesTypes + "\n";
+		return res;
+	}
+	
+	///////////////////////////////////////////////////////////////////////
+	//  Getters and Setters
+	///////////////////////////////////////////////////////////////////////
 	public String getAbsoluteATLFilePath() {
 		return absoluteATLFilePath;
 	}
@@ -316,10 +381,6 @@ public class ModelTransformation {
 	public void setTools(ArrayList<String> tools) {
 		this.tools = tools;
 	}
-	
-	public String toString() {
-		return this.getName();
-	}
 		
 	public String getModuleName() {
 		return moduleName;
@@ -339,41 +400,5 @@ public class ModelTransformation {
 
 	public ArrayList<LazyMatchedRule> getLazyMatchedRules() {
 		return lazyMatchedRules;
-	}
-
-	public String prettyPrint() {
-		String res="";
-		
-		res=res+this.name+" [ module:"+ this.moduleName+", "
-				+ "maxScore:"+ this.maxScore+", "
-				+ "meta-models: "+ this.inMM +"("+this.inMMRelativePath+") > "
-				+ this.outMM+"("+this.outMMRelativePath+") ]\n";
-		
-		res=res+"\t Rules: ";
-		for(MyRule rule: this.rules) {
-			res=res+" "+rule.getName()+"("+rule.getScore()+")";
-		}
-		res=res+"\n\n";
-		return res;
-	}
-	
-	public String metrics2string() {
-		//String res= "Transformation, Helper,CalledRule,MatchedRule,LazyMatchedRule,ComplexityScore\n";
-		String res = moduleName + "," + helpers.size() + "," + calledRules.size() + 
-				"," + matchedRules.size() + "," + lazyMatchedRules.size()+ 
-				","+ maxScore;
-		
-		return res;		
-	}
-	
-	public String metamodelMetrics2String() {
-		//concreteClasses, abstractClasses, Tree depth, References, Generalizations, Attributes, Attribute types
-		
-		String res= moduleName + "," + inMM + "," + concreteClasses + "," +
-					+ abstractClasses + "," + containTreeDepth + "," 
-					+ references + "," + inheritanceTressDepth + "," 
-					+ attributes + "," + attributesTypes;
-		
-		return res;
 	}
 }
