@@ -1,7 +1,6 @@
 package unitTestFramework;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FilenameFilter;
 
 import ATLUtils.ModelTransformation;
