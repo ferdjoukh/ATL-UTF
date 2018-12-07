@@ -78,7 +78,7 @@ public class UnitTester {
 		if(subfiles.length>=1) {
 			atlFilePath=subfiles[0].getPath();
 		
-			//Get all the infos from MT.infos file
+			//read transformation infos from .infos file
 			String[] infos;
 			try {
 				infos = TransformationsReader.readMTInfo(modelTransformationFolder+"/"+transformationName+"/"+transformationName+".infos");
@@ -87,8 +87,7 @@ public class UnitTester {
 				ModelTransformation transformation= new ModelTransformation(modelTransformationFolder, dir.getName(),
 																atlFilePath, infos[1],
 																infos[2], infos[3], infos[4],
-																infos[5], infos[6]);
-				
+																infos[5], infos[6]);				
 				return transformation;
 			} catch (Exception e) {
 				System.out.println(e.getMessage());

@@ -3,7 +3,6 @@ package tests;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.Test;
 
-import exceptions.*;
 import ATLUtils.TransformationsReader;
 
 public class TransformationsReaderTests {
@@ -15,11 +14,11 @@ public class TransformationsReaderTests {
 		assertEquals(false, exist, "Trafo folder does not exist");
 	}
 	
-	@Test(expected = MissingParameterException.class)
+	@Test
 	public void missingInfos() throws Exception{
 		TransformationsReader tool1= new TransformationsReader("Experiment");
 		boolean exist= tool1.doesTrafoDirExist();
-		assertEquals(true, exist, "Trafo folder does not exist");
+		assertEquals(true, exist, "Trafo folder exists");
 	}
 
 }
