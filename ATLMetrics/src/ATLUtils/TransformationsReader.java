@@ -8,6 +8,7 @@ import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import exceptions.FileOrFolderNotFoundException;
 import exceptions.MissingParameterException;
 
 public class TransformationsReader {
@@ -24,7 +25,7 @@ public class TransformationsReader {
 	 * @param trafoDirPath: folder where to find all the model transformations and the data for running
 	 * @throws MissingParameterException 
 	 */
-	public TransformationsReader(String trafoDirPath) throws MissingParameterException {
+	public TransformationsReader(String trafoDirPath) throws Exception {
 		this.trafoDirPath= trafoDirPath;
 		this.trafoDir= new File(trafoDirPath);
 		
@@ -38,7 +39,7 @@ public class TransformationsReader {
 	 * and their data (inMM, outMM, rules, infos, etc)
 	 * @throws MissingParameterException 
 	 */
-	private void collectMTandTools() throws MissingParameterException{
+	private void collectMTandTools() throws Exception{
 		File[] trDirContent= trafoDir.listFiles();
 		
 		for(File f: trDirContent) {
@@ -64,7 +65,7 @@ public class TransformationsReader {
 				//Get all the infos from MT.infos file
 				String[] infos;
 				try {
-					infos = readMTInfo(f.getName());
+					infos = readMTInfo(trafoDir+"/"+f.getName()+"/"+f.getName()+".infos");
 					
 					//Create the model transformation with all the information
 					ModelTransformation MT= new ModelTransformation(trafoDirPath, f.getName(),
@@ -78,10 +79,10 @@ public class TransformationsReader {
 					//At this step, we get it ready for running)
 					modelTransformations.add(MT);
 					
-				} catch (MissingParameterException e) {
+				} catch (Exception e) {
 					System.out.println(e.getMessage());
 					throw e;
-				}				
+				}			
 			}
 		}
 	}
@@ -119,10 +120,12 @@ public class TransformationsReader {
 	 * @return list of information on this model transformation
 	 *   [0=MTname, 1=module, 2=,3=,4=,5=]
 	 * @throws MissingParameterException 
+	 * @throws FileOrFolderNotFoundException 
+	 * @throws IOException 
 	 */
-	private String [] readMTInfo(String MTname) throws MissingParameterException{
+	public static String [] readMTInfo(String infoFile) throws MissingParameterException, FileOrFolderNotFoundException, IOException{
 		
-		File MTinfos= new File(trafoDir+"/"+MTname+"/"+MTname+".infos");
+		File MTinfos= new File(infoFile);
 		String [] infos= new String[7];
 				
 		if(MTinfos.exists()) {
@@ -131,31 +134,21 @@ public class TransformationsReader {
 	        String cvsSplitBy = "=";
 	        int i=0;
 	        
-	        try {
-	            br = new BufferedReader(new FileReader(MTinfos));
+	        
+	        br = new BufferedReader(new FileReader(MTinfos));
 	            
-	            while (i<7 && (line = br.readLine()) != null) {
-	            	String[] data = line.split(cvsSplitBy);
-	                infos[i]=data[1];
-	                i++;
-	            }	            
-	        } catch (FileNotFoundException e) {
-	            System.out.println(e.getMessage());
-	        } catch (IOException e) {
-	        	System.out.println(e.getMessage());
-	        } finally {
-	            if (br != null) {
-	                try {
-	                    br.close();
-	                } catch (IOException e) {
-	                	System.out.println(e.getMessage());
-	                }
-	            }
+	        while (i<7 && (line = br.readLine()) != null) {
+	          	String[] data = line.split(cvsSplitBy);
+	            infos[i]=data[1];
+	            i++;
+	        }	            
+	        br.close();
 	            
-	            if(i < 7) {
-	            	throw new MissingParameterException("info missing in "+MTname+".infos file");
-		        }
-	        }	        
+	        if(i < 7) {
+	          	throw new MissingParameterException("info missing in "+infoFile+" file");
+		    }	        
+		}else {
+			throw new FileOrFolderNotFoundException("file", infoFile);
 		}
 				
 		return infos;

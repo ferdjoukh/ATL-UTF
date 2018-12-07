@@ -241,7 +241,8 @@ public class ModelTransformation {
 		int begin=0;
 		int end= this.absoluteATLFilePath.lastIndexOf(".")+1;
 		String filePath= this.absoluteATLFilePath.substring(begin, end)+suffix;
-		Utils.createOutputFile(filePath,content);		
+		Utils.createOutputFile(filePath,content);	
+		System.out.println("[info] created file "+filePath);
 	}
 	
 	/**
