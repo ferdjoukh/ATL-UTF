@@ -259,6 +259,7 @@
     <semanticResources>newMTS/Ecore2Maude/models/input/grimm/EPackage-155110-2911181.xmi</semanticResources>
     <semanticResources>newMTS/Ecore2Maude/metamodels/input/Ecore.ecore</semanticResources>
     <semanticResources>trafosTest/onlyATL/HSM2FSM.atl</semanticResources>
+    <semanticResources>trafosTest/missingInfo/HSM2FSM.atl</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_Xcm_UKeCEeiLSZ63Y1Btbg">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_ZUhjMKeCEeiLSZ63Y1Btbg" name="ATL class diagram" repPath="#_ZTclIKeCEeiLSZ63Y1Btbg">

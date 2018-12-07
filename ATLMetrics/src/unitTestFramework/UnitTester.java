@@ -2,8 +2,12 @@ package unitTestFramework;
 
 import java.io.File;
 import java.io.FilenameFilter;
+import java.util.ArrayList;
+
+import org.eclipse.m2m.atl.common.ATL.MatchedRule;
 
 import ATLUtils.ModelTransformation;
+
 import ATLUtils.TransformationsReader;
 import exceptions.FileOrFolderNotFoundException;
 import exceptions.MissingParameterException;
@@ -47,6 +51,14 @@ public class UnitTester {
 		}
 	}
 	
+	/**
+	 * This method checks that the input folder exists.
+	 * If the folder does not exist, then an Exception is thrown
+	 * 
+	 * @param folder
+	 * @return
+	 * @throws FileOrFolderNotFoundException
+	 */
 	private boolean doesFolderExist(String folder) throws FileOrFolderNotFoundException {
 		File file = new File(folder);
 		
@@ -57,6 +69,12 @@ public class UnitTester {
 		}
 	}
 	
+	/**
+	 * This method create a ModelTransformation object from the given folder
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
 	private ModelTransformation createModelTransformation() throws Exception {
 		
 		File dir = new File(modelTransformationFolder+"/"+transformationName);
@@ -96,12 +114,28 @@ public class UnitTester {
 			throw new FileOrFolderNotFoundException("file", dir.getName()+".atl");
 		}
 	}
+	
+	
+	public void generateGrimmParamsFiles() {
+		ArrayList<MatchedRule> matchedRules =  transformation.getMatchedRules();
+		for(MatchedRule rule: matchedRules) {
+			rule.getInPattern().getElements().forEach((a)->System.out.println(a.getType().getName()));
+			System.out.println("");
+		}
+	}
 
+	////////////////////////////////////////////////
+	//  Getters
+	////////////////////////////////////////////////
 	public String getModelTransformationFolder() {
 		return modelTransformationFolder;
 	}
 
 	public ModelTransformation getTransformation() {
 		return transformation;
+	}
+
+	public String getTransformationName() {
+		return transformationName;
 	}
 }

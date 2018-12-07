@@ -7,6 +7,7 @@ import ATLauncher.TransformationsRunner;
 import exceptions.FileOrFolderNotFoundException;
 import exceptions.MissingParameterException;
 import exceptions.UnknownParameterException;
+import unitTestFramework.UnitTester;
 
 public class Execute {
 
@@ -120,7 +121,12 @@ public class Execute {
 		}else {
 			try {
 				if(isFolderExisiting(args[1])) {
-					System.out.println("Unit Test mode is under developement");
+					System.out.println("ATL Unit Test Framework");
+					System.out.println("");
+					System.out.println("Unit Testing Mode");
+					System.out.println("");
+					
+					UnitTester unitester = new UnitTester(args[1]);
 					
 				}
 			} catch (FileOrFolderNotFoundException e) {
