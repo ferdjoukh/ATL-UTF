@@ -9,6 +9,7 @@ import org.eclipse.m2m.atl.common.ATL.MatchedRule;
 import ATLUtils.ModelTransformation;
 
 import ATLUtils.TransformationsReader;
+import Ecore.MetaModelReader;
 import exceptions.FileOrFolderNotFoundException;
 import exceptions.MissingParameterException;
 
@@ -118,8 +119,12 @@ public class UnitTester {
 	
 	public void generateGrimmParamsFiles() {
 		ArrayList<MatchedRule> matchedRules =  transformation.getMatchedRules();
+		MetaModelReader reader = transformation.getMetamodelReader();
 		for(MatchedRule rule: matchedRules) {
 			rule.getInPattern().getElements().forEach((a)->System.out.println(a.getType().getName()));
+			
+			//Containment tree
+						
 			System.out.println("");
 		}
 	}

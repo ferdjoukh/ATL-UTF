@@ -66,6 +66,7 @@ public class ModelTransformation {
 	private ArrayList<String> attributesTypes=new ArrayList<String>();
 	private int containmentTreeDepth=0;
 	private int inheritanceTreeDepth=0;
+	private MetaModelReader metamodelReader;
 	
 	public ModelTransformation( String rootFolder, String name, 
 								String absoluteFilePath,String module, 
@@ -183,6 +184,7 @@ public class ModelTransformation {
 		
 		String inMMAbsolutePath = rootFolder+"/"+name+"/metamodels/input/"+inMMRelativePath;
 		MetaModelReader reader = new MetaModelReader(inMMAbsolutePath, rootClass);
+		this.metamodelReader = reader;
 		
 		concreteClasses = reader.getConcreteClasses().size();
 		abstractClasses = reader.getAbstractClasses().size();
@@ -397,5 +399,9 @@ public class ModelTransformation {
 	
 	public String toString() {
 		return this.name;
+	}
+
+	public MetaModelReader getMetamodelReader() {
+		return metamodelReader;
 	}
 }
