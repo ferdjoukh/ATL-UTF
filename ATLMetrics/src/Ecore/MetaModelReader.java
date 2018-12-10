@@ -396,7 +396,15 @@ public class MetaModelReader {
 		
 		return dichotomicMax(alldepths, 0, alldepths.length-1);		
 	}
-		
+	
+	/**
+	 * This method returns the reverse containing tree for a given class.
+	 * For the first call given empty ArrayList<EReference>
+	 *
+	 * @param eclass
+	 * @param visitedContainments
+	 * @return
+	 */
 	public ArrayList<EClass> reverseContainingTree(EClass eclass, ArrayList<EReference> visitedContainments){
 		ArrayList<EClass> containers = new ArrayList<EClass>();
 		

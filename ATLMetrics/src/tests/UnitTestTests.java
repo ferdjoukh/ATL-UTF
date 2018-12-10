@@ -31,6 +31,6 @@ public class UnitTestTests {
 	@Test
 	public void createUnitTesterHSM3FSM() throws Exception{
 		UnitTester unittester = new UnitTester("trafosTest/HSM2FSM");
-		unittester.generateGrimmParamsFiles();
+		unittester.generateGrimmConfigParamsFiles();
 	}
 }

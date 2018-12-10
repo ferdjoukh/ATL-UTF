@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
 
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.m2m.atl.common.ATL.MatchedRule;
 
 import ATLUtils.ModelTransformation;
@@ -117,16 +119,32 @@ public class UnitTester {
 	}
 	
 	
-	public void generateGrimmParamsFiles() {
+	public void generateGrimmConfigParamsFiles() {
 		ArrayList<MatchedRule> matchedRules =  transformation.getMatchedRules();
-		MetaModelReader reader = transformation.getMetamodelReader();
+		
 		for(MatchedRule rule: matchedRules) {
-			rule.getInPattern().getElements().forEach((a)->System.out.println(a.getType().getName()));
+		
+			System.out.println(rule.getName());
 			
-			//Containment tree
+			rule.getInPattern().getElements().forEach((a)->generateFileForGivenClass(a.getType().getName()));
 						
 			System.out.println("");
 		}
+	}
+	
+	private void generateFileForGivenClass(String className) {
+		
+		MetaModelReader reader = transformation.getMetamodelReader();
+		EClass classe = reader.getClassByName(className);
+		
+		ArrayList<EClass> containingTree = reader.reverseContainingTree(classe, new ArrayList<EReference>());
+		
+		System.out.print(className+" << [ ");
+		
+		containingTree.forEach((a)-> System.out.print(a.getName()+" "));
+		
+		System.out.println("]");
+		
 	}
 
 	////////////////////////////////////////////////
