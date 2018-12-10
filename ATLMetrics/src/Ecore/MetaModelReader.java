@@ -443,20 +443,20 @@ public class MetaModelReader {
 //		return results;
 //	}
 	
-	public ArrayList<String> generateVecotrOfCandidates(EClass eclass, ArrayList<EClass> containmentTree){
-		ArrayList<String> results= new ArrayList<String>();
+	public Hashtable<String,Integer> generateVecotrOfCandidates(EClass eclass, ArrayList<EClass> containmentTree){
+		Hashtable<String,Integer> results= new Hashtable<String,Integer>();
 		
 		//Add a number of instances for current class
 		if(!eclass.isAbstract()) {
 			if(eclass.getName().equals(rootClassName)) {
-				results.add(eclass.getName()+"=1");
+				results.put(eclass.getName(),1);
 			}else {
-				results.add(eclass.getName()+"="+randomInt(1, 3));
+				results.put(eclass.getName(),randomInt(1, 3));
 			}
 		}else {
 			
 			for(EClass c: getConcreteSubTypes(eclass)) {
-				results.add(c.getName()+"="+randomInt(1, 3));
+				results.put(c.getName(),randomInt(1, 3));
 			}
 		}
 		
@@ -465,17 +465,15 @@ public class MetaModelReader {
 			
 			if(!c.isAbstract()) {
 				if(c.getName().equals(rootClassName)) {
-					results.add(c.getName()+"=1");
+					results.put(c.getName(),1);
 				}else {
-					results.add(c.getName()+"="+randomInt(1, 3));
+					results.put(c.getName(),randomInt(1, 3));
 				}
 			}else {
 				for(EClass subclass: getConcreteSubTypes(c)) {
-					results.add(subclass.getName()+"="+randomInt(1, 3));
-				}
-				
+					results.put(subclass.getName(),randomInt(1, 3));
+				}	
 			}
-			 
 		}
 		
 		return results;

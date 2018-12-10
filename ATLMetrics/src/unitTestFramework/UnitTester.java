@@ -3,14 +3,18 @@ package unitTestFramework;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.m2m.atl.common.ATL.InPatternElement;
 import org.eclipse.m2m.atl.common.ATL.MatchedRule;
 
 import ATLUtils.ModelTransformation;
 
 import ATLUtils.TransformationsReader;
+import ATLUtils.Utils;
 import Ecore.MetaModelReader;
 import exceptions.FileOrFolderNotFoundException;
 import exceptions.MissingParameterException;
@@ -123,33 +127,70 @@ public class UnitTester {
 		ArrayList<MatchedRule> matchedRules =  transformation.getMatchedRules();
 		
 		for(MatchedRule rule: matchedRules) {
-		
+			
+			Hashtable<String,Integer> candidates = new Hashtable<String, Integer>();
+			
 			System.out.println(rule.getName());
 			
-			rule.getInPattern().getElements().forEach((a)->generateFileForGivenClass(a.getType().getName()));
-						
+			for (InPatternElement element : rule.getInPattern().getElements()) {
+				candidates =  merge(candidates, generateFileForGivenClass(element.getType().getName()));
+			}
+			
+			candidates2Files(null, rule.getName());
+			
+			//I have here my list of candidates
+			System.out.println(candidates);
+			System.out.println("");
 			System.out.println("");
 		}
 	}
 	
-	private void generateFileForGivenClass(String className) {
+	private Hashtable<String,Integer> generateFileForGivenClass(String className) {
 		
 		MetaModelReader reader = transformation.getMetamodelReader();
 		EClass classe = reader.getClassByName(className);
-		
 		ArrayList<EClass> containingTree = reader.reverseContainingTree(classe, new ArrayList<EReference>());
-		
-		ArrayList<String> candidates = reader.generateVecotrOfCandidates(classe, containingTree);
-		
+		Hashtable<String,Integer> candidates = reader.generateVecotrOfCandidates(classe, containingTree);
 		
 		System.out.println(candidates);
 		
-//		System.out.print(className+" << [ ");
-//		containingTree.forEach((a)-> System.out.print(a.getName()+" "));
-//		System.out.println("]");
+		return candidates;
+	}
+	
+	private Hashtable<String,Integer> merge(Hashtable<String,Integer> table1, Hashtable<String,Integer> table2){
+		Hashtable<String,Integer> result = new Hashtable<String, Integer>();
+		
+		for(Map.Entry<String, Integer> entry : table2.entrySet()){
+		    if(table1.containsKey(entry.getKey())){
+		    	result.put(entry.getKey(), table1.get(entry.getKey())+table2.get(entry.getKey()));		    	
+		    }else{
+		    	result.put(entry.getKey(), entry.getValue());
+		    }
+		}
+		
+		for(Map.Entry<String, Integer> entry : table1.entrySet()){
+		    if(table2.containsKey(entry.getKey())){
+		    	result.put(entry.getKey(), table1.get(entry.getKey())+table2.get(entry.getKey()));		    	
+		    }else{
+		    	result.put(entry.getKey(), entry.getValue());
+		    }
+		}
+		
+		return result;
+	}
+	
+	private void candidates2Files(Hashtable<String, Integer> candidates, String rule) {
+		
+		String grimmFolder = transformation.getRootFolder()+"/"+transformationName+"/grimm";
+		new File(grimmFolder).mkdir();
+		
+		String paramsFile = grimmFolder + "/" + rule + ".params";  
+		Utils.createOutputFile(paramsFile,"");
+		
+		String grimmFile = grimmFolder + "/" + rule + ".grimm";  
+		Utils.createOutputFile(grimmFile,"");
 		
 	}
-
 	////////////////////////////////////////////////
 	//  Getters
 	////////////////////////////////////////////////

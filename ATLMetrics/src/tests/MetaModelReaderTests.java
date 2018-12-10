@@ -3,6 +3,7 @@ package tests;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.function.Consumer;
 
 import org.eclipse.emf.ecore.EClass;
@@ -14,7 +15,7 @@ import Ecore.MetaModelReader;
 public class MetaModelReaderTests {
 	
 	private int i=0;
-	private ArrayList<String> candidates;
+	private Hashtable<String,Integer> candidates;
 	
 	Consumer<EClass> printCandidates = (a) -> {
 		System.out.println(a);

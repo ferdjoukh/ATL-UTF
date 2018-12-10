@@ -404,4 +404,12 @@ public class ModelTransformation {
 	public MetaModelReader getMetamodelReader() {
 		return metamodelReader;
 	}
+
+	public String getRootFolder() {
+		return rootFolder;
+	}
+
+	public String getRootClass() {
+		return rootClass;
+	}
 }
