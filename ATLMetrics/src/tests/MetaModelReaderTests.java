@@ -14,11 +14,10 @@ import Ecore.MetaModelReader;
 public class MetaModelReaderTests {
 	
 	private int i=0;
-	private int[] candidates;
+	private ArrayList<String> candidates;
 	
 	Consumer<EClass> printCandidates = (a) -> {
-		i++; 
-		System.out.println(a.getName()+"="+candidates[i]);
+		System.out.println(a);
 	};
 
 	@Test
@@ -190,10 +189,9 @@ public class MetaModelReaderTests {
 		candidates = reader.generateVecotrOfCandidates(A, containers);
 		
 		assertEquals(3, containers.size());
-		assertEquals(4, candidates.length);
+		assertEquals(4, candidates.size());
 		
 		i=0;
-		System.out.println(A.getName()+"="+candidates[i]);
 		containers.forEach(printCandidates);		
 	}
 	

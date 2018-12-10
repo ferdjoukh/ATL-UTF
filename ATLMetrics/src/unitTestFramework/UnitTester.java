@@ -139,11 +139,14 @@ public class UnitTester {
 		
 		ArrayList<EClass> containingTree = reader.reverseContainingTree(classe, new ArrayList<EReference>());
 		
-		System.out.print(className+" << [ ");
+		ArrayList<String> candidates = reader.generateVecotrOfCandidates(classe, containingTree);
 		
-		containingTree.forEach((a)-> System.out.print(a.getName()+" "));
 		
-		System.out.println("]");
+		System.out.println(candidates);
+		
+//		System.out.print(className+" << [ ");
+//		containingTree.forEach((a)-> System.out.print(a.getName()+" "));
+//		System.out.println("]");
 		
 	}
 
