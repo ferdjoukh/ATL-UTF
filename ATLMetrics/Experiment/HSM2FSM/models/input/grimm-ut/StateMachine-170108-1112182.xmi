@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="ASCII"?>
+<HSM:StateMachine xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:HSM="http://HSM/1.0" xsi:schemaLocation="http://HSM/1.0 trafosTest/HSM2FSM/metamodels/input/HSM.ecore" name="StateMachine1">
+  <states xsi:type="HSM:InitialState" name="InitialState2"/>
+  <states xsi:type="HSM:InitialState" name="InitialState3"/>
+</HSM:StateMachine>

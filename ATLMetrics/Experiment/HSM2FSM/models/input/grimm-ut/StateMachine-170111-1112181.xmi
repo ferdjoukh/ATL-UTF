@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ASCII"?>
+<HSM:StateMachine xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:HSM="http://HSM/1.0" xsi:schemaLocation="http://HSM/1.0 trafosTest/HSM2FSM/metamodels/input/HSM.ecore" name="StateMachine1">
+  <transitions source="//@states.3" target="//@states.7" label="UKYICC"/>
+  <transitions source="//@states.2" target="//@states.6" label="HYMGHMRFP"/>
+  <states xsi:type="HSM:InitialState" name="InitialState4" compositeState="//@states.8"/>
+  <states xsi:type="HSM:InitialState" name="InitialState5" compositeState="//@states.6"/>
+  <states xsi:type="HSM:RegularState" name="RegularState6" compositeState="//@states.6"/>
+  <states xsi:type="HSM:RegularState" name="RegularState7" compositeState="//@states.7"/>
+  <states xsi:type="HSM:RegularState" name="RegularState8" compositeState="//@states.7"/>
+  <states xsi:type="HSM:RegularState" name="RegularState9" compositeState="//@states.8"/>
+  <states xsi:type="HSM:CompositeState" name="CompositeState10" compositeState="//@states.8" states="//@states.1 //@states.2 //@states.7"/>
+  <states xsi:type="HSM:CompositeState" name="CompositeState11" compositeState="//@states.6" states="//@states.3 //@states.4 //@states.8"/>
+  <states xsi:type="HSM:CompositeState" name="CompositeState12" compositeState="//@states.7" states="//@states.0 //@states.5 //@states.6"/>
+</HSM:StateMachine>
