@@ -136,7 +136,7 @@ public class UnitTester {
 				candidates =  merge(candidates, generateFileForGivenClass(element.getType().getName()));
 			}
 			
-			candidates2Files(null, rule.getName());
+			candidates2Files(candidates, rule.getName());
 			
 			//I have here my list of candidates
 			System.out.println(candidates);
@@ -184,13 +184,45 @@ public class UnitTester {
 		String grimmFolder = transformation.getRootFolder()+"/"+transformationName+"/grimm";
 		new File(grimmFolder).mkdir();
 		
-		String paramsFile = grimmFolder + "/" + rule + ".params";  
-		Utils.createOutputFile(paramsFile,"");
-		
 		String grimmFile = grimmFolder + "/" + rule + ".grimm";  
-		Utils.createOutputFile(grimmFile,"");
+		Utils.createOutputFile(grimmFile,grimmFileContent(candidates));
 		
+		String paramsFile = grimmFolder + "/" + rule + ".params";  
+		Utils.createOutputFile(paramsFile,paramsFileContent(grimmFile));		
 	}
+	
+	private String grimmFileContent(Hashtable<String, Integer> candidates) {
+		
+		String content="";
+		
+		for(EClass classe : transformation.getMetamodelReader().getConcreteClasses()) {
+			
+			if(candidates.containsKey(classe.getName())) {
+				content = content + classe.getName() +"="+ candidates.get(classe.getName()) +"\n";
+			}else {
+				content = content + classe.getName() +"=0\n";
+			}
+			
+		}
+		
+		content = content + "RefsBound=3\n";
+		
+		return content;
+	}
+	
+	private String paramsFileContent(String grimmFilePath) {
+		
+		String mm =   transformation.getRootFolder()+"/"+transformationName+"/metamodels/input/"+transformation.getInMMRelativePath();
+		String root = transformation.getRootClass();
+		
+		return "+meta-model ="+mm+"\n" + 
+		"+rootClass ="+root+"\n" + 
+		"configuration file ="+grimmFilePath+"\n" + 
+		"number of solutions =1\n" + 
+		"output format =xmi\n" + 
+		"CSP solver =abscon";
+	} 
+	
 	////////////////////////////////////////////////
 	//  Getters
 	////////////////////////////////////////////////
