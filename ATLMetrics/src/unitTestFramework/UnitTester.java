@@ -188,7 +188,9 @@ public class UnitTester {
 		Utils.createOutputFile(grimmFile,grimmFileContent(candidates));
 		
 		String paramsFile = grimmFolder + "/" + rule + ".params";  
-		Utils.createOutputFile(paramsFile,paramsFileContent(grimmFile));		
+		Utils.createOutputFile(paramsFile,paramsFileContent(grimmFile));	
+		
+		executeGrimm(paramsFile);
 	}
 	
 	private String grimmFileContent(Hashtable<String, Integer> candidates) {
@@ -222,6 +224,10 @@ public class UnitTester {
 		"output format =xmi\n" + 
 		"CSP solver =abscon";
 	} 
+	
+	private void executeGrimm(String paramsFilePath) {
+		
+	}
 	
 	////////////////////////////////////////////////
 	//  Getters
