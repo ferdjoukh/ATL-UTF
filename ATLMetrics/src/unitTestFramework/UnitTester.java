@@ -190,6 +190,13 @@ public class UnitTester {
 		String paramsFile = grimmFolder + "/" + rule + ".params";  
 		Utils.createOutputFile(paramsFile,paramsFileContent(grimmFile));	
 		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		executeGrimm(paramsFile);
 	}
 	
@@ -220,13 +227,21 @@ public class UnitTester {
 		return "+meta-model ="+mm+"\n" + 
 		"+rootClass ="+root+"\n" + 
 		"configuration file ="+grimmFilePath+"\n" + 
-		"number of solutions =1\n" + 
+		"number of solutions =2\n" + 
 		"output format =xmi\n" + 
 		"CSP solver =abscon";
 	} 
 	
 	private void executeGrimm(String paramsFilePath) {
 		
+		String cmd = "java -jar grimm.jar g " + paramsFilePath;
+
+		Process process = null;
+		try {
+			process = Runtime.getRuntime().exec(cmd);	
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	////////////////////////////////////////////////
