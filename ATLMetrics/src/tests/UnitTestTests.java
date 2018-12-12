@@ -33,4 +33,10 @@ public class UnitTestTests {
 		UnitTester unittester = new UnitTester("trafosTest/HSM2FSM");
 		unittester.generateGrimmConfigParamsFiles();
 	}
+	
+	@Test
+	public void createUnitTesterEcore2Maude() throws Exception{
+		UnitTester unittester = new UnitTester("newMTS/Ecore2Maude");
+		unittester.generateGrimmConfigParamsFiles();
+	}
 }

@@ -1,5 +1,6 @@
 package ATLauncher;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -45,14 +46,19 @@ public class TransformationsRunner {
 	 */
 	public boolean runAllTransformations() {
 		
+		String result = reader.getResult();
+		String trDir = reader.getTrafoDirPath();
+		File resulttDir = new File(trDir+"/"+result);
+		resulttDir.mkdir();
+		
 		verbose= verbose+ reader.printInfo();
 		verbose= verbose+ reader.printAllMT();
 		verbose= verbose+ "RUNNING\n\n";
 		
-		String logFile= Utils.generateFileNamePostfix("execution", "log");
-		String resFile= Utils.generateFileNamePostfix("execution-results", "csv");
+		String logFile= Utils.generateFileNamePostfix(result+"/execution", "log");
+		String resFile= Utils.generateFileNamePostfix(result+"/execution-results", "csv");
 		
-		String transformationMetricsFile= Utils.generateFileNamePostfix("transformations-metrics", "csv");
+		String transformationMetricsFile= Utils.generateFileNamePostfix(result+"/transformations-metrics", "csv");
 		
 		String transformationMetrics = "Transformation,Helper,CalledRule,MatchedRule,LazyMatchedRule,ComplexityScore\n";
 		
@@ -65,7 +71,7 @@ public class TransformationsRunner {
 			transformationMetrics = transformationMetrics + mt.atlMetricsTostring()+ "\n";
 		
 			//Create a failure file for each Model Transformation
-			String failFile= Utils.generateFileNamePostfix("failed-models-"+mt.getName(), "log");
+			String failFile= Utils.generateFileNamePostfix(result+"/failed-models-"+mt.getName(), "log");
 			failure="";
 			
 			for(String tool: mt.getTools()) {
@@ -89,7 +95,7 @@ public class TransformationsRunner {
 								
 				//Create the specific result per tool
 				if(!exec.getSuccess().equals("")) {
-					String toolLog=Utils.generateFileNamePostfix(tool+"-"+mt.getName(), "csv");
+					String toolLog=Utils.generateFileNamePostfix(result+"/"+tool+"-"+mt.getName(), "csv");
 					Utils.createOutputFile(reader.getTrafoDirPath()+"/"+toolLog, exec.getSuccess());
 					verbose= verbose+ " creation of file: "+ toolLog+"\n";
 				}

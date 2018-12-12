@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.IllegalValueException;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.m2m.atl.emftvm.EmftvmFactory;
@@ -104,40 +105,44 @@ public class ATLauncher {
 				String outModelPath=outModelDir+"/out-"+inputModelFiles[i].getName();
 				String traceModel = tracesDir + "/trace-"+inputModelFiles[i].getName();
 				
-				//Load IN OUT and TRACE models
-				final Model inModel = EmftvmFactory.eINSTANCE.createModel();
-				final URI uri = URI.createFileURI(inModelPath);
-				inModel.setResource(rs.getResource(uri, true));
-				env.registerInputModel("IN", inModel);
-				
-				Model outModel = EmftvmFactory.eINSTANCE.createModel();
-				outModel.setResource(rs.createResource(URI.createURI(outModelPath)));
-				env.registerOutputModel("OUT", outModel);
-				
 				Model inoutModel = EmftvmFactory.eINSTANCE.createModel();
-				inoutModel.setResource(rs.createResource(URI.createFileURI(traceModel)));
-				env.registerInOutModel("trace", inoutModel);
-							
-				ModuleResolver mr = new DefaultModuleResolver(transformationDir, rs);
 				TimingData td = new TimingData();
-				env.loadModule(mr, TRmodule);
 				
-				td.finishLoading();
-				
-				
+				try {
+					//Load IN OUT and TRACE models
+					final Model inModel = EmftvmFactory.eINSTANCE.createModel();
+					final URI uri = URI.createFileURI(inModelPath);
+					inModel.setResource(rs.getResource(uri, true));
+					env.registerInputModel("IN", inModel);
+					
+					Model outModel = EmftvmFactory.eINSTANCE.createModel();
+					outModel.setResource(rs.createResource(URI.createURI(outModelPath)));
+					env.registerOutputModel("OUT", outModel);
+					
+					inoutModel.setResource(rs.createResource(URI.createFileURI(traceModel)));
+					env.registerInOutModel("trace", inoutModel);
+								
+					ModuleResolver mr = new DefaultModuleResolver(transformationDir, rs);
+										
+					td.finishLoading();
+					
+					env.loadModule(mr, TRmodule);
+					env.run(td);
+					td.finish();
+				}catch(Exception e) {
+					
+					String res=inputModelFiles[i].getName()+" "+toolName+"\n";
+					fail=fail+res;
+					fail=fail+"  "+e.getMessage()+"\n";
+					log=log+ "EXCEPTION "+ res;	
+					
+				}finally {
+					
 					try {
-						env.run(td);						
-					}catch(Exception e) {
-						String res=inputModelFiles[i].getName()+" "+toolName+"\n";
-						fail=fail+res;
-						fail=fail+"  "+e.getMessage()+"\n";
-						log=log+ "EXCEPTION "+ res;						
-					}
-					finally {
-						td.finish();
+						float executionTime = 0.0f;
 						
 						totalRules= (int) env.getRules().size();
-						float executionTime = td.getFinished() * 0.000001f;
+						executionTime = td.getFinished() * 0.000001f;
 						
 						// with repetitions
 						final List<String> executedRulesNames = inoutModel.getResource().getContents()
@@ -146,16 +151,14 @@ public class ATLauncher {
 								.orElse(new ArrayList<String>());
 						
 						// without repetitions
-						final Set<Rule> executedRules = env.getRules().stream()
+						Set<Rule> executedRules = env.getRules().stream()
 								.filter(r -> executedRulesNames.contains(r.getName()))
 								.collect(Collectors.toSet());
-
+						
 						String res=  inputModelFiles[i].getName()+";"+executionTime+ ";"+ executedRules.size()+";"+ totalRules+";"+ executedRulesNames+"\n";
 						success= success+res;
 						log=log+ "SUCCESS "+res;
 						
-						//Ici il manque le calcul des totaux
-						//Exemple: toutes les rules executes >> caclul du coverage
 						for(String rule: executedRulesNames) {
 							if(!totalExecutedRules.contains(rule)) {
 								totalExecutedRules.add(rule);
@@ -163,14 +166,10 @@ public class ATLauncher {
 						}						
 						nbSuccess++;
 					}
-					
-				// Save models
-//				try {
-//					outModel.getResource().save(Collections.emptyMap());
-//					inoutModel.getResource().save(Collections.emptyMap());
-//				} catch (IOException e) {
-//					
-//				}
+					catch(Exception e) {
+						
+					}					
+				}					
 			}
 			
 		} catch (Exception e) {

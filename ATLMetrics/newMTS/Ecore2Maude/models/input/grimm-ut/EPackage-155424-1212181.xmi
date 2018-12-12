@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xsi:schemaLocation="http://www.eclipse.org/emf/2002/Ecore newMTS/Ecore2Maude/metamodels/input/Ecore.ecore" name="EPackage6" nsURI="YPFFWCNL" nsPrefix="GRVSRLGGT">
+  <eClassifiers xsi:type="ecore:EClass" name="EClass4" instanceClassName="XDINEOYJ" instanceTypeName="PWYXWY" abstract="true" eSuperTypes="//@eClassifiers.1" eGenericSuperTypes="">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="EAttribute1" unique="false" lowerBound="47" upperBound="88" eType="//@eClassifiers.0" transient="true" defaultValueLiteral="HXQMDQDKP" derived="true">
+      <eAnnotations source="OLCYIJT" references="//@eClassifiers.1 //@eClassifiers.1/@eAnnotations.0"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EClass5" instanceClassName="VKYWAPCRQ" instanceTypeName="KRSNUGW" eSuperTypes="//@eClassifiers.1" eGenericSuperTypes="">
+    <eAnnotations source="OBVVL" references="//@eClassifiers.1 //@eClassifiers.0"/>
+  </eClassifiers>
+</ecore:EPackage>

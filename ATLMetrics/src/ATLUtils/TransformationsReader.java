@@ -14,6 +14,7 @@ public class TransformationsReader {
 
 	private String trafoDirPath;
 	private File trafoDir;
+	private String result = "results";
 	private ArrayList<String> toolsList=new ArrayList<String>();
 	private ArrayList<ModelTransformation> modelTransformations= new ArrayList<ModelTransformation>();
 	
@@ -212,7 +213,8 @@ public class TransformationsReader {
 	public File getTrafoDir() {
 		return trafoDir;
 	}
-	
-	
-	
+
+	public String getResult() {
+		return result;
+	}
 }

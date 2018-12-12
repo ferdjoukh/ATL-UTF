@@ -52,7 +52,8 @@ public class Help {
 		System.out.println("CREDITS");
 		System.out.println("  version:  ATL-UTF 1.0 (December 2018)");
 		System.out.println("  authors:  Adel Ferdjoukh <adel.ferdjoukh@tuwien.ac.at> (main contributor)");
-		System.out.println("            Manuel Wimmer <manuel.wimmer@tuwien.ac.at> (Team leader)");
+		System.out.println("            Dorian Leroy  <dorian.leroy@tuwien.ac.at> (contributor)");
+		System.out.println("            Manuel Wimmer <manuel.wimmer@tuwien.ac.at> (Team leader)");		
 	}
 	
 	public static void printUTHelp() {

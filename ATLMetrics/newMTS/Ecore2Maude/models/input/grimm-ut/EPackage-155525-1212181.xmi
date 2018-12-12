@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xsi:schemaLocation="http://www.eclipse.org/emf/2002/Ecore newMTS/Ecore2Maude/metamodels/input/Ecore.ecore" name="EPackage6" nsURI="ODOAIGFM" nsPrefix="KPKAFEW">
+  <eClassifiers xsi:type="ecore:EClass" name="EClass4" instanceClassName="VTXDJMSAP" instanceTypeName="TIPYSGDLK" abstract="true" interface="true" eSuperTypes="//@eClassifiers.0" eGenericSuperTypes="">
+    <eAnnotations source="TPYWTANLH" references="//@eClassifiers.0 //@eClassifiers.0/@eStructuralFeatures.0 //@eClassifiers.0/@eStructuralFeatures.0/@eAnnotations.0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="EAttribute1" lowerBound="45" upperBound="40" eType="//@eClassifiers.0/@eStructuralFeatures.0/@eAnnotations.0/@contents.0" defaultValueLiteral="DRREN" derived="true" iD="true">
+      <eAnnotations source="UHBTM" references="//@eClassifiers.0/@eStructuralFeatures.0/@eAnnotations.0 //@eClassifiers.0/@eAnnotations.0 //@eClassifiers.0/@eStructuralFeatures.0">
+        <contents xsi:type="ecore:EClass" name="EClass5" instanceClassName="DVFODIJ" instanceTypeName="MWKRXCV" interface="true" eSuperTypes="//@eClassifiers.0 //@eClassifiers.0/@eStructuralFeatures.0/@eAnnotations.0/@contents.0" eGenericSuperTypes=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+</ecore:EPackage>

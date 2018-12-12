@@ -1,9 +1,11 @@
 package ATLUtils;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.channels.FileLock;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -97,6 +99,10 @@ public class ModelTransformation {
 		////////////////////////////////////////////////////////////////////
 		//Create 3 metrics files
 		////////////////////////////////////////////////////////////////////
+		File metricsDir = new File(rootFolder+"/metrics");
+		metricsDir.mkdir();
+		
+		
 		createMetricsFile("rules", printableRules());
 		createMetricsFile("atlmetrics", atlMetricsTostring());
 		createMetricsFile("ecoremetrics", metamodelMetricsToString());
@@ -240,9 +246,9 @@ public class ModelTransformation {
 	 * 
 	 */
 	private void createMetricsFile(String suffix, String content){
-		int begin=0;
-		int end= this.absoluteATLFilePath.lastIndexOf(".")+1;
-		String filePath= this.absoluteATLFilePath.substring(begin, end)+suffix;
+//		int begin=0;
+//		int end= this.absoluteATLFilePath.lastIndexOf(".")+1;
+		String filePath=  rootFolder+"/metrics/"+moduleName+"."+suffix;
 		Utils.createOutputFile(filePath,content);	
 		System.out.println("[info] created file "+filePath);
 	}

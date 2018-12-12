@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xsi:schemaLocation="http://www.eclipse.org/emf/2002/Ecore newMTS/Ecore2Maude/metamodels/input/Ecore.ecore" name="EPackage5" nsURI="TXOLXVTQS" nsPrefix="ARPHJS">
+  <eClassifiers xsi:type="ecore:EClass" name="EClass3" instanceClassName="YTRTB" instanceTypeName="VKNLDVXF" eSuperTypes="//@eClassifiers.1 //@eClassifiers.0" eGenericSuperTypes="">
+    <eAnnotations source="NAHHDM" references="//@eClassifiers.0/@eAnnotations.0/@contents.0 //@eClassifiers.0 //@eClassifiers.1">
+      <eAnnotations source="BKBYU" references="//@eClassifiers.1 //@eClassifiers.0/@eAnnotations.0/@contents.0 //@eClassifiers.0/@eAnnotations.0">
+        <contents xsi:type="ecore:EReference" name="EReference6" ordered="false" unique="false" lowerBound="94" upperBound="27" eType="//@eClassifiers.0" volatile="true" transient="true" defaultValueLiteral="BAYUXRQC" derived="true" containment="true" eOpposite="//@eClassifiers.0/@eAnnotations.0/@eAnnotations.0/@contents.0"/>
+      </eAnnotations>
+      <contents xsi:type="ecore:EReference" name="EReference7" ordered="false" unique="false" lowerBound="12" upperBound="55" eType="//@eClassifiers.1" changeable="false" defaultValueLiteral="EEGWGXQ" containment="true" resolveProxies="false" eOpposite="//@eClassifiers.0/@eAnnotations.0/@contents.0"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EClass4" instanceClassName="GIEFNEE" instanceTypeName="LMMXTCDL" abstract="true" interface="true" eSuperTypes="//@eClassifiers.0 //@eClassifiers.1" eGenericSuperTypes=""/>
+</ecore:EPackage>

@@ -467,11 +467,11 @@ public class MetaModelReader {
 				if(c.getName().equals(rootClassName)) {
 					results.put(c.getName(),1);
 				}else {
-					results.put(c.getName(),randomInt(1, 3));
+					results.put(c.getName(),randomInt(2, 3));
 				}
 			}else {
 				for(EClass subclass: getConcreteSubTypes(c)) {
-					results.put(subclass.getName(),randomInt(1, 3));
+					results.put(subclass.getName(),randomInt(2, 3));
 				}	
 			}
 		}

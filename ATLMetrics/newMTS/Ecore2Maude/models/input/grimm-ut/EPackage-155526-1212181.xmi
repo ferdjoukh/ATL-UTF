@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xsi:schemaLocation="http://www.eclipse.org/emf/2002/Ecore newMTS/Ecore2Maude/metamodels/input/Ecore.ecore" name="EPackage6" nsURI="UGCODU" nsPrefix="DDMVMX">
+  <eClassifiers xsi:type="ecore:EEnum" name="EEnum3" instanceClassName="ILTGDWG" instanceTypeName="IUCNO" serializable="false">
+    <eAnnotations source="NWTCKTFH" references="//@eClassifiers.0 //@eClassifiers.0/@eAnnotations.0/@eAnnotations.0 //@eClassifiers.0/@eAnnotations.0/@contents.0">
+      <eAnnotations source="EPSRLRUSJ" references="//@eClassifiers.0 //@eClassifiers.0/@eAnnotations.0/@contents.1 //@eClassifiers.0/@eAnnotations.0"/>
+      <contents xsi:type="ecore:EEnum" name="EEnum4" instanceClassName="OABVIE" instanceTypeName="RAMWE"/>
+      <contents xsi:type="ecore:EEnumLiteral" name="EEnumLiteral5" value="59" literal="EULFTFO"/>
+    </eAnnotations>
+  </eClassifiers>
+</ecore:EPackage>

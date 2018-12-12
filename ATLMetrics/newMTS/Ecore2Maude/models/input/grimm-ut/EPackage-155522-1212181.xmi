@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xsi:schemaLocation="http://www.eclipse.org/emf/2002/Ecore newMTS/Ecore2Maude/metamodels/input/Ecore.ecore" name="EPackage8" nsURI="FBYTKN" nsPrefix="SYNDTFTP">
+  <eClassifiers xsi:type="ecore:EClass" name="EClass3" instanceClassName="DHLKSMDLD" instanceTypeName="CYPEJD" abstract="true" eSuperTypes="//@eClassifiers.1 //@eClassifiers.0"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EClass4" instanceClassName="GERWIJ" instanceTypeName="SJSBJ" eSuperTypes="//@eClassifiers.0" eGenericSuperTypes=""/>
+  <eClassifiers xsi:type="ecore:EDataType" name="EDataType5" instanceClassName="NLEXNRWD" instanceTypeName="HFBSTAX">
+    <eAnnotations source="GEYLOYSE" references="//@eClassifiers.2/@eAnnotations.0/@contents.0 //@eClassifiers.3 //@eClassifiers.2/@eAnnotations.0">
+      <contents xsi:type="ecore:EEnum" name="EEnum6" instanceClassName="PHPHIWJ" instanceTypeName="YUIPDXTFD"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="EEnum7" instanceClassName="XRADEONHS" instanceTypeName="VJMKSOB" serializable="false">
+    <eAnnotations source="OQOXREW" references="//@eClassifiers.3/@eAnnotations.0 //@eClassifiers.3 //@eClassifiers.0"/>
+  </eClassifiers>
+</ecore:EPackage>

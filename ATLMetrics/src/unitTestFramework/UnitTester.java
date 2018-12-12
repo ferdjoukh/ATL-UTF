@@ -1,7 +1,9 @@
 package unitTestFramework;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FilenameFilter;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Map;
@@ -9,6 +11,7 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.m2m.atl.common.ATL.InPatternElement;
+import org.eclipse.m2m.atl.common.ATL.LazyMatchedRule;
 import org.eclipse.m2m.atl.common.ATL.MatchedRule;
 
 import ATLUtils.ModelTransformation;
@@ -128,20 +131,23 @@ public class UnitTester {
 		
 		for(MatchedRule rule: matchedRules) {
 			
-			Hashtable<String,Integer> candidates = new Hashtable<String, Integer>();
+			if(!(rule instanceof LazyMatchedRule)) {
 			
-			System.out.println(rule.getName());
-			
-			for (InPatternElement element : rule.getInPattern().getElements()) {
-				candidates =  merge(candidates, generateFileForGivenClass(element.getType().getName()));
+				Hashtable<String,Integer> candidates = new Hashtable<String, Integer>();
+				
+				System.out.println(rule.getName());
+				
+				for (InPatternElement element : rule.getInPattern().getElements()) {
+					candidates =  merge(candidates, generateFileForGivenClass(element.getType().getName()));
+				}
+				
+				candidates2Files(candidates, rule.getName());
+				
+				//I have here my list of candidates
+				System.out.println(candidates);
+				System.out.println("");
+				System.out.println("");
 			}
-			
-			candidates2Files(candidates, rule.getName());
-			
-			//I have here my list of candidates
-			System.out.println(candidates);
-			System.out.println("");
-			System.out.println("");
 		}
 	}
 	
@@ -181,19 +187,18 @@ public class UnitTester {
 	
 	private void candidates2Files(Hashtable<String, Integer> candidates, String rule) {
 		
-		String grimmFolder = transformation.getRootFolder()+"/"+transformationName+"/grimm";
-		new File(grimmFolder).mkdir();
+		String unitTestsFolder = transformation.getRootFolder()+"/unitTests/"+transformationName;
+		new File(unitTestsFolder).mkdir();
 		
-		String grimmFile = grimmFolder + "/" + rule + ".grimm";  
+		String grimmFile = unitTestsFolder + "/" + rule + ".grimm";  
 		Utils.createOutputFile(grimmFile,grimmFileContent(candidates));
 		
-		String paramsFile = grimmFolder + "/" + rule + ".params";  
+		String paramsFile = unitTestsFolder + "/" + rule + ".params";  
 		Utils.createOutputFile(paramsFile,paramsFileContent(grimmFile));	
 		
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -227,7 +232,7 @@ public class UnitTester {
 		return "+meta-model ="+mm+"\n" + 
 		"+rootClass ="+root+"\n" + 
 		"configuration file ="+grimmFilePath+"\n" + 
-		"number of solutions =2\n" + 
+		"number of solutions =1\n" + 
 		"output format =xmi\n" + 
 		"CSP solver =abscon";
 	} 
@@ -239,6 +244,8 @@ public class UnitTester {
 		Process process = null;
 		try {
 			process = Runtime.getRuntime().exec(cmd);	
+			BufferedReader reader = new BufferedReader(
+					new InputStreamReader(process.getInputStream()));
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
 		}

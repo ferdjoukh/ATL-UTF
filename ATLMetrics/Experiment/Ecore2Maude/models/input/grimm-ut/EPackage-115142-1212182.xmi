@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xsi:schemaLocation="http://www.eclipse.org/emf/2002/Ecore Experiment/Ecore2Maude/metamodels/input/Ecore.ecore" name="EPackage6" nsURI="UHAJA" nsPrefix="FNUHCM">
+  <eClassifiers xsi:type="ecore:EEnum" name="EEnum2" instanceClassName="PHYVMQ" instanceTypeName="EBYWGQP"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="EEnum3" instanceClassName="TQABTENVA" instanceTypeName="SACLT">
+    <eAnnotations source="UHGVJ" references="//@eClassifiers.1/@eAnnotations.0 //@eClassifiers.0"/>
+  </eClassifiers>
+</ecore:EPackage>

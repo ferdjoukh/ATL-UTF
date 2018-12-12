@@ -74,14 +74,6 @@
     <semanticResources>trafosTest/CPL2SPL/metamodels/output/SPL.ecore</semanticResources>
     <semanticResources>newMTS/Ecore2Maude/Ecore2Maude.atl</semanticResources>
     <semanticResources>newMTS/Ecore2Maude/metamodels/output/Maude.ecore</semanticResources>
-    <semanticResources>grimm/grimm-executable/BibTeX.ecore</semanticResources>
-    <semanticResources>grimm/grimm-executable/CPL.ecore</semanticResources>
-    <semanticResources>grimm/grimm-executable/Ecore.ecore</semanticResources>
-    <semanticResources>grimm/grimm-executable/SimpleUML.ecore</semanticResources>
-    <semanticResources>grimm/grimm-executable/examples/FeatureModel.ecore</semanticResources>
-    <semanticResources>grimm/grimm-executable/examples/MyJava.ecore</semanticResources>
-    <semanticResources>grimm/grimm-executable/examples/maps.ecore</semanticResources>
-    <semanticResources>grimm/grimm-executable/examples/test.ecore</semanticResources>
     <semanticResources>newMTS/Ecore2Maude/models/input/grimm/EPackage13115431UB01.xmi</semanticResources>
     <semanticResources>newMTS/Ecore2Maude/models/input/grimm/EPackage13115431UB02.xmi</semanticResources>
     <semanticResources>newMTS/Ecore2Maude/models/input/grimm/EPackage13115431UB03.xmi</semanticResources>
@@ -107,11 +99,9 @@
     <semanticResources>Experiment/ATOM2RSS/models/input/GRIMM/ATOM.xmi</semanticResources>
     <semanticResources>Experiment/ATOM2RSS/models/input/GRIMM/ATOM1211440UB01.xmi</semanticResources>
     <semanticResources>Experiment/BibTexML2DocBook/BibTeX2DocBook.atl</semanticResources>
-    <semanticResources>Experiment/BibTexML2DocBook/BibTeX2DocBook.emftvm</semanticResources>
     <semanticResources>Experiment/BibTexML2DocBook/metamodels/input/BibTeX.ecore</semanticResources>
     <semanticResources>Experiment/BibTexML2DocBook/metamodels/output/DocBook.ecore</semanticResources>
     <semanticResources>Experiment/CPL2SPL/CPL2SPL.atl</semanticResources>
-    <semanticResources>Experiment/CPL2SPL/CPL2SPL.emftvm</semanticResources>
     <semanticResources>Experiment/CPL2SPL/metamodels/input/CPL.ecore</semanticResources>
     <semanticResources>Experiment/CPL2SPL/metamodels/output/SPL.ecore</semanticResources>
     <semanticResources>Experiment/CPL2SPL/models/input/Git/CPL2SPL.xmi</semanticResources>
@@ -166,7 +156,6 @@
     <semanticResources>Experiment/CPL2SPL/models/input/Git/CPL2SPL_Mutant8.xmi</semanticResources>
     <semanticResources>Experiment/CPL2SPL/models/input/Git/CPL2SPL_Mutant9.xmi</semanticResources>
     <semanticResources>Experiment/Ecore2Maude/Ecore2Maude.atl</semanticResources>
-    <semanticResources>Experiment/Ecore2Maude/Ecore2Maude.emftvm</semanticResources>
     <semanticResources>Experiment/Ecore2Maude/metamodels/input/EPackage.xmi</semanticResources>
     <semanticResources>Experiment/Ecore2Maude/metamodels/input/Ecore.ecore</semanticResources>
     <semanticResources>Experiment/Ecore2Maude/metamodels/output/Maude.ecore</semanticResources>
@@ -181,7 +170,6 @@
     <semanticResources>Experiment/Ecore2Maude/models/input/grimm/EPackage-160502-1911188.xmi</semanticResources>
     <semanticResources>Experiment/Ecore2Maude/models/input/grimm/EPackage-160502-1911189.xmi</semanticResources>
     <semanticResources>Experiment/HSM2FSM/HSM2FSM.atl</semanticResources>
-    <semanticResources>Experiment/HSM2FSM/HSM2FSM.emftvm</semanticResources>
     <semanticResources>Experiment/HSM2FSM/metamodels/input/HSM.ecore</semanticResources>
     <semanticResources>Experiment/HSM2FSM/metamodels/output/FSM.ecore</semanticResources>
     <semanticResources>Experiment/HSM2FSM/models/traces/EMFtoCSP/trace-StateMachine31.xmi</semanticResources>
@@ -208,8 +196,6 @@
     <semanticResources>Experiment/HSM2FSM/models/traces/PRAMANA/trace-StateMachine7.xmi</semanticResources>
     <semanticResources>Experiment/HSM2FSM/models/traces/PRAMANA/trace-StateMachine72.xmi</semanticResources>
     <semanticResources>Experiment/R2ML2RDM/R2ML2RDM.atl</semanticResources>
-    <semanticResources>Experiment/R2ML2RDM/R2ML2RDM.emftvm</semanticResources>
-    <semanticResources>Experiment/R2ML2RDM/R2ML2RDM.xmi</semanticResources>
     <semanticResources>Experiment/R2ML2RDM/metamodels/input/R2ML.ecore</semanticResources>
     <semanticResources>Experiment/R2ML2RDM/metamodels/input/R2ML2.ecore</semanticResources>
     <semanticResources>Experiment/R2ML2RDM/metamodels/output/RDM.ecore</semanticResources>
@@ -222,7 +208,6 @@
     <semanticResources>Experiment/R2ML2RDM/models/traces/PRAMANA/trace-RuleBase2.xmi</semanticResources>
     <semanticResources>Experiment/R2ML2RDM/models/traces/PRAMANA/trace-RuleBase3.xmi</semanticResources>
     <semanticResources>Experiment/UML2ER/UML2ER.atl</semanticResources>
-    <semanticResources>Experiment/UML2ER/UML2ER.emftvm</semanticResources>
     <semanticResources>Experiment/UML2ER/metamodels/input/SimpleUML.ecore</semanticResources>
     <semanticResources>Experiment/UML2ER/metamodels/output/ER.ecore</semanticResources>
     <semanticResources>Experiment/UML2ER/models/input/Git/SimpleUml2ER.xmi</semanticResources>
@@ -260,6 +245,24 @@
     <semanticResources>newMTS/Ecore2Maude/metamodels/input/Ecore.ecore</semanticResources>
     <semanticResources>trafosTest/onlyATL/HSM2FSM.atl</semanticResources>
     <semanticResources>trafosTest/missingInfo/HSM2FSM.atl</semanticResources>
+    <semanticResources>Experiment/Ecore2Maude/models/input/grimm-ut/EPackage-115136-1212181.xmi</semanticResources>
+    <semanticResources>Experiment/Ecore2Maude/models/input/grimm-ut/EPackage-115136-1212182.xmi</semanticResources>
+    <semanticResources>Experiment/Ecore2Maude/models/input/grimm-ut/EPackage-115137-1212181.xmi</semanticResources>
+    <semanticResources>Experiment/Ecore2Maude/models/input/grimm-ut/EPackage-115137-1212182.xmi</semanticResources>
+    <semanticResources>Experiment/Ecore2Maude/models/input/grimm-ut/EPackage-115140-1212181.xmi</semanticResources>
+    <semanticResources>Experiment/Ecore2Maude/models/input/grimm-ut/EPackage-115140-1212182.xmi</semanticResources>
+    <semanticResources>Experiment/Ecore2Maude/models/input/grimm-ut/EPackage-115142-1212181.xmi</semanticResources>
+    <semanticResources>Experiment/Ecore2Maude/models/input/grimm-ut/EPackage-115142-1212182.xmi</semanticResources>
+    <semanticResources>newMTS/Ecore2Maude/models/input/grimm-ut/EPackage-150401-1212181.xmi</semanticResources>
+    <semanticResources>newMTS/Ecore2Maude/models/input/grimm-ut/EPackage-150403-1212181.xmi</semanticResources>
+    <semanticResources>newMTS/Ecore2Maude/models/input/grimm-ut/EPackage-155421-1212181.xmi</semanticResources>
+    <semanticResources>newMTS/Ecore2Maude/models/input/grimm-ut/EPackage-155422-1212181.xmi</semanticResources>
+    <semanticResources>newMTS/Ecore2Maude/models/input/grimm-ut/EPackage-155424-1212181.xmi</semanticResources>
+    <semanticResources>newMTS/Ecore2Maude/models/input/grimm-ut/EPackage-155425-1212181.xmi</semanticResources>
+    <semanticResources>newMTS/Ecore2Maude/models/input/grimm-ut/EPackage-155426-1212181.xmi</semanticResources>
+    <semanticResources>newMTS/Ecore2Maude/models/input/grimm-ut/EPackage-155521-1212181.xmi</semanticResources>
+    <semanticResources>newMTS/Ecore2Maude/models/input/grimm-ut/EPackage-155522-1212181.xmi</semanticResources>
+    <semanticResources>newMTS/Ecore2Maude/models/input/grimm-ut/EPackage-155526-1212181.xmi</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_Xcm_UKeCEeiLSZ63Y1Btbg">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_ZUhjMKeCEeiLSZ63Y1Btbg" name="ATL class diagram" repPath="#_ZTclIKeCEeiLSZ63Y1Btbg">
